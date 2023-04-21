@@ -8,7 +8,7 @@
 % Copyright RCNL *change later*
 
 matlab.project.loadProject(fullfile("..", "nmsm-core"));
-cd(fullfile("nmsm-test"));
+cd(fullfile("../nmsm-test"));
 testResults = runtests('tests', 'IncludeSubfolders', true);
 
 testResults.assertSuccess()
