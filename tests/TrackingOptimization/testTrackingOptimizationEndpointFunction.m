@@ -1,5 +1,5 @@
 load('trackingOptimizationEndpointInputs.mat')
-pointKinematics("exampleModel.osim");
+pointKinematics('exampleModel.osim');
 inverseDynamics('exampleModel.osim');
 
 output.eventgroup.event = calcTrackingOptimizationTerminalConstraint( ...
