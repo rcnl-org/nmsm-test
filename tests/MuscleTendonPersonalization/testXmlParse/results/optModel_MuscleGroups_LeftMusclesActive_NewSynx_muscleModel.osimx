@@ -5,7 +5,6 @@
       <associated_osim_model>/Users/cvham/Documents/GitHub/nmsm-core/tests/MuscleTendonPersonalization/testXmlParse/optModel_MuscleGroups_LeftMusclesActive_NewSynx.osim</associated_osim_model>
       <!--Optimized muscle parameters-->
       <MTPMuscleSet>
-         <objects>
             <RCNLMuscle name="addbrev_l">
                <!--Optimized electronmechanical delay-->
                <electromechanical_delay>0.5</electromechanical_delay>
@@ -482,8 +481,6 @@
                <!--Optimized slack tendon length scaling factor-->
                <slack_tendon_length_scale_factor>1</slack_tendon_length_scale_factor>
             </RCNLMuscle>
-         </objects>
-         <groups/>
       </MTPMuscleSet>
    </OsimxModel>
 </OpenSimDocument>

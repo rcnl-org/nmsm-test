@@ -17,7 +17,6 @@
 		<resting_spring_length_initialization_is_enabled>true</resting_spring_length_initialization_is_enabled>
 		<!--Settings for ground contact personalization on the right side-->
 		<GCPContactSurfaceSet>
-			<objects>
 				<GCPContactSurface>
 					<!--Flag indicating whether the foot will be personalized-->
 					<is_enabled>true</is_enabled>
@@ -76,8 +75,6 @@
 					<!--Name of midfoot superior marker used to define ground reaction moments-->
 					<midfoot_superior_marker>L.Midfoot.Superior</midfoot_superior_marker>
 				</GCPContactSurface>
-			</objects>
-			<groups />
 		</GCPContactSurfaceSet>
 		<!--Task list defining rounds of GCP optimization-->
 		<GCPTaskList>
@@ -103,7 +100,6 @@
                 <neighborStandardDeviation>0.05</neighborStandardDeviation>
 				<!--Settings for cost function terms for the task-->
                 <RCNLCostTermSet>
-                    <objects>
 					    <RCNLCostTerm>
 					    	<type>rotation</type>
                             <is_enabled>true</is_enabled>
@@ -134,8 +130,6 @@
                             <is_enabled>true</is_enabled>
                             <max_allowable_error>2000</max_allowable_error>
                         </RCNLCostTerm>
-                    </objects>
-                    <groups />
 				</RCNLCostTermSet>
 			</GCPTask>
 			<GCPTask>
@@ -160,7 +154,6 @@
                 <neighborStandardDeviation>0.05</neighborStandardDeviation>
 				<!--Settings for cost function terms for the task-->
                 <RCNLCostTermSet>
-                    <objects>
 					    <RCNLCostTerm>
 					    	<type>rotation</type>
                             <is_enabled>true</is_enabled>
@@ -191,8 +184,6 @@
                             <is_enabled>true</is_enabled>
                             <max_allowable_error>2000</max_allowable_error>
                         </RCNLCostTerm>
-                    </objects>
-                    <groups />
 				</RCNLCostTermSet>
 			</GCPTask>
 			<GCPTask>
@@ -217,7 +208,6 @@
                 <neighborStandardDeviation>0.05</neighborStandardDeviation>
 				<!--Settings for cost function terms for the task-->
                 <RCNLCostTermSet>
-                    <objects>
 					    <RCNLCostTerm>
 					    	<type>rotation</type>
                             <is_enabled>true</is_enabled>
@@ -248,8 +238,6 @@
                             <is_enabled>true</is_enabled>
                             <max_allowable_error>2000</max_allowable_error>
                         </RCNLCostTerm>
-                    </objects>
-                    <groups />
 				</RCNLCostTermSet>
 			</GCPTask>
 		</GCPTaskList>

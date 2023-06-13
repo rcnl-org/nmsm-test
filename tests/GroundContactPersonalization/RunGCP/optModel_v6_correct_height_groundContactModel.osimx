@@ -23,7 +23,6 @@
                <toes_joint>mtp_r</toes_joint>
                <!--The set of springs for the contact surface-->
                <GCPSpringSet>
-                  <objects>
                      <GCPSpring name="spring_marker_1">
                         <!--The body that the spring is attached to-->
                         <parent_body>calcn_r</parent_body>
@@ -464,8 +463,6 @@
                         <!--The modeled spring constant for the spring-->
                         <spring_constant>2500</spring_constant>
                      </GCPSpring>
-                  </objects>
-                  <groups/>
                </GCPSpringSet>
             </GCPContactSurface>
          </GCPContactSurfaceSet>

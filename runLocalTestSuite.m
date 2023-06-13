@@ -4,7 +4,7 @@
 % passing before pushing the code to the GitHub repository.
 
 % Copyright RCNL *change later*
-
+clc;clear;
 import matlab.unittest.TestRunner
 import matlab.unittest.plugins.CodeCoveragePlugin
 

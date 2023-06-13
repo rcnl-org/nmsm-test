@@ -5,7 +5,6 @@
       <associated_osim_model>arm26_one_muscle.osim</associated_osim_model>
       <!--Optimized muscle parameters-->
       <RCNLMuscleSet>
-         <objects>
             <RCNLMuscle name="BRA">
                <!--Optimized electromechanical delay-->
                <electromechanical_delay>0.5</electromechanical_delay>
@@ -20,8 +19,6 @@
                <!--Optimized tendon slack length-->
                <tendon_slack_length>0.0321</tendon_slack_length>
             </RCNLMuscle>
-         </objects>
-         <groups/>
       </RCNLMuscleSet>
    </OsimxModel>
 </NMSMPipelineDocument>

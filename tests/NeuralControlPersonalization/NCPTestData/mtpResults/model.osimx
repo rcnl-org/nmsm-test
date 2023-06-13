@@ -5,7 +5,6 @@
       <associated_osim_model>model.osim</associated_osim_model>
       <!--Optimized muscle parameters-->
       <MTPMuscleSet>
-         <objects>
             <RCNLMuscle name="addbrev_r">
                <!--Optimized electronmechanical delay-->
                <electromechanical_delay>0.050665</electromechanical_delay>
@@ -1266,8 +1265,6 @@
                <!--Optimized slack tendon length scaling factor-->
                <slack_tendon_length_scale_factor>0.88939</slack_tendon_length_scale_factor>
             </RCNLMuscle>
-         </objects>
-         <groups/>
       </MTPMuscleSet>
    </OsimxModel>
 </OpenSimDocument>

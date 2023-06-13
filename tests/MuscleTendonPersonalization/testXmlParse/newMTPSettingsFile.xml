@@ -38,7 +38,6 @@
             <!--*Optional* The muscle specific tension to use-->
             <maximum_muscle_stress>610e3</maximum_muscle_stress>
 			<RCNLCostTermSet>
-                <objects>
                     <RCNLCostTerm>
                         <type>passive_joint_moment</type>
                         <is_enabled>true</is_enabled>
@@ -87,8 +86,6 @@
                         <is_enabled>true</is_enabled>
                         <max_allowable_error>0.03</max_allowable_error>
                     </RCNLCostTerm>
-                </objects>
-                <groups />
             </RCNLCostTermSet>
 		</MuscleTendonLengthInitialization>
 		 <!-- Synergy Extrapolation Settings -->
@@ -106,7 +103,6 @@
 			<!--Indicate categorization of variability for muscle activation residuals: Task, Trial, or Subject.-->
 			<residual_categorization>task</residual_categorization>
 			<RCNLCostTermSet>
-				<objects>
 					<RCNLCostTerm>
 						<type>measured_inverse_dynamics_joint_moment</type>
 						<is_enabled>true</is_enabled>
@@ -127,8 +123,6 @@
 						<is_enabled>true</is_enabled>
 						<max_allowable_error>0.3</max_allowable_error>
 					</RCNLCostTerm>
-				</objects>
-				<groups />
 			</RCNLCostTermSet>
 		</MTPSynergyExtrapolation>
 		<MTPTaskList>
@@ -141,7 +135,6 @@
                 <muscle_specific_electromechanical_delays>false</muscle_specific_electromechanical_delays>
                 <!--Cost term set for the MTPTask.-->
                 <RCNLCostTermSet>
-                    <objects>
                         <RCNLCostTerm>
                             <type>inverse_dynamics_joint_moment</type>
                             <is_enabled>true</is_enabled>
@@ -200,8 +193,6 @@
                             <is_enabled>true</is_enabled>
                             <max_allowable_error>0.2</max_allowable_error>
                         </RCNLCostTerm>
-                    </objects>
-                    <groups />
                 </RCNLCostTermSet>
 			</MTPTask>
 		</MTPTaskList>

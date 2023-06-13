@@ -5,7 +5,6 @@
 		<associated_osim_model>model.osim</associated_osim_model>
 		<!--Optimized muscle parameters-->
 		<RCNLMuscleSet>
-			<objects>
 				<RCNLMuscle name="addbrev_l">
 				   <!--Optimized electromechanical delay-->
 				   <electromechanical_delay>0.5</electromechanical_delay>
@@ -550,12 +549,9 @@
 				   <!--Optimized max isometric force-->
 				   <max_isometric_force>0</max_isometric_force>
 				</RCNLMuscle>
-			</objects>
-			<groups/>
 		</RCNLMuscleSet>
 		<!--The set of contact surfaces modeled-->
 		<RCNLContactSurfaceSet>
-			<objects>
 				<!--The set of contact surfaces modeled-->
 				<RCNLContactSurface>
 					<!--Flag indicating whether foot model should be mirrored-->
@@ -591,7 +587,6 @@
 					<latching_velocity>0.05</latching_velocity>
 					<!--The set of springs for the contact surface-->
 					<GCPSpringSet>
-						  <objects>
 							 <GCPSpring name="spring_marker_1">
 							 <!--The body that the spring is attached to-->
 							 <parent_body>calcn_r</parent_body>
@@ -1032,12 +1027,8 @@
 								<!--The modeled spring constant for the spring-->
 								<spring_constant>2500</spring_constant>
 							 </GCPSpring>
-						  </objects>
-						  <groups/>
 					   </GCPSpringSet>
 				</RCNLContactSurface>
-			</objects>
-			<groups/>
 		</RCNLContactSurfaceSet>
 	</OsimxModel>
 </NMSMPipelineDocument>

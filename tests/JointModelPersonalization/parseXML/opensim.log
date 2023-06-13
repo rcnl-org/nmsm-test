@@ -1429,3 +1429,1920 @@ nd is being reset to 'markerset'.
 [2023-05-13 09:00:06.243] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
 [2023-05-13 09:00:06.243] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
 [2023-05-13 09:00:06.246] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:45.185] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:45.189] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:45.241] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:45.246] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:45.246] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:45.246] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:45.246] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:45.246] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:45.242] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:45.247] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:45.251] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:45.252] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:45.252] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:45.252] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:45.252] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:45.254] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:45.254] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:46.097] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:46.098] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:46.161] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:46.162] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:46.162] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:46.163] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:46.164] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:46.164] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:46.165] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:46.166] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:46.167] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:46.738] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:46.738] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:46.789] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:46.790] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:46.790] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:46.790] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:46.790] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:46.790] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:46.791] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:46.792] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:46.793] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:46.796] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:46.798] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:46.799] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:46.800] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:46.801] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:46.801] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:46.801] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:46.801] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:46.801] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:46.804] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:47.471] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:47.471] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:47.536] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:47.537] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:47.537] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:47.537] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:47.537] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:47.538] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:47.539] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:47.539] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:47.540] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:47.540] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:47.541] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:47.542] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:48.130] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:48.130] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:48.180] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:48.180] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:48.181] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:48.182] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:48.183] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:48.183] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:48.183] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:48.185] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:48.185] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:48.770] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:48.771] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:48.823] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:48.823] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:48.824] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:48.825] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:48.826] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:48.826] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:48.826] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:48.826] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:48.828] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:48.828] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:49.374] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:49.374] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:49.424] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:49.425] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:49.425] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:49.426] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:49.427] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:49.427] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:49.428] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:49.429] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:49.430] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:50.044] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:50.045] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:50.124] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:50.125] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:50.125] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:50.126] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:50.127] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:50.127] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:50.128] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:50.129] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:50.129] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:50.129] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:50.132] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:50.646] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:50.652] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:50.695] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:50.696] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:50.697] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:50.697] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:50.699] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:50.718] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:50.719] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:50.720] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:50.721] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:50.721] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:50.721] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:50.723] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:51.255] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:51.255] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:46:51.317] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'sacrum.vtp'.
+ect01_gait2392_scaled.osim
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:51.318] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:51.319] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:46:51.320] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:46:51.320] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:46:51.321] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:46:51.322] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:46:51.323] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:15.049] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:15.054] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:15.101] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:15.102] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:15.103] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:15.104] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:15.106] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:15.109] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:15.109] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:15.109] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:15.109] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:15.110] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:15.111] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:15.111] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:15.111] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:15.111] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:15.111] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:15.111] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:15.113] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:15.656] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:15.656] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:15.706] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:15.706] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:15.707] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:15.708] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:15.709] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:15.709] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:15.709] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:15.709] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:15.709] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:15.711] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:15.711] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:16.232] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:16.232] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:16.282] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:16.282] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:16.282] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'fibula.vtp'.
+.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:16.283] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:16.284] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:16.284] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:16.284] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:16.286] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:16.286] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:16.811] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:16.811] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:16.860] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:16.861] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:16.861] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:16.862] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:16.863] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:16.863] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:16.864] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:16.864] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:16.864] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:16.864] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:16.865] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:16.866] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:17.392] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:17.393] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:17.443] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:17.443] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:17.444] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:17.445] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:17.445] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:17.447] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:17.447] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:17.447] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:17.447] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:17.448] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:17.448] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:17.449] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:17.449] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:17.449] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:17.449] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:17.449] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:17.451] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:17.973] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:17.973] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:18.041] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:18.042] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:18.043] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:18.043] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:18.045] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:18.053] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:18.054] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:18.054] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:18.054] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:18.054] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:18.054] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:18.055] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:18.056] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:18.056] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:18.056] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:18.058] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:18.577] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:18.626] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:18.627] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:18.628] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:18.629] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:18.629] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:18.630] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:18.631] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:18.631] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:18.632] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:18.632] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:18.632] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:18.632] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:18.634] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:19.160] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:19.160] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:19.209] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:19.210] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:19.210] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:19.211] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:19.212] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:19.212] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:19.212] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:19.214] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:19.214] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:19.713] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:19.714] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:19.763] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:19.763] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:19.763] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:19.763] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:19.763] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_foot.vtp'.
+ect01_gait2392_scaled.osim
+[2023-06-13 16:47:19.764] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:19.765] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:19.765] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:19.766] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:19.767] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:19.767] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:19.767] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:19.767] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:19.769] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:20.283] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:47:20.331] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:20.332] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:20.332] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:20.333] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:47:20.334] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:47:20.334] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:20.335] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:47:20.336] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:47:20.337] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:32.648] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:32.648] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:32.697] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:32.698] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:32.698] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:32.699] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:32.700] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:32.700] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:32.700] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:32.702] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:32.702] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:33.249] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:33.249] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:33.299] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:33.299] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:33.299] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:33.299] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:33.300] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:33.301] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:33.301] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:33.301] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:33.301] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:33.301] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:33.301] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:33.303] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:33.305] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:33.306] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:33.307] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:33.308] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:33.310] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:33.828] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:33.829] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:33.877] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:33.877] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:33.877] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:33.877] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:33.877] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:33.878] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:33.878] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:33.879] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:33.879] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:33.880] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:33.880] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:33.880] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:33.880] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:33.880] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:33.881] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:33.882] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:34.406] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:34.407] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:34.463] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:34.464] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:34.464] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:34.465] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:34.466] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:34.466] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:34.467] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:34.467] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:34.467] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:34.467] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:34.467] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:34.468] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:34.469] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:34.984] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:34.985] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:35.033] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:35.034] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:35.035] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:35.035] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:35.037] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:35.039] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:35.040] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:35.041] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:35.042] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:35.042] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:35.042] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:35.044] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:35.562] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:35.569] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:35.618] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:35.618] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:35.618] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:35.618] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:35.619] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:35.620] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:35.621] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:35.621] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:35.624] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:35.630] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:35.631] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:35.632] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:35.633] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:35.633] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:35.633] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:35.633] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:35.633] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:35.635] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:36.184] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:36.184] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:36.237] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:36.237] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:36.238] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:36.239] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:36.240] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:36.240] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:36.240] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:36.242] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:36.242] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:36.765] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:36.765] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:36.813] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:36.813] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:36.814] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:36.815] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:36.816] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:36.816] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:36.816] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:36.816] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:36.818] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:36.818] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:37.365] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:37.365] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:37.418] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:37.418] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:37.419] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:37.420] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:37.420] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:37.420] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:37.422] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:37.422] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:37.936] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:37.936] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 16:49:37.985] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:37.985] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 16:49:37.986] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 16:49:37.987] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 16:49:37.988] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:37.988] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 16:49:37.988] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 16:49:37.988] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 16:49:37.988] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:37.988] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 16:49:37.990] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 16:49:37.990] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:36.952] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:36.953] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:37.002] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:37.003] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:37.003] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:37.004] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:37.005] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:37.005] [warning] Couldn't find file 'hat_spine.vtp'.
+and is being reset to 'controllerset'.
+[2023-06-13 17:05:37.005] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:37.005] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:37.005] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:37.005] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:37.007] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:37.007] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:37.553] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:37.558] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:37.605] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:37.605] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:37.606] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:37.607] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:37.607] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:37.609] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:37.610] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:37.611] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:37.612] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:37.613] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:37.614] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:38.148] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:38.149] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:38.197] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:38.197] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:38.198] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:38.199] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:38.200] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:38.200] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:38.200] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:38.200] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:38.200] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:38.200] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:38.202] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:38.202] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:38.715] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:38.722] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:38.771] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:38.772] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:38.773] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:38.774] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:38.776] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:38.776] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:38.776] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:38.776] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:38.776] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:38.776] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:38.777] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:38.778] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:38.778] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:38.778] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:38.778] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:38.778] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:38.780] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:39.289] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:39.294] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:39.338] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:39.338] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:39.338] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:39.338] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:39.338] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:39.338] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:39.339] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:39.340] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:39.340] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:39.340] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:39.340] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:39.342] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:39.345] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:39.345] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:39.345] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:39.345] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:39.346] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:39.347] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:39.347] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:39.347] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:39.347] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:39.347] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:39.347] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:39.349] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:39.866] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:39.866] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:39.915] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:39.915] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:39.915] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:39.915] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:39.915] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:39.916] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:39.917] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:39.917] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:39.917] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:39.919] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:39.920] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:40.445] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:40.453] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:40.494] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:40.495] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:40.496] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:40.496] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:40.498] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:40.501] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:40.502] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:40.503] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:40.504] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:40.505] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:41.023] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:41.023] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:41.078] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:41.078] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:41.079] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:41.080] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:41.080] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:41.081] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:41.081] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:41.082] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:41.083] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:41.619] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:41.619] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:41.670] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:41.670] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:41.671] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:41.672] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:41.672] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:41.674] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:41.676] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:41.676] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:41.676] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:41.676] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:41.676] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:41.676] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:41.677] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:41.678] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:41.678] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:41.678] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:41.678] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:41.680] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:42.135] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:42.135] [info] Updating Model file from 20303 to latest format...
+[2023-06-13 17:05:42.184] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:42.184] [info] Loaded model subject01 from file subject01_gait2392_scaled.osim
+[2023-06-13 17:05:42.184] [warning] Couldn't find file 'treadmill.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'pelvis.vtp'.
+.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'sacrum.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'pelvis.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'l_pelvis.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'femur.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'tibia.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:42.185] [warning] Couldn't find file 'fibula.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'talus.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'foot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'bofoot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_femur.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_tibia.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_fibula.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_talus.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_foot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'l_bofoot.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:42.186] [warning] Couldn't find file 'hat_spine.vtp'.
+[2023-06-13 17:05:42.187] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:42.187] [warning] Couldn't find file 'hat_jaw.vtp'.
+[2023-06-13 17:05:42.187] [warning] Couldn't find file 'hat_skull.vtp'.
+[2023-06-13 17:05:42.187] [warning] Couldn't find file 'hat_ribs.vtp'.
+[2023-06-13 17:05:42.187] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:42.187] [info] ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+[2023-06-13 17:05:42.189] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.
+[2023-06-13 17:05:42.189] [info] MarkerSet 'gait2392_Scale' was renamed and is being reset to 'markerset'.

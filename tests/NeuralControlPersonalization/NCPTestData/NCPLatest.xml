@@ -93,7 +93,6 @@
 		<enforce_bilateral_symmetry>false</enforce_bilateral_symmetry>
 		<!---->
 		<SynergySet>
-			<objects>
 				<Synergy>
 					<muscle_group_name>right_side</muscle_group_name>
 					<num_synergies>6</num_synergies>
@@ -102,8 +101,6 @@
 					<muscle_group_name>left_side</muscle_group_name>
 					<num_synergies>6</num_synergies>
 				</Synergy>
-			</objects>
-			<groups />
 		</SynergySet>
 		<NeuralControlCostFunctionTerms>
 			<!--*Optional* Inverse dynamic joint moments -->
