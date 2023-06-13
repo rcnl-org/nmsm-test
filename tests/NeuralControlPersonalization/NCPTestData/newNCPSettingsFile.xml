@@ -5,7 +5,7 @@
         <!--Directory used for writing results.-->
         <results_directory>results</results_directory>
 		<!--Name of input .osimx file to append results. Leave empty if an .osimx file has not been written for this model yet. -->
-		<input_osimx_file>preprocessed/model.osimx</input_osimx_file>
+		<input_osimx_file>mtpResults/model.osimx</input_osimx_file>
         <!--Name of the input model file (.osim) to use-->
         <input_model_file>model.osim</input_model_file>
         <!--Directory for data files-->
