@@ -167,7 +167,7 @@ assertWithinRange(synergyMuscleExcitationMinimization, sum(expectedCost.synergyM
 residualMuscleActivationMinimization =calcResidualMuscleActivationCost(synxModeledValues, modeledValues, experimentalData, struct());
 assertWithinRange(residualMuscleActivationMinimization, sum(expectedCost.residualMuscleActivationMinimization .^ 2, "all"), 1e-13)
 
-excitationPenalty = calcMuscleExcitationPenaltyCost(synxModeledValues,experimentalData);
+excitationPenalty = calcMuscleExcitationPenaltyCost(synxModeledValues,experimentalData, struct());
 assertWithinRange(excitationPenalty, sum([sqrt(0.1) * expectedCost.excitationPenalty] .^ 2, "all"), 1e-12)
 
 %%%%%%%%%%%%%%%%%%%%%%%% Total Cost function %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
