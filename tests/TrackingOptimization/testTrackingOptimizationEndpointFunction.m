@@ -1,6 +1,8 @@
 load('trackingOptimizationEndpointInputs.mat')
-pointKinematics('exampleModel.osim');
-inverseDynamics('exampleModel.osim');
+if isequal(mexext, 'mexw64')
+    pointKinematicsMexWindows(inputs.auxdata.mexModel);
+    inverseDynamicsMexWindows(inputs.auxdata.mexModel);
+end
 
 output.eventgroup.event = calcTrackingOptimizationTerminalConstraint( ...
     inputs, inputs.auxdata);

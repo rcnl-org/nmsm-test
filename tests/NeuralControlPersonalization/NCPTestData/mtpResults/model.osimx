@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OpenSimDocument Version="40000">
-   <OsimxModel name="optModel_v10">
+<NMSMPipelineDocument Version="0.1.0">
+	<OsimxModel name="optModel_v10">
       <!--Full path of the associated osim model-->
       <associated_osim_model>model.osim</associated_osim_model>
       <!--Optimized muscle parameters-->
-      <MTPMuscleSet>
+      <RCNLMuscleSet>
             <RCNLMuscle name="addbrev_r">
                <!--Optimized electronmechanical delay-->
                <electromechanical_delay>0.050665</electromechanical_delay>
@@ -1265,6 +1265,6 @@
                <!--Optimized slack tendon length scaling factor-->
                <slack_tendon_length_scale_factor>0.88939</slack_tendon_length_scale_factor>
             </RCNLMuscle>
-      </MTPMuscleSet>
+      </RCNLMuscleSet>
    </OsimxModel>
-</OpenSimDocument>
+</NMSMPipelineDocument>
