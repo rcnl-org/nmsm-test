@@ -1,7 +1,10 @@
 load('trackingOptimizationContinuousInputsAndValues.mat')
 
-pointKinematics('exampleModel.osim');
-inverseDynamics('exampleModel.osim');
+inputs.auxdata.mexModel = 'exampleModel.osim';
+if isequal(mexext, 'mexw64')
+    pointKinematicsMexWindows(inputs.auxdata.mexModel);
+    inverseDynamicsMexWindows(inputs.auxdata.mexModel);
+end
 phaseout = calcTorqueBasedModeledValues(values, inputs.auxdata);
 
 expectedPhaseout = load('expectedPhaseout.mat');

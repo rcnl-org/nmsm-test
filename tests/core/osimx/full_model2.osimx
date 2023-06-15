@@ -556,10 +556,9 @@
          <!--The set of contact surfaces modeled-->
          <RCNLContactSurfaceSet>
          <objects>
-               <!--The contact surface parameters-->
-               <RCNLContactSurface>
-      <!--Flag indicating whether foot model should be mirrored-->
-      <is_left_foot>false</is_left_foot>
+            <RCNLContactSurface>
+            <!--Flag indicating whether foot model should be mirrored-->
+            <is_left_foot>false</is_left_foot>
                <!--Speed of treadmill belt for recorded motion. Set to 0 if not applicable-->
                <belt_speed>1</belt_speed>
                <!--Names of the force columns in the grf file, ordered X, Y, Z-->
@@ -1035,7 +1034,8 @@
                   <groups/>
                </GCPSpringSet>
             </RCNLContactSurface>
-         </objects>
+               <!--The contact surface parameters-->
+               </objects>
          <groups/>
       </RCNLContactSurfaceSet>
    </OsimxModel>
