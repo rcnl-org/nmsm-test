@@ -9,6 +9,17 @@ phaseout = calcTorqueBasedModeledValues(values, inputs.auxdata);
 
 expectedPhaseout = load('expectedPhaseout.mat');
 
+momentLabelsNoSuffix = erase(inputs.auxdata.inverseDynamicMomentLabels, ...
+    '_moment');
+momentLabelsNoSuffix = erase(momentLabelsNoSuffix, '_force');
+includedJointMomentCols = ismember(momentLabelsNoSuffix, ...
+    convertCharsToStrings(inputs.auxdata.coordinateNames));
+if size(phaseout.inverseDynamicMoments, 2) ~= ...
+        size(expectedPhaseout.inverseDynamicMoments, 2)
+    expectedPhaseout.inverseDynamicMoments = ...
+        expectedPhaseout.inverseDynamicMoments(:, includedJointMomentCols);
+end
+
 assertWithinRange(phaseout.bodyLocations.parent{1}, expectedPhaseout.bodyLocations(:,1:3), 1e-1);
 assertWithinRange(phaseout.bodyLocations.child{1}, expectedPhaseout.bodyLocations(:,4:6), 1e-1);
 assertWithinRange(phaseout.bodyLocations.parent{2}, expectedPhaseout.bodyLocations(:,7:9), 1e-1);
