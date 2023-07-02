@@ -23,7 +23,6 @@
 				<!--Name of the IK Settings File for the internal Inverse Kinematics Solver-->
 				<ik_settings_file>IKSettings.xml</ik_settings_file>
                 <JMPJointSet>
-                    <objects>
 				<!--A joint that will be optimized in the task-->
 				<JMPJoint name="hip_l">
 					<scale_bodies>false</scale_bodies>
@@ -49,8 +48,6 @@
 						<orientation_bounds>0.5</orientation_bounds>
 					</child_frame_transformation>
 				</JMPJoint>
-            </objects>
-            <groups/>
         </JMPJointSet>
 			</JMPTask>
 		</JMPTaskList>
