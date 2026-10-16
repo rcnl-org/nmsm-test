@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NMSMPipelineDocument Version="1.6.0">
+   <JointModelPersonalizationTool>
+      <input_model_file>UF_Subject_3_Scaled.osim</input_model_file>
+      <output_model_file>UF_Subject_3_Scaled_Sequential.osim</output_model_file>
+      <JMPTaskList>
+         <JMPTask name="Scale Hips">
+            <index>1</index>
+            <is_enabled>true</is_enabled>
+            <time_range>0 10.41</time_range>
+            <marker_file_name>MarkerFiles/BothHips_markers.trc</marker_file_name>
+            <marker_names>R_Thigh_Lateral R_Thigh_Superior R_Thigh_Inferior L_Thigh_Lateral L_Thigh_Superior L_Thigh_Inferior R_Asis L_Asis Sacral</marker_names>
+            <JMPBodySet>
+               <JMPBody name="pelvis">
+                  <scale_body>true</scale_body>
+                  <move_markers>false true false</move_markers>
+               </JMPBody>
+            </JMPBodySet>
+         </JMPTask>
+         <JMPTask name="Right Knee">
+            <index>2</index>
+            <is_enabled>true</is_enabled>
+            <time_range>0 1.64</time_range>
+            <marker_file_name>MarkerFiles/RightKnee_markers.trc</marker_file_name>
+            <marker_names>R_Thigh_Lateral R_Thigh_Superior R_Thigh_Inferior R_Shank_Superior R_Shank_Inferior R_Shank_Lateral</marker_names>
+            <JMPJointSet>
+               <JMPJoint name="knee_r">
+                  <parent_frame_transformation>
+                     <translation>false false false</translation>
+                     <orientation>true true false</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>2</orientation_bounds>
+                  </parent_frame_transformation>
+                  <child_frame_transformation>
+                     <translation>false true false</translation>
+                     <orientation>true true false</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>2</orientation_bounds>
+                  </child_frame_transformation>
+               </JMPJoint>
+            </JMPJointSet>
+         </JMPTask>
+         <JMPTask name="Right Ankle">
+            <index>3</index>
+            <is_enabled>true</is_enabled>
+            <time_range>0 2.64</time_range>
+            <marker_file_name>MarkerFiles/RightAnkle_markers.trc</marker_file_name>
+            <marker_names>R_Shank_Superior R_Shank_Inferior R_Shank_Lateral R_Heel R_Midfoot_Superior R_Midfoot_Lateral</marker_names>
+            <JMPJointSet>
+               <JMPJoint name="ankle_r">
+                  <parent_frame_transformation>
+                     <translation>false false false</translation>
+                     <orientation>true true false</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>1</orientation_bounds>
+                  </parent_frame_transformation>
+                  <child_frame_transformation>
+                     <translation>false false false</translation>
+                     <orientation>false false false</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>1</orientation_bounds>
+                  </child_frame_transformation>
+               </JMPJoint>
+               <JMPJoint name="subtalar_r">
+                  <parent_frame_transformation>
+                     <translation>false false false</translation>
+                     <orientation>false true true</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>1</orientation_bounds>
+                  </parent_frame_transformation>
+                  <child_frame_transformation>
+                     <translation>false false false</translation>
+                     <orientation>false true true</orientation>
+                     <translation_bounds>0.05</translation_bounds>
+                     <orientation_bounds>1</orientation_bounds>
+                  </child_frame_transformation>
+               </JMPJoint>
+            </JMPJointSet>
+         </JMPTask>
+      </JMPTaskList>
+      <allowable_error>0.01</allowable_error>
+      <max_function_evaluations>50</max_function_evaluations>
+      <step_tolerance>1e-05</step_tolerance>
+      <function_tolerance>1e-05</function_tolerance>
+      <optimality_tolerance>1e-05</optimality_tolerance>
+      <diff_min_change>0.001</diff_min_change>
+      <accuracy>1e-06</accuracy>
+   </JointModelPersonalizationTool>
+</NMSMPipelineDocument>
