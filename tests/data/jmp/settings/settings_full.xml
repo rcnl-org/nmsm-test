@@ -1,0 +1,86 @@
+<NMSMPipelineDocument Version="1.5.4">
+<!--Every JMP option. Tasks are listed out of index order, and the third is disabled.
+    Expected parser output is written out in JointModelPersonalizationParsingTest.-->
+<JointModelPersonalizationTool>
+    <results_directory>JMPResults</results_directory>
+    <input_model_file>simple_arm.osim</input_model_file>
+    <output_model_file>simple_arm_full_jmp.osim</output_model_file>
+    <allowable_error>0.002</allowable_error>
+    <JMPTaskList>
+        <!--Runs second: index 2-->
+        <JMPTask>
+            <is_enabled>true</is_enabled>
+            <index>2</index>
+            <marker_file_name>simple_arm.trc</marker_file_name>
+            <marker_names>r_radius1 r_radius2 r_radius3</marker_names>
+            <time_range>0.5 1.5</time_range>
+            <anatomical_markers>false</anatomical_markers>
+            <JMPJointSet>
+                <JMPJoint name="r_elbow">
+                    <parent_frame_transformation>
+                        <translation>false false false</translation>
+                        <orientation>true false false</orientation>
+                        <orientation_bounds>0.5</orientation_bounds>
+                    </parent_frame_transformation>
+                    <child_frame_transformation>
+                        <translation>false false false</translation>
+                        <orientation>false false false</orientation>
+                    </child_frame_transformation>
+                </JMPJoint>
+            </JMPJointSet>
+        </JMPTask>
+        <!--Runs first: index 1-->
+        <JMPTask>
+            <is_enabled>true</is_enabled>
+            <index>1</index>
+            <marker_file_name>simple_arm.trc</marker_file_name>
+            <anatomical_markers>true</anatomical_markers>
+            <free_markers>r_humerus1</free_markers>
+            <JMPJointSet>
+                <JMPJoint name="r_elbow">
+                    <parent_frame_transformation>
+                        <translation>true true false</translation>
+                        <orientation>false false false</orientation>
+                        <translation_bounds>0.01</translation_bounds>
+                    </parent_frame_transformation>
+                    <child_frame_transformation>
+                        <translation>false false true</translation>
+                        <orientation>false false false</orientation>
+                        <translation_bounds>0.02</translation_bounds>
+                    </child_frame_transformation>
+                </JMPJoint>
+            </JMPJointSet>
+            <JMPBodySet>
+                <JMPBody name="r_ulna_radius_hand">
+                    <scale_body>true</scale_body>
+                    <move_markers>false true false</move_markers>
+                </JMPBody>
+            </JMPBodySet>
+        </JMPTask>
+        <!--Disabled: must not appear in the parsed tasks-->
+        <JMPTask>
+            <is_enabled>false</is_enabled>
+            <index>3</index>
+            <marker_file_name>simple_arm.trc</marker_file_name>
+            <JMPJointSet>
+                <JMPJoint name="r_elbow">
+                    <parent_frame_transformation>
+                        <translation>false false true</translation>
+                        <orientation>false false false</orientation>
+                    </parent_frame_transformation>
+                    <child_frame_transformation>
+                        <translation>false false false</translation>
+                        <orientation>false false false</orientation>
+                    </child_frame_transformation>
+                </JMPJoint>
+            </JMPJointSet>
+        </JMPTask>
+    </JMPTaskList>
+    <accuracy>1e-06</accuracy>
+    <diff_min_change>1e-04</diff_min_change>
+    <optimality_tolerance>1e-07</optimality_tolerance>
+    <function_tolerance>1e-08</function_tolerance>
+    <step_tolerance>1e-09</step_tolerance>
+    <max_function_evaluations>300</max_function_evaluations>
+</JointModelPersonalizationTool>
+</NMSMPipelineDocument>
