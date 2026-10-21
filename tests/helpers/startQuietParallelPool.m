@@ -1,5 +1,5 @@
-% This function starts (or reuses) the parallel pool used by JMP's
-% optimizer (lsqnonlin with UseParallel) before a test moves into a
+% This function starts (or reuses) the process-based parallel pool used by
+% the tools' optimizers (UseParallel) before a test moves into a
 % temporary folder, and stops OpenSim from writing opensim.log on the
 % client and workers.
 %
@@ -19,6 +19,15 @@ if isempty(ver("parallel")) || ~canUseParallelPool()
 end
 originalFolder = cd(tempdir);
 restoreFolder = onCleanup(@() cd(originalFolder));
-gcp();
+% OpenSim's Java objects and pctRunOnAll need process workers, so a
+% thread-based pool (e.g. from a "Threads" default profile) is replaced.
+pool = gcp("nocreate");
+if ~isempty(pool) && ~isa(pool, "parallel.ProcessPool")
+    delete(pool);
+    pool = [];
+end
+if isempty(pool)
+    parpool("Processes");
+end
 pctRunOnAll org.opensim.modeling.Logger.removeFileSink();
 end

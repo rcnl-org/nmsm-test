@@ -1,5 +1,5 @@
 <NMSMPipelineDocument Version="1.5.4">
-<!--Every JMP option. Tasks are listed out of index order, and the third is disabled.
+<!--Every supported JMP option (not free_markers or anatomical_markers). Tasks are listed out of index order, and the third is disabled.
     Expected parser output is written out in JointModelPersonalizationParsingTest.-->
 <JointModelPersonalizationTool>
     <results_directory>JMPResults</results_directory>
@@ -14,7 +14,6 @@
             <marker_file_name>simple_arm.trc</marker_file_name>
             <marker_names>r_radius1 r_radius2 r_radius3</marker_names>
             <time_range>0.5 1.5</time_range>
-            <anatomical_markers>false</anatomical_markers>
             <JMPJointSet>
                 <JMPJoint name="r_elbow">
                     <parent_frame_transformation>
@@ -34,8 +33,6 @@
             <is_enabled>true</is_enabled>
             <index>1</index>
             <marker_file_name>simple_arm.trc</marker_file_name>
-            <anatomical_markers>true</anatomical_markers>
-            <free_markers>r_humerus1</free_markers>
             <JMPJointSet>
                 <JMPJoint name="r_elbow">
                     <parent_frame_transformation>

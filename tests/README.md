@@ -151,4 +151,12 @@ yet. When a bug is fixed, its test should pass. Remove it from this table then.
 |---|---|
 | `InverseKinematicsErrorTest/usesEveryFrameInMarkerFile` | JMP's IK skips the last marker frame. The loop in `computeInverseKinematicsSquaredError` stops on `time + 1/frequency > finishTime`, which floating-point rounding makes true one frame early (119 of 120 frames). |
 | `JointModelPersonalizationParsingTest/allTasksDisabledIsReported` | With every `<JMPTask>` disabled, parsing fails with `Output argument "inputs" ... not assigned` instead of a clear message. |
-| `JointModelPersonalizationParsingTest/freeMarkersWorkWithoutBodySet` | `<free_markers>` without a `<JMPBodySet>` fails with `Unrecognized field name "JMPBodySet"`. |
+
+## Settings that are deliberately not tested
+
+Some settings exist in the code but are not ones the NMSM Pipeline advertises or uses. Testing them would
+lock in behavior nobody relies on, so the suite leaves them out until they are wanted.
+
+| Tool | Settings |
+|---|---|
+| JMP | `<free_markers>`, `<anatomical_markers>` (the unit tests pass `false`, the parser's value when the element is absent) |

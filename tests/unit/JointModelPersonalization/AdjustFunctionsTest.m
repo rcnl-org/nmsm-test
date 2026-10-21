@@ -23,7 +23,6 @@ classdef (TestTags = {'Unit'}) AdjustFunctionsTest < matlab.unittest.TestCase
             "childOrientation", struct("fn", @adjustChildOrientation, "row", 4))
         axis = {0, 1, 2}
         markerAxis = {"x", "y", "z"}
-        anatomicalMarkers = struct("markersScale", true, "markersStay", false)
     end
 
     methods (TestMethodSetup)
@@ -58,10 +57,12 @@ classdef (TestTags = {'Unit'}) AdjustFunctionsTest < matlab.unittest.TestCase
             testCase.verifyEqual(after, expected, "AbsTol", 1e-12);
         end
 
-        function adjustBodyScalingSetsScaleFactor(testCase, ...
-                anatomicalMarkers)
-            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, ...
-                anatomicalMarkers);
+        % adjustBodyScaling's last argument is <anatomical_markers>, which
+        % is not a setting the pipeline uses. These tests pass false, the
+        % value the parser gives when the element is absent.
+
+        function adjustBodyScalingSetsScaleFactor(testCase)
+            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, false);
             testCase.verifyEqual(getScalingParameterValue(testCase.model, ...
                 'r_ulna_radius_hand'), 1.1, "AbsTol", 1e-12);
             testCase.verifyEqual(getScalingParameterValue(testCase.model, ...
@@ -71,27 +72,19 @@ classdef (TestTags = {'Unit'}) AdjustFunctionsTest < matlab.unittest.TestCase
         function adjustBodyScalingIsAbsoluteNotCumulative(testCase)
             % The optimizer passes absolute scale values, so scaling to
             % 1.1 and then to 1.2 must give 1.2, not 1.1 * 1.2.
-            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, true);
-            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.2, true);
+            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, false);
+            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.2, false);
             testCase.verifyEqual(getScalingParameterValue(testCase.model, ...
                 'r_ulna_radius_hand'), 1.2, "AbsTol", 1e-12);
         end
 
-        function adjustBodyScalingMovesMarkersOnlyIfAnatomical(testCase, ...
-                anatomicalMarkers)
-            % <anatomical_markers> true: markers scale with their body.
-            % false: markers keep their location on the scaled body.
+        function adjustBodyScalingKeepsMarkerLocations(testCase)
+            % Markers keep their location in the body frame when the body
+            % is scaled; marker positions are adjusted separately.
             before = markerLocations(testCase.model);
-            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, ...
-                anatomicalMarkers);
-            after = markerLocations(testCase.model);
-
-            expected = before;
-            if anatomicalMarkers
-                onScaledBody = startsWith(markerNames(), "r_radius");
-                expected(onScaledBody, :) = 1.1 * before(onScaledBody, :);
-            end
-            testCase.verifyEqual(after, expected, "AbsTol", 1e-9);
+            adjustBodyScaling(testCase.model, 'r_ulna_radius_hand', 1.1, false);
+            testCase.verifyEqual(markerLocations(testCase.model), before, ...
+                "AbsTol", 1e-9);
         end
     end
 end

@@ -25,7 +25,7 @@ JMP settings files for the parsing and regression tests (`Version="1.5.4"`).
 | File | Purpose |
 |---|---|
 | `settings_minimal.xml` | Only the required elements. The base for every `bad_*` and `edge_*` file. |
-| `settings_full.xml` | Every JMP option: tasks out of index order, a disabled task, a body set, free markers, a time range, marker names, bounds, and all optimizer parameters. |
+| `settings_full.xml` | Every supported JMP option: tasks out of index order, a disabled task, a body set, a time range, marker names, bounds, and all optimizer parameters. (`<free_markers>` and `<anatomical_markers>` are left out on purpose; see `tests/README.md`.) |
 | `settings_translation.xml` | Recover the translated-away elbow. Also used by the regression tests. |
 | `settings_orientation.xml` | Recover the oriented-away elbow. Also used by the regression tests. |
 | `bad_*.xml`, `edge_*.xml` | `settings_minimal.xml` with exactly one change, described in the comment at the top of each file. |

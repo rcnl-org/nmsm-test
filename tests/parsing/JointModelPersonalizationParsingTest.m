@@ -40,7 +40,6 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
             testCase.verifyNumElements(inputs.tasks, 1);
             task = inputs.tasks{1};
             testCase.verifyEqual(string(task.markerFile), "simple_arm.trc");
-            testCase.verifyFalse(task.anatomicalMarkers);
             testCase.verifyEqual(task.parameters, {{'r_elbow', true, true, 0}});
             testCase.verifyEmpty(task.scaling);
             testCase.verifyEmpty(task.markers);
@@ -74,17 +73,17 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
             [~, inputs] = testCase.parse("settings_full.xml");
             % File order is index 2, 1, 3 (disabled); parsed order is 1, 2.
             testCase.verifyNumElements(inputs.tasks, 2);
-            testCase.verifyTrue(inputs.tasks{1}.anatomicalMarkers, ...
-                "The <index>1</index> task should come first.");
+            testCase.verifyEqual(inputs.tasks{1}.scaling, ...
+                "r_ulna_radius_hand", ...
+                "The <index>1</index> task (with the body set) should come first.");
             testCase.verifyEqual(inputs.tasks{2}.startTime, 0.5, ...
                 "The <index>2</index> task should come second.");
         end
 
-        function fullSettingsJointBodyAndFreeMarkerTask(testCase)
+        function fullSettingsJointAndBodyTask(testCase)
             [~, inputs] = testCase.parse("settings_full.xml");
             task = inputs.tasks{1};
 
-            testCase.verifyTrue(task.anatomicalMarkers);
             % parent translation x and y, child translation z
             testCase.verifyEqual(task.parameters, { ...
                 {'r_elbow', true, true, 0}, ...
@@ -92,11 +91,9 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
                 {'r_elbow', false, true, 2}});
             testCase.verifyEqual(task.scaling, "r_ulna_radius_hand");
             % <move_markers>false true false</move_markers> moves every
-            % r_ulna_radius_hand marker in y; the free marker moves in all
-            % three axes and comes after the body markers.
+            % r_ulna_radius_hand marker in y.
             testCase.verifyEqual(task.markers, { ...
-                ["r_radius1", "y"], ["r_radius2", "y"], ["r_radius3", "y"], ...
-                ["r_humerus1", "x"], ["r_humerus1", "y"], ["r_humerus1", "z"]});
+                ["r_radius1", "y"], ["r_radius2", "y"], ["r_radius3", "y"]});
 
             % Order: joint parameters, body scales, marker coordinates.
             truth = testCase.expected.truth.parentTranslation;
@@ -104,14 +101,13 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
                 testCase.markerLocation("r_radius2"); ...
                 testCase.markerLocation("r_radius3")];
             radiusY = radiusY(:, 2)';
-            expectedInitial = [truth(1), truth(2), 0, 1, radiusY, ...
-                testCase.markerLocation("r_humerus1")];
+            expectedInitial = [truth(1), truth(2), 0, 1, radiusY];
             testCase.verifyEqual(task.initialValues, expectedInitial, ...
                 "AbsTol", 1e-12);
 
             % Joint parameters: initial value +/- the frame's bound
             % (parent 0.01, child 0.02). Scale and markers are unbounded.
-            halfWidth = [0.01, 0.01, 0.02, Inf(1, 7)];
+            halfWidth = [0.01, 0.01, 0.02, Inf(1, 4)];
             testCase.verifyEqual(task.lowerBounds, ...
                 expectedInitial - halfWidth, "AbsTol", 1e-12);
             testCase.verifyEqual(task.upperBounds, ...
@@ -122,7 +118,6 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
             [~, inputs] = testCase.parse("settings_full.xml");
             task = inputs.tasks{2};
 
-            testCase.verifyFalse(task.anatomicalMarkers);
             testCase.verifyEqual(task.startTime, 0.5);
             testCase.verifyEqual(task.finishTime, 1.5);
             testCase.verifyEqual(task.markerNames, ...
@@ -213,23 +208,17 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
     end
 
     % ------------------------------------------------------------------- %
-    % Edge cases where the parser currently crashes with an unrelated
-    % MATLAB error. These tests describe the intended behavior.
+    % Edge case where the parser currently crashes with an unrelated
+    % MATLAB error. This test describes the intended behavior.
+    %
+    % <free_markers> and <anatomical_markers> are intentionally not tested:
+    % they are not settings the NMSM Pipeline advertises or uses.
     % ------------------------------------------------------------------- %
     methods (Test)
         function allTasksDisabledIsReported(testCase)
             % Currently: 'Output argument "inputs" ... not assigned'.
             verifyErrorMessage(testCase, @() testCase.parse( ...
                 "edge_all_tasks_disabled.xml"), "enabled");
-        end
-
-        function freeMarkersWorkWithoutBodySet(testCase)
-            % Currently: 'Unrecognized field name "JMPBodySet"'.
-            [~, inputs] = testCase.parse("edge_free_markers_without_bodies.xml");
-            task = inputs.tasks{1};
-            testCase.verifyEmpty(task.scaling);
-            testCase.verifyEqual(task.markers, { ...
-                ["r_humerus1", "x"], ["r_humerus1", "y"], ["r_humerus1", "z"]});
         end
     end
 

@@ -18,7 +18,7 @@ runTests("unit", CorePath="D:\nmsm-core")  % if nmsm-core is somewhere else
 `runTests` opens the nmsm-core project if needed and prints the nmsm-core branch and commit it tested.
 
 The suite currently covers Joint Model Personalization only. A unit run takes about 10 s, a parsing run
-about 10 s, and a regression run about 2–3 minutes (most of it starting the parallel pool). Three tests
+about 10 s, and a regression run about 2–3 minutes (most of it starting the parallel pool). Two tests
 are expected to fail until known bugs are fixed; see [tests/README.md](tests/README.md#tests-that-are-expected-to-fail).
 
 To add or change tests, read [tests/README.md](tests/README.md).

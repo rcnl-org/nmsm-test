@@ -55,7 +55,8 @@ classdef (TestTags = {'Unit'}) MakeFunctionsTest < matlab.unittest.TestCase
         end
 
         function scalingFunctionSetsScaleFactor(testCase)
-            fn = makeScalingFunction('r_ulna_radius_hand', true);
+            % false: <anatomical_markers> is not a setting the pipeline uses.
+            fn = makeScalingFunction('r_ulna_radius_hand', false);
             fn(1.1, testCase.model);
             testCase.verifyEqual(getScalingParameterValue(testCase.model, ...
                 'r_ulna_radius_hand'), 1.1, "AbsTol", 1e-12);
