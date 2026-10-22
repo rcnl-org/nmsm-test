@@ -1,0 +1,8 @@
+DataType=double
+version=3
+OpenSimVersion=4.5
+endheader
+time	bflh_r	bfsh_r	gasmed_r	glmax2_r	iliacus_r	recfem_r	soleus_r	tibant_r	vasmed_r
+1	0.2	0	0	0.6	0	0.1	0.3	0	0.8
+2	0	0.1	0.7	0	0.2	0.3	0.8	0	0
+3	0.4	0.5	0	0	0.7	0.5	0	0.8	0.1
