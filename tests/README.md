@@ -103,12 +103,15 @@ what the one-trial case misses by, so it can only pass if the second trial adds 
   folder. Any test that parses a settings file or runs a tool must call `setUpJmpWorkingFolder` or
   `setUpMtpWorkingFolder` (or an equivalent), which moves the test into a temporary folder that is deleted
   afterwards. To run several cases in one test class, give each its own folder (`copyMtpFixtures`).
+- **GCP's MEX copies.** GCP copies a `pointKinematics` MEX file into the current folder and MATLAB keeps it
+  loaded, so the folder cannot be deleted until it is cleared. Add `clearGcpMexFiles` as a teardown after
+  creating the folder (teardowns run in reverse order, so it runs before the folder is deleted).
 - **`persistent` variables.** Some nmsm-core functions remember values between calls
   (`computeInnerOptimization`, `calculateFrameSquaredError`, `computeInverseKinematicsSquaredError`).
   Clear them in `TestMethodSetup`, or one test's leftovers change the next test's result.
 - **`import org.opensim.modeling.*`.** It makes `Model(...)` refer to OpenSim's own class instead of
   nmsm-core's `Model.m` wrapper, which also initializes the model. Import only the classes you need.
-- **The parallel pool and `opensim.log`.** JMP's, MTP's and MTLI's optimizers use the parallel pool. Call
+- **The parallel pool and `opensim.log`.** JMP's, MTP's, MTLI's and GCP's optimizers use the parallel pool. Call
   `startQuietParallelPool()` in `TestClassSetup` before any test enters a temporary folder, or the
   workers keep `opensim.log` open there and the folder cannot be deleted. Scripts that work in a temporary
   folder without the pool should call `org.opensim.modeling.Logger.removeFileSink()` for the same reason.
@@ -145,6 +148,7 @@ Those values are in `helpers/<tool>FixtureValues.m` and checked by a fixture tes
 | JMP | `helpers/jmpFixtureValues.m` | `unit/JointModelPersonalization/JmpFixtureTest.m` |
 | MTP and MTLI | `helpers/mtpFixtureValues.m` | `unit/MuscleTendonPersonalization/MtpFixtureTest.m` and `MtpSyntheticDataTest.m` |
 | NCP | `helpers/ncpFixtureValues.m` (shared values from `mtpFixtureValues`) | `unit/NeuralControlPersonalization/NcpFixtureTest.m` and `NcpSyntheticDataTest.m` |
+| GCP | `helpers/gcpFixtureValues.m` | `unit/GroundContactPersonalization/GcpFixtureTest.m` and `GcpSyntheticDataTest.m` |
 
 If you change a fixture on purpose, update the README, the values file and the test together. Fixture tests
 read data files with `helpers/readStoFile.m`, not nmsm-core, so they do not depend on the code being tested.
@@ -166,7 +170,9 @@ the suite makes some:
 - **Make sure it is identifiable.** One gait trial with moment tracking alone does not determine all six MTP
   parameter types: they trade off, and MTP fits the moments with the wrong parameters (`all` case). Before
   writing a "recovers the truth" test, run the case and compare with the truth. If it is not identifiable,
-  add information (a second trial, passive data) or test the fit instead, and say so in the test.
+  add information (a second trial, passive data) or test the fit instead, and say so in the test. GCP had
+  the same problem with a different spring constant for each spring (springs that never touch the ground do
+  not affect the cost); its synthetic cases use one spring constant for every spring instead.
 
 Settings files for parsing tests are in `data/<tool>/settings/`:
 
@@ -199,7 +205,7 @@ When a nominal check fails:
 - **If you did not mean to change the tool's results**, treat it as a bug and find the change that caused it.
 - **If the change is intentional**:
   1. Make sure the truth check passes.
-  2. Run `updateJmpNominal()`, `updateMtpNominal()` or `updateNcpNominal()`, after
+  2. Run `updateJmpNominal()`, `updateMtpNominal()`, `updateNcpNominal()` or `updateGcpNominal()`, after
      `addpath("tests/regression")` with the project open.
   3. Run `runTests("regression")` again.
   4. Commit the new nominal files on their own, with a message saying what changed and why.
@@ -238,6 +244,12 @@ and "Fixed on `matlab-gui-dev`" record what that branch did as of October 2026.
 | `NeuralControlPersonalizationRegressionTest/iliacusHiddenPredictsIliacus`, `mtliRunCompletesAndFits`, `writesExpectedResultFiles(run=iliacusHidden)`, `writesExpectedResultFiles(run=mtli)` | **NCP crashes whenever a muscle has no MTP activations**, which is the case NCP exists for: `stackMtpActivations` in `prepareNcpInitialValues` reshapes the MTP activations as if every modeled muscle had them ("Number of elements must not change"). The tutorial only runs because all nine of its muscles have MTP results. This also means MTLI inside NCP, which only updates muscles without MTP results, can never do anything useful. Also on `matlab-gui-dev`. The tolerances in these tests are provisional until a run completes. |
 | `NeuralControlPersonalizationRegressionTest/acceptsCharacterSettingsFileName` | `NeuralControlPersonalizationTool('file.xml')` (single quotes) crashes with "Arrays have incompatible sizes": the copied settings file name is built with `fname + fext`, which adds the character codes of two char arrays. Only double-quoted (string) names work. Also on `matlab-gui-dev`. |
 | `MtliCostTermsTest/unknownTermIsReported` | An unknown MTLI cost term type gives MATLAB's "Too many output arguments." instead of the intended message, because the message uses `type` (MATLAB's built-in function) instead of `costTerm.type`. Fixed on `matlab-gui-dev`. |
+| `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | `mergeGroundContactPersonalizationRoundResults` does not advance its index after reading the resting spring length, so every later design variable is read one position early: the first kinematic B-spline coefficient becomes the resting length, and so on. Any task that optimizes the resting length together with later variables (the tutorial's task 1 does) saves shifted results. GCP-DEV-STATUS |
+| `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported` | With no enabled `<GCPContactSurface>`, parsing fails with `Output argument "output" ... not assigned` instead of a clear message. GCP-DEV-STATUS |
+| `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported` | A misspelled force, moment or electrical center column parses without error and gives NaN ground reactions: the check `any([isnan(grf) isnan(moments) isnan(ec)])` applies `any` to a matrix, so it only fails if every column has a NaN. (A misspelled name of a different length fails instead with "Dimensions of arrays being concatenated are not consistent", because the names are stored as a char matrix.) GCP-DEV-STATUS |
+| `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported` | Same as MTP and NCP: without `<results_directory>`, parsing fails with "Dot indexing is not supported for variables of this type." GCP-DEV-STATUS |
+| `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle` | **The force plate rotation design variable does nothing.** The cost rotates the ground reactions by the surface's stored rotation (`inputs.surfaces{foot}.forcePlateRotation`, 0 during the task), not by the value being optimized, so the cost never changes with it and GCP reports 0 degrees. GCP-DEV-STATUS |
+| `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms`, `writesExpectedResultFiles(run=neighbor)` | The `neighbor_spring_constant` cost term needs the springs' x and z positions, which `calcGCPModeledValues` only fills in when a moment cost term is enabled. Without one, GCP crashes with "Unrecognized field name "xPosition"". GCP-DEV-STATUS |
 
 ## Settings that are deliberately not tested
 
@@ -254,6 +266,13 @@ other and by `reportNeuralControlPersonalizationResults`, which nothing calls ei
 `findSynergyWeightsByGroup`, `calcMuscleTendonForce`, `calcActivationTrackingCost`,
 `prepareNonNegativeMatrixFactorizationInitialValues`.
 
+Suspected problems not tested yet:
+
+- **GCP's saved ground reactions use the last task's cost terms.** The saving functions evaluate the model with
+  `length(params.tasks)` as the task, and the model computes horizontal forces and moments only when that task
+  has a cost term that needs them. A run whose last task tracks only vertical force may save zero horizontal
+  forces and moments.
+
 ## Open questions
 
 Behavior the tests record as it is, because whether it is intended is not clear:
@@ -261,3 +280,4 @@ Behavior the tests record as it is, because whether it is intended is not clear:
 | Test | Question |
 |---|---|
 | `NcpCostTest/groupedFiberLengthsGroupActivationsByFiberLengthGroup` | NCP's `grouped_fiber_lengths` cost term compares **activations**, grouped by the normalized fiber length muscle groups, not fiber lengths. NCP's fiber lengths do not change during its optimization, so a cost on the lengths themselves would be constant. Is "activation similarity within fiber length groups" the intent? If so, the name is misleading; if not, the term does nothing useful. Unchanged on `matlab-gui-dev`. |
+| `GroundContactPersonalizationRegressionTest/matchesNominalResult(nominalRun=tutorial)` | GCP's resting spring length initialization (`initializeRestingSpringLength`) uses a different vertical force formula from the one GCP optimizes with (`calcModeledVerticalGroundReactionForce`): smoothing constant 5e-4 instead of 1e-3, damping as (1 + d·v) instead of (1 − d·v), and no 0.7·tanh limit on the spring height. Is the initialization meant to use a simpler model, or should the two match? The tutorial run uses the initialization, so its nominal records the current behavior. |

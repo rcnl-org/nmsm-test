@@ -17,14 +17,18 @@ runTests("unit", CorePath="D:\nmsm-core")  % if nmsm-core is somewhere else
 
 `runTests` opens the nmsm-core project if needed and prints the nmsm-core branch and commit it tested.
 
-To test a second branch without switching your main checkout, give it its own folder with a git worktree:
+To test a second branch without switching your main checkout, give it its own folder with a git worktree,
+named after the branch it stays on:
 
 ```
-git -C nmsm-core worktree add ../nmsm-core-1.5.4 candidate-1.5.4
+git -C nmsm-core worktree add ../nmsm-core-candidate-1.5.4 candidate-1.5.4
 ```
 ```matlab
-runTests("all", CorePath="../nmsm-core-1.5.4")
+runTests("all", CorePath="../nmsm-core-candidate-1.5.4")
 ```
+
+Keep that folder on its branch. Git only lets a branch be checked out in one folder at a time, so if the
+worktree is switched to, say, `main`, `git switch main` in your own `nmsm-core` folder will fail.
 
 ## What it covers
 
@@ -34,6 +38,7 @@ runTests("all", CorePath="../nmsm-core-1.5.4")
 | Muscle-Tendon Personalization (MTP), including synergy extrapolation | yes | yes | four synthetic known-truth runs and the tutorial problem |
 | Muscle-Tendon Length Initialization (MTLI) | yes | yes | one synthetic known-truth run (inside MTP) |
 | Neural Control Personalization (NCP), including fixed weights, normalization methods and MTLI | yes | yes | five synthetic known-truth runs and the tutorial problem |
+| Ground Contact Personalization (GCP) | yes | yes | three synthetic known-truth runs, one crash check and the tutorial problem |
 | Shared muscle model and synergy helpers (`src/core`) | yes | | |
 
 The tests are written for nmsm-core `candidate-1.5.4` (pipeline version 1.5.4).
