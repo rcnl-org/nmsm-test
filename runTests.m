@@ -61,12 +61,18 @@ corePath = getCanonicalPath(options.CorePath);
 
 originalFolder = pwd;
 restoreFolder = onCleanup(@() cd(originalFolder));
+% Folders of other nmsm-core checkouts (e.g. saved in pathdef.m) would let
+% the tests call code from the wrong branch, so they are taken off the
+% path for the run and put back at the end.
+removedFolders = removeOtherCoreFolders(corePath);
 openCoreProject(corePath);
 verifyProjectOpened()
 printCoreVersion(corePath);
 
+% One cleanup, so the removed folders are added after the path is
+% restored rather than in an undefined order.
 originalPath = path;
-restorePath = onCleanup(@() path(originalPath));
+restorePath = onCleanup(@() restoreTestPath(originalPath, removedFolders));
 addpath(fullfile(testsDirectory, "helpers"));
 
 % Hide OpenSim info/warning output (e.g. missing .vtp geometry) so the
@@ -87,9 +93,14 @@ end
 
 runner = TestRunner.withTextOutput;
 if options.Coverage
+    % The nmsm-core folders the suite tests. Add a tool's folder here when
+    % its tests are added, so the report shows what is still untested.
+    coveredFolders = fullfile(corePath, "src", ["JointModelPersonalization", ...
+        "MuscleTendonPersonalization", "MuscleTendonLengthInitialization", ...
+        "NeuralControlPersonalization", fullfile("core", "muscle"), ...
+        fullfile("core", "synergies"), fullfile("core", "BSpline")]);
     coverageFolder = fullfile(tempdir, "nmsmTestCoverage");
-    runner.addPlugin(CodeCoveragePlugin.forFolder( ...
-        fullfile(corePath, "src", "JointModelPersonalization"), ...
+    runner.addPlugin(CodeCoveragePlugin.forFolder(coveredFolders, ...
         "IncludingSubfolders", true, ...
         "Producing", CoverageReport(coverageFolder)));
     fprintf("Coverage report: %s\n", fullfile(coverageFolder, "index.html"));
@@ -111,6 +122,46 @@ catch
 end
 if openRoot ~= corePath
     openProject(fullfile(corePath, "Project.prj"));
+end
+end
+
+% (string) -> (string array)
+% Removes path folders that belong to an nmsm-core checkout other than the
+% one under test, and returns them. A folder belongs to a checkout if it is
+% inside a folder holding Project.prj. If the project at corePath is not
+% open yet, its own folders are removed too, because openProject refuses
+% to open a project whose folders are already on the path.
+function removed = removeOtherCoreFolders(corePath)
+try
+    openRoot = getCanonicalPath(currentProject().RootFolder);
+catch
+    openRoot = "";
+end
+folders = string(strsplit(path, pathsep));
+removed = strings(1, 0);
+for folder = folders(contains(folders, filesep + "src"))
+    root = extractBefore(folder, filesep + "src");
+    if ~isfile(fullfile(root, "Project.prj"))
+        continue
+    end
+    root = getCanonicalPath(root);
+    if root ~= corePath || openRoot ~= corePath
+        removed(end + 1) = folder; %#ok<AGROW>
+    end
+end
+if ~isempty(removed)
+    rmpath(removed{:});
+end
+end
+
+% (char, string array) -> (None)
+% Restores the path from before the tests, then puts the folders removed
+% by removeOtherCoreFolders back at the end, unless already on it.
+function restoreTestPath(originalPath, folders)
+path(originalPath);
+folders = folders(~ismember(folders, string(strsplit(path, pathsep))));
+if ~isempty(folders)
+    addpath(folders{:}, "-end");
 end
 end
 
