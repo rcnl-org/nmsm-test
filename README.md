@@ -13,7 +13,13 @@ runTests("regression")   % full tool runs compared with the truth and with nomin
 runTests("all")
 runTests("unit", Coverage=true)            % adds an HTML code coverage report
 runTests("unit", CorePath="D:\nmsm-core")  % if nmsm-core is somewhere else
+runTests("all", Tool="GCP")                % one tool's tests in every tier
+runTests("regression", Tool=["MTP", "NCP"])
 ```
+
+`Tool` is any of `"JMP"`, `"MTP"`, `"MTLI"`, `"NCP"`, `"GCP"`, `"Tracking"`, `"Verification"`, `"Design"`, `"TO"`
+(all of Treatment Optimization: its shared tests and all three tools) and `"core"` (tests of the shared `src/core`
+code, including JMP's verify functions), in any case.
 
 `runTests` opens the nmsm-core project if needed and prints the nmsm-core branch and commit it tested.
 
@@ -39,15 +45,20 @@ worktree is switched to, say, `main`, `git switch main` in your own `nmsm-core` 
 | Muscle-Tendon Length Initialization (MTLI) | yes | yes | one synthetic known-truth run (inside MTP) |
 | Neural Control Personalization (NCP), including fixed weights, normalization methods and MTLI | yes | yes | five synthetic known-truth runs and the tutorial problem |
 | Ground Contact Personalization (GCP) | yes | yes | three synthetic known-truth runs, one crash check and the tutorial problem |
+| Treatment Optimization: Tracking, Verification and Design Optimization (torque and synergy controllers), with shared tests for what they have in common | yes | yes | the tutorial's problems, prepared and compared with nominal results, and solved with checks that hold on any computer (needs GPOPS-II) |
 | Shared muscle model and synergy helpers (`src/core`) | yes | | |
 
 The tests are written for nmsm-core `candidate-1.5.4` (pipeline version 1.5.4).
 
-A unit run takes about 75 s, a parsing run about 50 s, and a regression run about 4.5 minutes (1 minute of it
-starting the parallel pool). Eighteen tests are expected to fail until known bugs are fixed; see
+A unit run takes about 80 s, a parsing run about 90 s, and a regression run about 17 minutes (1 minute of it
+starting the parallel pool, 6 of it GCP and 6 Treatment Optimization). Treatment Optimization's regression tests
+need a licensed GPOPS-II and are reported as not run without one. Thirty-five tests are expected to fail until
+known bugs are fixed; see
 [tests/README.md](tests/README.md#tests-that-are-expected-to-fail).
 
-To add or change tests, read [tests/README.md](tests/README.md).
+To add or change tests, read [tests/README.md](tests/README.md). [docs/test-catalog.md](docs/test-catalog.md) lists every
+test with a one-line description, and [docs/failures.md](docs/failures.md) explains every failing test (on
+`candidate-1.5.4` and `matlab-gui-dev`) and how to fix it.
 
 ## Layout
 - `tests/unit`, `tests/parsing`, `tests/regression`: class-based `matlab.unittest` tests, tagged

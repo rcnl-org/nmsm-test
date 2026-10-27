@@ -1,0 +1,19 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--Only the elements candidate-1.5.4's Treatment Optimization parser requires, for a torque-driven Tracking
+	Optimization of the three right-leg coordinates: no results directory (documented to default to the current
+	folder, which candidate-1.5.4 only does for an empty element; see tests/README.md) and
+	empty cost and constraint term sets. The base for the bad_* and edge_* files.-->
+	<TrackingOptimizationTool name="minimal">
+		<initial_guess_directory>preprocessed</initial_guess_directory>
+		<tracked_quantities_directory>preprocessed</tracked_quantities_directory>
+		<input_model_file>KickingModel.osim</input_model_file>
+		<optimal_control_solver_settings_file>gpops_torque_tutorial.xml</optimal_control_solver_settings_file>
+		<trial_name>drive_kick1</trial_name>
+		<states_coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</states_coordinate_list>
+		<RCNLTorqueController>
+			<coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</coordinate_list>
+		</RCNLTorqueController>
+		<RCNLCostTermSet/>
+		<RCNLConstraintTermSet/>
+	</TrackingOptimizationTool>
+</NMSMPipelineDocument>

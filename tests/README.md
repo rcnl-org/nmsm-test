@@ -22,8 +22,15 @@ that depend on it.
 
 ```matlab
 runTests("unit")                       % one tier
+runTests("all", Tool="GCP")            % one tool, every tier
 runTests("all")
 ```
+
+`Tool` finds a tool's tests by name: everything under `unit/<ToolName>/` (e.g.
+`unit/GroundContactPersonalization/`) and the parsing and regression classes whose names start with
+`<ToolName>`. Put new tests there, or `Tool` will not find them; tests of shared code go in `unit/core/`
+(`Tool="core"`). Tests shared by the three Treatment Optimization tools go in `unit/TreatmentOptimization/` and
+classes named `TreatmentOptimization*`; `Tool="TO"` runs them with all three tools' tests.
 
 To run a single file or a single test while you work on it, you need the nmsm-core project open (running
 `runTests` once leaves it open) and `tests/helpers` on the path. From the nmsm-test folder:
@@ -134,6 +141,15 @@ what the one-trial case misses by, so it can only pass if the second trial adds 
 - **Thread-based parallel pools.** With a `Threads` default profile, `gcp` starts thread workers, which
   cannot hold OpenSim's Java objects or run `pctRunOnAll`. `startQuietParallelPool` always starts a
   `Processes` pool.
+- **GPOPS-II is needed before Treatment Optimization solves anything.** `makeTreatmentOptimizationInputs`
+  calls `gpops2` for the collocation times, so preparing inputs needs a licensed GPOPS-II (installed
+  separately from nmsm-core). GPOPS-dependent test classes assume `gpopsIsLicensed()` in `TestClassSetup`
+  and are reported as not run without it.
+- **Treatment Optimization's caches.** Several functions keep `persistent` variables and globals between
+  calls (see `helpers/clearToCaches.m`), and its MEX functions keep the model loaded. Call `clearToCaches`
+  between problems and before deleting a working folder.
+- **Term structs need a `type`.** Many term helpers build their error messages from `term.type` even when
+  nothing is wrong, and parsed term fields are char, not string. Build hand-made terms the same way.
 - **Silent skips.** A test file with a syntax error used to be skipped without warning. `runTests` now
   stops with an error instead. If you call `runtests` directly, check the run did not say
   "was excluded".
@@ -149,6 +165,7 @@ Those values are in `helpers/<tool>FixtureValues.m` and checked by a fixture tes
 | MTP and MTLI | `helpers/mtpFixtureValues.m` | `unit/MuscleTendonPersonalization/MtpFixtureTest.m` and `MtpSyntheticDataTest.m` |
 | NCP | `helpers/ncpFixtureValues.m` (shared values from `mtpFixtureValues`) | `unit/NeuralControlPersonalization/NcpFixtureTest.m` and `NcpSyntheticDataTest.m` |
 | GCP | `helpers/gcpFixtureValues.m` | `unit/GroundContactPersonalization/GcpFixtureTest.m` and `GcpSyntheticDataTest.m` |
+| Treatment Optimization | `helpers/toFixtureValues.m` | `unit/TreatmentOptimization/TreatmentOptimizationFixtureTest.m` |
 
 If you change a fixture on purpose, update the README, the values file and the test together. Fixture tests
 read data files with `helpers/readStoFile.m`, not nmsm-core, so they do not depend on the code being tested.
@@ -173,6 +190,11 @@ the suite makes some:
   add information (a second trial, passive data) or test the fit instead, and say so in the test. GCP had
   the same problem with a different spring constant for each spring (springs that never touch the ground do
   not affect the cost); its synthetic cases use one spring constant for every spring instead.
+- **When the optimizer itself is not reproducible, test what is.** IPOPT, which Treatment Optimization's
+  GPOPS-II uses, gives different solutions on different computers, so its full runs have no truth or nominal
+  solution. They are checked only for what any converged run must satisfy (it completes, stays within its
+  bounds, meets its constraints, writes its files), and everything before the solve, which is
+  deterministic, is compared with nominal results (`TreatmentOptimizationSetupRegressionTest`).
 
 Settings files for parsing tests are in `data/<tool>/settings/`:
 
@@ -205,7 +227,8 @@ When a nominal check fails:
 - **If you did not mean to change the tool's results**, treat it as a bug and find the change that caused it.
 - **If the change is intentional**:
   1. Make sure the truth check passes.
-  2. Run `updateJmpNominal()`, `updateMtpNominal()`, `updateNcpNominal()` or `updateGcpNominal()`, after
+  2. Run `updateJmpNominal()`, `updateMtpNominal()`, `updateNcpNominal()`, `updateGcpNominal()` or
+     `updateToNominal()`, after
      `addpath("tests/regression")` with the project open.
   3. Run `runTests("regression")` again.
   4. Commit the new nominal files on their own, with a message saying what changed and why.
@@ -221,6 +244,68 @@ working copy, use a git worktree (see the [root README](../README.md#running)).
 A failure on another branch does not have to be a bug: the branch may be *meant* to behave differently. For
 example, `matlab-gui-dev` renames MTP's cost terms and their functions, so tests that call the old names
 error there. Decide which it is before changing either the test or the code.
+
+### MTP results on `matlab-gui-dev`
+
+On `matlab-gui-dev` (commit `6e7fc4e7`), `saveMtpMuscleModelParameters` writes the activation time constants and
+electromechanical delays to `muscleModelParameters.sto` in MTP's internal units (100 and 10 times seconds)
+instead of seconds, so `MuscleTendonPersonalizationRegressionTest` finds them 100 and 10 times too large. It
+came in with the candidate merges into dev, and `plotMtpHillTypeMuscleParams` now divides the delay by 10
+itself; whether the file's units were meant to change is for the developers to decide.
+
+### Treatment Optimization on `matlab-gui-dev`
+
+Treatment Optimization changed a great deal on `matlab-gui-dev` (muscle and user-defined controllers, CasADi,
+jerk and filtered controls, new terms, pipeline version 1.6.0). The candidate tests were run there on
+2026-10-22 (commit `6e7fc4e7`): 119 of 230 pass, and the 111 failures sort into these groups.
+
+**All 42 regression tests pass.** The candidate settings files still run there (with a version warning), and
+the setup of every case matches candidate's nominal results.
+
+**Expected on dev (the interface changed on purpose), about 100 failures:**
+
+- `generateCostTermStruct(type, tool)` and `generateConstraintTermStruct(type, "torque", tool)` now take a
+  logical `controllerTypes` vector ([torque synergy muscle user]) and return more outputs:
+  `ToTermRegistryTest`, `DoCostTermsTest` (in its setup), and `ToCostTermsTest`'s `makeMaxAllowableError` tests.
+- `inputs.controllerType` became `inputs.controllerTypes`, and hand-built inputs need new fields (`useJerk`,
+  `numIndividualMuscles`, `numUserDefinedControls`, `collocationTimeOriginalWithEnd`, ...):
+  `ToDesignVariablesTest`, `ToSynergyModelTest`, `ToConstraintTermsTest`, `ToScalingAndDynamicsTest`,
+  `ToCostTermsTest`.
+- The parser no longer sets `controllerType` or `loadSurrogate` (the surrogate model always loads from
+  `<surrogate_model_file_name>` if it exists): `TrackingOptimizationParsingTest`, `DesignOptimizationParsingTest`.
+- `updateSystemFromUserDefinedFunctions` reads `inputs.systemFns` instead of `inputs.auxdata.systemFns`:
+  `DoModelFunctionsTest`.
+
+**Worse on dev:** without `<results_directory>`, parsing now crashes in `getUniqueResultsDirectory`, which
+fails `TreatmentOptimizationParsingTest` in its setup (its minimal file leaves the element out). See the
+expected-failure table.
+
+**Unchanged:** every Treatment Optimization bug in the expected-failure table is still in the dev code.
+
+**Tests to add for dev** (once the dev interface is settled):
+
+- Rewrite the registry, design variable and term unit tests for `controllerTypes` and the new inputs fields,
+  keeping the same hand-worked values.
+- Muscle controller (`<RCNLMuscleController>`): `muscle_list`, combined synergy and individual activations,
+  the order of `setupMuscleActivations`' initial controls (it uses `intersect` without `'stable'`).
+- User-defined controller (`<RCNLUserDefinedController>`): labels, bounds, initial values (file,
+  `initial_control_file`, values), controller terms, `_userDefinedControls.sto`.
+- CasADi (`<CasadiSettings>`): parsing and defaults, `calcCasadiCollocationPointTimes`,
+  `integrateRadauQuadrature`, `calcCasadiDynamicConstraint`; the same terms evaluated symbolically and
+  numerically; the regression problems solved with CasADi (which needs no GPOPS-II license).
+- New terms: body angular velocity terms, controller and acceleration terminal terms,
+  `controller_load_tracking`, `muscle_activation_shape_tracking`, and `limit_muscle_activation` (allowed
+  but with no calculation).
+- Jerk controls, the first-order control filter, activation saturation, per-coordinate range lists,
+  `<surrogate_model_file_name>`, unique results directories.
+- Likely dev bugs found by reading the code, each worth a test: `calcRootSegmentResidualsPeriodicity` asserts
+  on an undefined `useJerk`; `calcSynergyBasedModeledValues` calls `calcBhargavaMetabolicCost` with 6 of its 8
+  arguments; the OpenSim 4.6 branch of `inverseDynamics` never sets its body angular velocities;
+  `generalized_speed_minimization` was dropped from the allowed cost terms; `saveDesignOptimizationResults`
+  saves the model before the model functions changed it; CasADi's `convertFromCasadiOutputs` reads
+  `solution.parameter` instead of `solution.phase.parameter`.
+- The reference XML documents `use_control_derivatives` and `use_jerk`, but the code reads
+  `use_first_order_control_dynamics_filter` and `use_jerk_controls`.
 
 ## Tests that are expected to fail
 
@@ -244,12 +329,20 @@ and "Fixed on `matlab-gui-dev`" record what that branch did as of October 2026.
 | `NeuralControlPersonalizationRegressionTest/iliacusHiddenPredictsIliacus`, `mtliRunCompletesAndFits`, `writesExpectedResultFiles(run=iliacusHidden)`, `writesExpectedResultFiles(run=mtli)` | **NCP crashes whenever a muscle has no MTP activations**, which is the case NCP exists for: `stackMtpActivations` in `prepareNcpInitialValues` reshapes the MTP activations as if every modeled muscle had them ("Number of elements must not change"). The tutorial only runs because all nine of its muscles have MTP results. This also means MTLI inside NCP, which only updates muscles without MTP results, can never do anything useful. Also on `matlab-gui-dev`. The tolerances in these tests are provisional until a run completes. |
 | `NeuralControlPersonalizationRegressionTest/acceptsCharacterSettingsFileName` | `NeuralControlPersonalizationTool('file.xml')` (single quotes) crashes with "Arrays have incompatible sizes": the copied settings file name is built with `fname + fext`, which adds the character codes of two char arrays. Only double-quoted (string) names work. Also on `matlab-gui-dev`. |
 | `MtliCostTermsTest/unknownTermIsReported` | An unknown MTLI cost term type gives MATLAB's "Too many output arguments." instead of the intended message, because the message uses `type` (MATLAB's built-in function) instead of `costTerm.type`. Fixed on `matlab-gui-dev`. |
-| `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | `mergeGroundContactPersonalizationRoundResults` does not advance its index after reading the resting spring length, so every later design variable is read one position early: the first kinematic B-spline coefficient becomes the resting length, and so on. Any task that optimizes the resting length together with later variables (the tutorial's task 1 does) saves shifted results. GCP-DEV-STATUS |
-| `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported` | With no enabled `<GCPContactSurface>`, parsing fails with `Output argument "output" ... not assigned` instead of a clear message. GCP-DEV-STATUS |
-| `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported` | A misspelled force, moment or electrical center column parses without error and gives NaN ground reactions: the check `any([isnan(grf) isnan(moments) isnan(ec)])` applies `any` to a matrix, so it only fails if every column has a NaN. (A misspelled name of a different length fails instead with "Dimensions of arrays being concatenated are not consistent", because the names are stored as a char matrix.) GCP-DEV-STATUS |
-| `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported` | Same as MTP and NCP: without `<results_directory>`, parsing fails with "Dot indexing is not supported for variables of this type." GCP-DEV-STATUS |
-| `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle` | **The force plate rotation design variable does nothing.** The cost rotates the ground reactions by the surface's stored rotation (`inputs.surfaces{foot}.forcePlateRotation`, 0 during the task), not by the value being optimized, so the cost never changes with it and GCP reports 0 degrees. GCP-DEV-STATUS |
-| `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms`, `writesExpectedResultFiles(run=neighbor)` | The `neighbor_spring_constant` cost term needs the springs' x and z positions, which `calcGCPModeledValues` only fills in when a moment cost term is enabled. Without one, GCP crashes with "Unrecognized field name "xPosition"". GCP-DEV-STATUS |
+| `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | `mergeGroundContactPersonalizationRoundResults` does not advance its index after reading the resting spring length, so every later design variable is read one position early: the first kinematic B-spline coefficient becomes the resting length, and so on. Any task that optimizes the resting length together with later variables (the tutorial's task 1 does) saves shifted results. Also on `matlab-gui-dev`. |
+| `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported` | With no enabled `<GCPContactSurface>`, parsing fails with `Output argument "output" ... not assigned` instead of a clear message. Also on `matlab-gui-dev`. |
+| `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported` | A misspelled force, moment or electrical center column parses without error and gives NaN ground reactions: the check `any([isnan(grf) isnan(moments) isnan(ec)])` applies `any` to a matrix, so it only fails if every column has a NaN. (A misspelled name of a different length fails instead with "Dimensions of arrays being concatenated are not consistent", because the names are stored as a char matrix.) Also on `matlab-gui-dev`. |
+| `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported` | Same as MTP and NCP: without `<results_directory>`, parsing fails with "Dot indexing is not supported for variables of this type." Also on `matlab-gui-dev`. |
+| `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle` | **The force plate rotation design variable does nothing.** The cost rotates the ground reactions by the surface's stored rotation (`inputs.surfaces{foot}.forcePlateRotation`, 0 during the task), not by the value being optimized, so the cost never changes with it and GCP reports 0 degrees. Also on `matlab-gui-dev`. |
+| `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms`, `writesExpectedResultFiles(run=neighbor)` | The `neighbor_spring_constant` cost term needs the springs' x and z positions, which `calcGCPModeledValues` only fills in when a moment cost term is enabled. Without one, GCP crashes with "Unrecognized field name "xPosition"". Also on `matlab-gui-dev`. |
+| `ToTermHelpersTest/synergyWeightColumnsAreTheGroupsMuscles` | `findSynergyWeightIndicesByIndex` does not stop at the synergy's own group, so a synergy in an earlier group gets the weight columns of the right start but the last group's muscle count. It only matters when synergy groups have different numbers of muscles; the `synergy_vector_symmetry` cost and constraint then compare the wrong weights. Also on `matlab-gui-dev`. |
+| `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower`, `jointEnergyAbsorptionRuns`, `angularMomentumMinimizationIsTheAxis` | Three Design Optimization cost terms crash whenever they are enabled ("Unrecognized function or variable 'inputs'"): `calcJointEnergyGenerationGoalIntegrand`, `calcJointEnergyAbsorptionGoalIntegrand` and `calcMinimizingAngularMomentumIntegrand` pass `inputs` to `normalizeTimeColumn`, but their own argument is `params` or absent. The code is unchanged on `matlab-gui-dev`, so the bug is there too (the test itself cannot reach it there, because the registry and model function signatures changed). |
+| `DoCostTermsTest/inverseDynamicsShapeIgnoresScale` | `inverse_dynamics_shape_tracking` crashes whenever it is enabled: `calcTrackingInverseDynamicsShapeIntegrand` computes its scale factor as `modeled \ experimental`, and neither variable exists. The code is unchanged on `matlab-gui-dev`, so the bug is there too (the test itself cannot reach it there, because the registry and model function signatures changed). |
+| `DoModelFunctionsTest/beltSpeedParameterSetsTheBeltSpeed` | The built-in Design Optimization model functions (`applyBeltSpeedParameter`, `applyMaxIsometricForceParameter`, ...) cannot be used: `updateSystemFromUserDefinedFunctions` calls them as `[inputs, values] = func(inputs, values)` but they return one output ("Too many output arguments"), and they read `values.<name>` where `makeGpopsValuesAsStruct` puts the parameters in `values.parameters.<name>`. The code is unchanged on `matlab-gui-dev`, so the bug is there too (the test itself cannot reach it there, because the registry and model function signatures changed). |
+| `TreatmentOptimizationParsingTest/omittedResultsDirectoryIsTheCurrentFolder` | Without `<results_directory>`, `resultsDirectory` is `false`, not the current folder: `getFieldByName` returns `false` for a missing element, and the `pwd` default is only used for an empty one. Worse on `matlab-gui-dev`: parsing crashes there ("The first input to exist must be a string scalar or character vector"), because the new `getUniqueResultsDirectory` is given `false`. |
+| `TreatmentOptimizationParsingTest/unknownStatesCoordinateIsReported` | A misspelled `<states_coordinate_list>` entry fails with "Unable to perform assignment because the left and right sides have a different number of elements." instead of naming it (as MTP's unknown coordinate). Not reached on `matlab-gui-dev`: its file has no `<results_directory>`, which crashes first there. |
+| `TrackingOptimizationParsingTest/muscleParametersFollowTheModeledMuscles` | **Muscle parameters can belong to the wrong muscles.** `getModelOrOsimxInputs` reads each modeled muscle's max isometric force and pennation angle (and lengths the osimx does not give) from the model's i-th muscle, not the muscle named `muscleNames(i)`. They only agree when the modeled muscles are the model's first muscles, in order. With the surrogate model of the ankle only (`edge_synergy_ankle_surrogate.xml`), soleus_r gets 1800 N instead of its 18600 N. Also on `matlab-gui-dev`. |
+| `DesignOptimizationParsingTest/metabolicGoalTurnsOnMetabolicCost` | Only the `relative_metabolic_cost_*` terms switch on `calculateMetabolicCost`, so a Design Optimization with only an `absolute_metabolic_cost_*` term never computes the metabolic cost it optimizes. Also on `matlab-gui-dev`. |
 
 ## Settings that are deliberately not tested
 
@@ -272,6 +365,24 @@ Suspected problems not tested yet:
   `length(params.tasks)` as the task, and the model computes horizontal forces and moments only when that task
   has a cost term that needs them. A run whose last task tracks only vertical force may save zero horizontal
   forces and moments.
+- **Tracking Optimization's torque `controller_tracking` tracks zero.** `TrackingOptimizationTool` never calls
+  `setupTorqueControls` (Verification and Design do), so there are no torque control splines and
+  `findSplinedControlsByLabels` returns zeros: the term acts as `controller_minimization`. Only reachable
+  through GPOPS-II's preparation, which builds the splined controls.
+- **Design Optimization's parameter file is offset when synergy weights are also optimized.**
+  `printUserDefinedVariablesToXml` (local to `saveDesignOptimizationResults`) reads user-defined parameters
+  from the start of the parameter vector, but the synergy weights come first.
+- **`<MocoSettings>` cannot work:** `parseOptimalControlSolverSettings` calls `parseMocoSolverSettings`,
+  which does not exist, and `solveOptimalControlProblem` always calls GPOPS-II.
+- **Saved tracked data uses the solution's times.** `saveTreatmentOptimizationResults` writes the tracked
+  positions against the solution's time column; with a free final time (Design) they are labeled with the
+  wrong times.
+- **Treatment Optimization is effectively Windows-only**: off Windows, `inverseDynamics` never assigns its body
+  orientation output, and the `calculate*` flags are only set for `mexw64`.
+- **Harmless as far as the tests can tell:** the `x = index` overwrite in four `find*DataByLabels` helpers (the
+  parser splits lists, so they only see one label), the dead `synergy_weight_sum` branch in
+  `makeTerminalConstraintBounds`, and the `||` in `makeMaxAllowableError`'s last branch (always true there,
+  which is what it needs).
 
 ## Open questions
 

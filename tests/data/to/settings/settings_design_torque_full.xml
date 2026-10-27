@@ -1,0 +1,55 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--The Design Optimization options candidate-1.5.4 reads on top of the general ones (see
+	settings_tracking_torque_full.xml): a final time range, model functions, a user-defined parameter, a user-defined
+	discrete cost term and a user-defined terminal constraint, from the published Verification results.-->
+	<DesignOptimizationTool name="full">
+		<results_directory>DesignResults</results_directory>
+		<initial_guess_directory>published/TorqueVOResultsV2</initial_guess_directory>
+		<tracked_quantities_directory>published/TorqueVOResultsV2</tracked_quantities_directory>
+		<input_model_file>KickingModel.osim</input_model_file>
+		<optimal_control_solver_settings_file>gpops_torque_tutorial.xml</optimal_control_solver_settings_file>
+		<trial_name>drive_kick1</trial_name>
+		<final_time_range>0.26 0.36</final_time_range>
+		<model_functions>applyMaxIsometricForceParameter</model_functions>
+		<states_coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</states_coordinate_list>
+		<RCNLTorqueController>
+			<coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</coordinate_list>
+		</RCNLTorqueController>
+		<RCNLParameterTermSet>
+			<RCNLParameterTerm>
+				<type>max_isometric_force</type>
+				<muscle>soleus_r</muscle>
+				<initial_values>3000</initial_values>
+				<upper_bounds>4000</upper_bounds>
+				<lower_bounds>2000</lower_bounds>
+			</RCNLParameterTerm>
+		</RCNLParameterTermSet>
+		<RCNLCostTermSet>
+			<RCNLCostTerm>
+				<is_enabled>true</is_enabled>
+				<type>user_defined</type>
+				<function_name>footSpeedCost</function_name>
+				<cost_term_type>discrete</cost_term_type>
+				<marker_name>R_Toe</marker_name>
+				<target_speed>14.35</target_speed>
+			</RCNLCostTerm>
+			<RCNLCostTerm>
+				<is_enabled>true</is_enabled>
+				<type>controller_tracking</type>
+				<controller_list>hip_flexion_r knee_angle_r ankle_angle_r</controller_list>
+				<max_allowable_error>10</max_allowable_error>
+			</RCNLCostTerm>
+		</RCNLCostTermSet>
+		<RCNLConstraintTermSet>
+			<RCNLConstraintTerm>
+				<is_enabled>true</is_enabled>
+				<type>user_defined</type>
+				<constraint_term_type>terminal</constraint_term_type>
+				<function_name>footSpeedConstraint</function_name>
+				<marker_name>R_Toe</marker_name>
+				<max_error>14.4</max_error>
+				<min_error>14.3</min_error>
+			</RCNLConstraintTerm>
+		</RCNLConstraintTermSet>
+	</DesignOptimizationTool>
+</NMSMPipelineDocument>

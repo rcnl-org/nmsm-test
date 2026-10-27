@@ -17,8 +17,17 @@
 %   runTests("all")                             % every tier
 %   runTests("unit", Coverage=true)             % with HTML coverage report
 %   runTests("unit", CorePath="D:\nmsm-core")   % nmsm-core somewhere else
+%   runTests("all", Tool="GCP")                 % one tool's tests, every tier
+%   runTests("regression", Tool=["MTP", "NCP"]) % several tools, one tier
 %
-% (string, logical, string) -> (matlab.unittest.TestResult)
+% Tool is any of "JMP", "MTP", "MTLI", "NCP", "GCP", "Tracking",
+% "Verification", "Design" (the three Treatment Optimization tools), "TO"
+% (all of Treatment Optimization: its shared tests and all three tools)
+% and "core" (the tests of shared src/core code in tests/unit/core), in any
+% case. A tool's tests are those in its tests/unit/<tool name> folder and
+% the parsing and regression test classes named after it.
+%
+% (string, logical, string, string) -> (matlab.unittest.TestResult)
 
 % ----------------------------------------------------------------------- %
 % The NMSM Pipeline is a toolkit for model personalization and treatment  %
@@ -48,6 +57,7 @@ arguments
     options.Coverage (1, 1) logical = false
     options.CorePath (1, 1) string = fullfile( ...
         fileparts(mfilename("fullpath")), "..", "nmsm-core")
+    options.Tool (1, :) string {mustBeTool} = "all"
 end
 import matlab.unittest.TestRunner
 import matlab.unittest.TestSuite
@@ -90,6 +100,10 @@ if tier ~= "all"
     tag = upper(extractBefore(tier, 2)) + lower(extractAfter(tier, 1));
     suite = suite.selectIf(HasTag(tag));
 end
+if ~any(lower(options.Tool) == "all")
+    suite = selectTools(suite, options.Tool, testsDirectory);
+    fprintf("Tools: %s\n", strjoin(options.Tool, ", "));
+end
 
 runner = TestRunner.withTextOutput;
 if options.Coverage
@@ -98,6 +112,7 @@ if options.Coverage
     coveredFolders = fullfile(corePath, "src", ["JointModelPersonalization", ...
         "MuscleTendonPersonalization", "MuscleTendonLengthInitialization", ...
         "NeuralControlPersonalization", "GroundContactPersonalization", ...
+        "TreatmentOptimization", fullfile("core", "optimal_control"), ...
         fullfile("core", "muscle"), ...
         fullfile("core", "synergies"), fullfile("core", "BSpline")]);
     coverageFolder = fullfile(tempdir, "nmsmTestCoverage");
@@ -185,4 +200,65 @@ end
 % Resolves "..", relative paths, and trailing separators.
 function canonicalPath = getCanonicalPath(folder)
 canonicalPath = string(java.io.File(char(folder)).getCanonicalPath());
+end
+
+% (matlab.unittest.Test, string array, string) -> (matlab.unittest.Test)
+% Keeps the tests of the given tools: those in tests/unit/<tool name> (and
+% its subfolders) and the parsing and regression test classes whose names
+% start with the tool name.
+function suite = selectTools(suite, tools, testsDirectory)
+baseFolders = string({suite.BaseFolder});
+classNames = string({suite.TestParentName});
+keep = false(size(suite));
+for tool = toolFolderNames(tools)
+    unitFolder = fullfile(testsDirectory, "unit", tool);
+    inUnitFolder = baseFolders == unitFolder | ...
+        startsWith(baseFolders, unitFolder + filesep);
+    namedForTool = startsWith(classNames, tool) & ...
+        endsWith(classNames, ["ParsingTest", "RegressionTest"]);
+    keep = keep | inUnitFolder | namedForTool;
+end
+suite = suite(keep);
+assert(~isempty(suite), "No tests found for " + strjoin(tools, ", ") + ...
+    " in this tier.")
+end
+
+% (string array) -> (string array)
+% The folder and class name prefix used for each tool's tests.
+function names = toolFolderNames(tools)
+table = toolTable();
+names = strings(1, 0);
+for tool = upper(tools)
+    names = [names, table.(tool)]; %#ok<AGROW>
+end
+names = unique(names, "stable");
+end
+
+% () -> (struct)
+% Each Tool name (upper case) and the folder and class name prefixes of its
+% tests. "TO" is the shared Treatment Optimization tests and all three
+% Treatment Optimization tools.
+function table = toolTable()
+table.JMP = "JointModelPersonalization";
+table.MTP = "MuscleTendonPersonalization";
+table.MTLI = "MuscleTendonLengthInitialization";
+table.NCP = "NeuralControlPersonalization";
+table.GCP = "GroundContactPersonalization";
+table.TRACKING = "TrackingOptimization";
+table.VERIFICATION = "VerificationOptimization";
+table.DESIGN = "DesignOptimization";
+table.TO = ["TreatmentOptimization", table.TRACKING, ...
+    table.VERIFICATION, table.DESIGN];
+table.CORE = "core";
+end
+
+% (string array) -> (None)
+% Validates Tool: "all" or any of the names in toolTable, in any case.
+function mustBeTool(tools)
+valid = ["ALL", string(fieldnames(toolTable()))'];
+if ~all(ismember(upper(tools), valid))
+    error("Tool must be ""all"" or any of ""JMP"", ""MTP"", ""MTLI"", " + ...
+        """NCP"", ""GCP"", ""TO"", ""Tracking"", ""Verification"", " + ...
+        """Design"" and ""core"".")
+end
 end
