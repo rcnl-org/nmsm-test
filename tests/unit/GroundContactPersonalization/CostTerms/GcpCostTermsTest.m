@@ -129,11 +129,11 @@ classdef (TestTags = {'Unit'}) GcpCostTermsTest < matlab.unittest.TestCase
             % foot (nodes x 7), electrical center X, Y, Z per foot, plate
             % rotation per foot. Here every variable is included, for one
             % foot with 2 springs and 2 B-spline nodes.
-            % Expected to fail on candidate-1.5.4: after reading the
+            % Failed on candidate-1.5.4 (fixed on gcp-bug-fixes): after reading the
             % resting spring length the index is not advanced, so every
             % later variable is read one position early (the first
             % B-spline coefficient becomes the resting length). See
-            % tests/README.md.
+            % docs/failures.md.
             inputs.springConstants = [0, 0];
             inputs.surfaces = {struct("bSplineCoefficients", zeros(2, 7))};
             params.tasks = {struct("designVariables", true(1, 10))};

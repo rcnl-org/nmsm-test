@@ -10,6 +10,11 @@ Every test that fails, why, whether the behavior it catches is intended, and how
 
 Both runs were on 2026-10-22/26 with MATLAB R2025a, OpenSim 4.5 and a licensed GPOPS-II.
 
+**Fixed since these runs (2026-10-27 to 29):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
+`candidate-1.5.4`; B14, B17, B18 and B27 (found later) on `gcp-bug-fixes`.
+Their tests pass there now; each fixed bug below says so, and the quick reference marks them "fixed". The
+counts above are from before these fixes.
+
 **What "intended" means here.**
 
 - **No: a bug.** The test describes correct behavior, and the code is wrong. Fix the code; the test then
@@ -33,16 +38,23 @@ still in `matlab-gui-dev`'s code.
 
 ### Joint Model Personalization
 
-**B1. IK skips the last marker frame** — `InverseKinematicsErrorTest/usesEveryFrameInMarkerFile`
-- *What happens:* JMP's IK error uses 119 of the marker file's 120 frames.
+**B1. IK skips the last marker frame** — `InverseKinematicsErrorTest/usesEveryFrameInMarkerFile`, `InverseKinematicsErrorTest/usesEveryFrameWhenTimesAreRounded`, `MarkerFrameTimesTest/errorReportHasEveryFrame` (exact, rounded)
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
+- *What happens:* JMP's IK error uses 119 of the marker file's 120 frames, and the per-marker error report
+  (`MarkerErrors/*.sto`) also leaves out the last frame.
 - *Why:* in `computeInverseKinematicsSquaredError.m` (line 46), the loop stops on
   `state.getTime() + 1/frequency > finishTime`. Floating-point rounding makes that true one frame early.
+  When the marker file's times are rounded (as motion capture exports often write them), the error is up to
+  the rounding, about 5e-6 s, so a small tolerance such as `> finishTime + 1e-6/frequency` still skips the
+  frame. `reportDistanceErrorByMarker.m` has the same check, and its loop also runs only
+  `getNumFrames() - 1` times.
 - *Intended:* no. *On dev:* still there.
-- *Fix:* loop over the marker table's own times instead of adding `1/frequency` (for example
-  `for i = 1 : numFrames; state.setTime(times.get(i - 1)); ... end`), or compare with a tolerance
-  (`> finishTime + 1e-9`).
+- *Fix:* loop over the marker table's own times instead of adding `1/frequency`. The fix (commit `e786478f`) on
+  `candidate-1.5.4` adds `getMarkerFrameTimes` (the table times in the time range, each end matched to within
+  half a frame) and uses it in both files.
 
 **B2. Disabling every task gives an unclear error** — `JointModelPersonalizationParsingTest/allTasksDisabledIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *What happens:* `Output argument "inputs" ... not assigned`.
 - *Why:* `getTasks` in `parseJointModelPersonalizationSettingsTree.m` only assigns `inputs` inside the loop.
 - *Intended:* no. *On dev:* still there.
@@ -75,17 +87,20 @@ still in `matlab-gui-dev`'s code.
   `calcDeviationCostTerm(excess, errorCenter, allowableError)`.
 
 **B6. Disabling every task gives an unclear error** — `MuscleTendonPersonalizationParsingTest/allTasksDisabledIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - Same as B2, in `getTasks` of `parseMuscleTendonPersonalizationSettingsTree.m`. *On dev:* still there.
 - *Fix:* as B2: `output = {};` before the loop and a clear error if it stays empty.
 
 **B7. A missing `<results_directory>` gives "Dot indexing is not supported"** — `MuscleTendonPersonalizationParsingTest/missingResultsDirectoryIsReported`, `NeuralControlPersonalizationParsingTest/missingResultsDirectoryIsReported`, `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *Why:* `getFieldByName(settingsTree, 'results_directory').Text` in the MTP, NCP and GCP parsers;
   `getFieldByName` returns `false` for a missing element.
 - *Intended:* no. *On dev:* still there.
-- *Fix:* use `getFieldByNameOrError` (which names the element), or default to the current folder, as
-  Treatment Optimization means to (see B23).
+- *Fix:* `getFieldByNameOrError`, which names the element. Every tool except JMP requires
+  `<results_directory>` (see B23); an empty element still means the current folder.
 
 **B8. A misspelled coordinate gives an unclear error** — `MuscleTendonPersonalizationParsingTest/unknownCoordinateIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *What happens:* "Unable to perform assignment because the size of the left side is 0-by-139 ...", deep in
   EMG parsing.
 - *Intended:* no. *On dev:* still there.
@@ -93,6 +108,7 @@ still in `matlab-gui-dev`'s code.
   columns) and report the unknown name.
 
 **B9. An EMG channel missing from the data gives an unclear error** — `MuscleTendonPersonalizationParsingTest/emgChannelMissingFromDataIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *What happens:* "Index in position 1 exceeds array bounds".
 - *Intended:* no. *On dev:* still there.
 - *Fix:* check each `<collected_emg_channel_muscle_groups>` entry against the EMG file's columns and report the
@@ -107,6 +123,7 @@ still in `matlab-gui-dev`'s code.
   `repmat(~columnsWithAllZeros, 1, 1, size(experimentalData.passiveData.inverseDynamicsMoments, 3))`.
 
 **B11. An unknown MTLI cost term gives "Too many output arguments"** — `MtliCostTermsTest/unknownTermIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *Why:* the message in `calcMuscleTendonLengthInitializationCost.m` (line 76) uses `type` (MATLAB's built-in
   function) instead of `costTerm.type`.
 - *Intended:* no. *On dev:* **fixed**.
@@ -124,6 +141,7 @@ still in `matlab-gui-dev`'s code.
   parsed), and give the others a neutral starting value, or leave them out of the initial fit.
 
 **B13. A char settings file name crashes NCP** — `NeuralControlPersonalizationRegressionTest/acceptsCharacterSettingsFileName`
+- **Fixed on `candidate-1.5.4`** (2026-10-28).
 - *What happens:* `NeuralControlPersonalizationTool('file.xml')` fails with "Arrays have incompatible sizes".
 - *Why:* `NeuralControlPersonalizationTool.m` (line 49) copies the settings to `fname + fext`, which adds the
   character codes of two char arrays.
@@ -133,18 +151,28 @@ still in `matlab-gui-dev`'s code.
 ### Ground Contact Personalization
 
 **B14. Merging a task's result shifts every variable after the resting length** — `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder`
+- **Fixed on `gcp-bug-fixes`** (commit `a87025f1`).
 - *Why:* `mergeGroundContactPersonalizationRoundResults` reads the resting spring length without advancing its
   index, so the first B-spline coefficient is read as the resting length, and so on. The tutorial's task 1
   is affected.
+- *Effect:* the B-spline coefficients are multipliers near 1 on the foot kinematics. After such a task, the
+  first coordinate's first multiplier became the resting length (about 0.006), every other one moved one
+  slot, and the last was lost. The tutorial's later tasks optimize the coefficients again, so its saved
+  kinematics were not the corrupted ones, but task 2 started from them. A last task with this combination
+  would have saved wrong values.
 - *Intended:* no. *On dev:* still there.
-- *Fix:* add `index = index + 1;` after reading `restingSpringLength`.
+- *Fix:* add `index = index + 1;` after reading `restingSpringLength`. This changes the 5-iteration tutorial's
+  path: its nominal and `tutorialRms` were re-recorded on 2026-10-29 (force RMS 25–35% higher after 5
+  iterations, which reflects a different, unconverged path, not a worse model).
 
 **B15. No enabled contact surface gives an unclear error** — `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *Why:* `getContactSurfaces` only assigns its output inside the loop over enabled surfaces.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* start with an empty output and report "No enabled <GCPContactSurface>" if it stays empty.
 
 **B16. A misspelled ground reaction column parses as NaN forces** — `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *Why:* the check `any([isnan(grf) isnan(moments) isnan(ec)])` applies `any` to a matrix, so it is only
   true if every column has a NaN. (Names of a different length fail instead, because the column names are a
   char matrix.)
@@ -152,18 +180,36 @@ still in `matlab-gui-dev`'s code.
 - *Fix:* `any(isnan([grf moments ec]), "all")`, and store the column names as a string array.
 
 **B17. The force plate rotation design variable does nothing** — `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle`
+- **Fixed on `gcp-bug-fixes`** (commit `3c1fdeb9`, with B27).
 - *Why:* `calcGroundContactPersonalizationTaskCost` rotates the ground reactions by
   `inputs.surfaces{foot}.forcePlateRotation` (0 during the task), not by the value being optimized.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* rotate by `valuesStruct.("forcePlateRotation" + foot)`.
 
-**B18. `neighbor_spring_constant` crashes without a moment cost term** — `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms`, `writesExpectedResultFiles(run=neighbor)`
-- *What happens:* `Unrecognized field name "xPosition"`.
+**B18. `neighbor_spring_constant` crashes without a moment cost term** — `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms`, `writesExpectedResultFiles(run=neighbor)`, `GcpTermSmokeTest/termGivesFiniteCosts(type=neighbor_spring_constant)`
+- **Fixed on `gcp-bug-fixes`** (commit `07101331`).
+- *What happens:* `Unrecognized field name "xPosition"`. With that fixed, saving then failed with
+  `Unrecognized field name "xGrfMoment"`.
 - *Why:* `calcGCPModeledValues` only fills the springs' x and z positions when a moment term is enabled, but
-  the neighbor term's Gaussian weights need them.
+  the neighbor term's Gaussian weights need them. Separately, the saving functions call
+  `calcGCPModeledValues` with the last task's cost terms, so only what those terms need is computed: any run
+  whose last task has no moment term (or no horizontal force term) failed to write its ground reactions.
 - *Intended:* no. *On dev:* still there.
-- *Fix:* fill `markerKinematics.xPosition`/`zPosition` whenever the neighbor term is enabled (or always; they
-  come from the same point kinematics call).
+- *Fix:* fill `markerKinematics.xPosition`/`zPosition` whenever the moment terms or the neighbor term are
+  enabled; and give `calcGCPModeledValues` an optional `calculateAllValues` argument, which
+  `writeOptimizedGroundReactionsToSto`, `writeCombinedOptimizedGroundReactionsToSto` and
+  `plotGroundReactionQuantities` pass as `true`.
+
+**B27. A later task ignores the force plate rotation and electrical center shift found earlier** — `GroundContactPersonalizationRegressionTest/laterTasksKeepTheForcePlateAngle`
+- **Fixed on `gcp-bug-fixes`** (commit `3c1fdeb9`). Found on 2026-10-28, after the runs above.
+- *What happens:* with the rotation optimized in task 1 and not in task 2, task 2 fits the unrotated ground
+  reactions. In the `rotationKept` case, damping moves from 1.5 to 1.492 and friction from 0.7 to 0.69974 to
+  make up for it. The saved ground reactions are rotated, so they do not match what task 2 fit.
+- *Why:* `calcGroundContactPersonalizationTaskCost` applies the shift only if the current task optimizes
+  it (`designVariables(7:9)`) and the rotation only if it optimizes it (`designVariables(10)`).
+- *Intended:* no. *On dev:* still there.
+- *Fix:* apply both in every task, from `valuesStruct` (the stored value when the task does not optimize
+  it). A zero shift or rotation changes nothing.
 
 ### Treatment Optimization
 
@@ -173,7 +219,7 @@ still in `matlab-gui-dev`'s code.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* `break` after setting `indices{i}`.
 
-**B20. Three Design cost terms crash whenever enabled** — `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower`, `jointEnergyAbsorptionRuns`, `angularMomentumMinimizationIsTheAxis`
+**B20. Three Design cost terms crash whenever enabled** — `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower`, `jointEnergyAbsorptionRuns`, `angularMomentumMinimizationIsTheAxis`, and `TreatmentOptimizationTermSmokeTest` for `joint_energy_generation_goal`, `joint_energy_absorption_goal` and `angular_momentum_minimization` (designTorque and designSynergy)
 - *What happens:* "Unrecognized function or variable 'inputs'".
 - *Why:* `calcJointEnergyGenerationGoalIntegrand`, `calcJointEnergyAbsorptionGoalIntegrand` (argument named
   `params`) and `calcMinimizingAngularMomentumIntegrand` (no such argument) call
@@ -182,7 +228,7 @@ still in `matlab-gui-dev`'s code.
 - *Fix:* rename the `params` argument to `inputs` in the two energy terms; give the angular momentum term an
   `inputs` argument and pass `auxdata` to it from `generateCostTermStruct`.
 
-**B21. `inverse_dynamics_shape_tracking` crashes whenever enabled** — `DoCostTermsTest/inverseDynamicsShapeIgnoresScale`
+**B21. `inverse_dynamics_shape_tracking` crashes whenever enabled** — `DoCostTermsTest/inverseDynamicsShapeIgnoresScale`, and `TreatmentOptimizationTermSmokeTest` for `inverse_dynamics_shape_tracking` (designTorque and designSynergy)
 - *Why:* `calcTrackingInverseDynamicsShapeIntegrand.m` (line 42): `scaleFactor = modeled \ experimental`; neither
   variable exists.
 - *Intended:* no. *On dev:* code unchanged.
@@ -197,14 +243,18 @@ still in `matlab-gui-dev`'s code.
 - *Fix:* give each `apply*Parameter` the signature `[inputs, values] = apply...(inputs, values)` and read
   `values.parameters.<name>`.
 
-**B23. Without `<results_directory>`, the results directory is `false`** — `TreatmentOptimizationParsingTest/omittedResultsDirectoryIsTheCurrentFolder`
+**B23. Without `<results_directory>`, the results directory is `false`** — `TreatmentOptimizationParsingTest/missingResultsDirectoryIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *Why:* `parseBasicInputs` uses `getTextFromField(getFieldByName(tree, 'results_directory'))`, which is
   `false` for a missing element; the `pwd` default only applies to an empty one.
 - *Intended:* no. *On dev:* **worse**: parsing crashes in `getUniqueResultsDirectory(false)`.
-- *Fix:* `inputs.resultsDirectory = parseTextOrAlternate(tree, "results_directory", pwd);` (and treat empty
-  the same way).
+- *Fix:* the developers decided that every tool except JMP requires `<results_directory>` (as the XML
+  reference says), so the parser uses `getFieldByNameOrError`, as MTP, NCP and GCP do (B7). An empty element
+  still means the current folder. The test was `omittedResultsDirectoryIsTheCurrentFolder`; it now expects
+  the error, and `settings_tracking_torque_minimal.xml` and the files based on it give a results directory.
 
 **B24. A misspelled states coordinate gives an unclear error** — `TreatmentOptimizationParsingTest/unknownStatesCoordinateIsReported`
+- **Fixed on `candidate-1.5.4`** (2026-10-27).
 - *What happens:* "Unable to perform assignment because the left and right sides have a different number of
   elements."
 - *Intended:* no. *On dev:* not reached (B23 crashes first for this file).
@@ -284,9 +334,8 @@ the same hand-worked expected values).
 
 24 tests: every other test in `TreatmentOptimizationParsingTest`. The class parses
 `settings_tracking_torque_minimal.xml`, which leaves `<results_directory>` out, in its setup, and on dev that
-crashes (B23), so the whole class fails. **Fix:** fix B23 on dev (the parser should default to the current
-folder). Or, if leaving it out is meant to be an error now, add `<results_directory>` to the minimal file
-and change B23's test to expect a clear error.
+crashes (B23), so the whole class fails. **Resolved in the tests (2026-10-27):** `<results_directory>` is
+now required, so the minimal file and the files based on it give one, and B23's test expects a clear error.
 
 ### D3. Possible regressions
 
@@ -347,21 +396,24 @@ column points to the explanation above.
 | `DoCostTermsTest/walkingSpeedGoalIsScaledSquaredDifference` | | ✗ | D1 |
 | `DoModelFunctionsTest/beltSpeedParameterSetsTheBeltSpeed` | ✗ | ✗ | B22 |
 | `DoModelFunctionsTest/userModelFunctionChangesTheSetup` | | ✗ | D1 |
-| `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | ✗ | ✗ | B14 |
-| `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported` | ✗ | ✗ | B16 |
-| `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported` | ✗ | ✗ | B7 |
-| `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported` | ✗ | ✗ | B15 |
-| `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms` | ✗ | ✗ | B18 |
-| `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle` | ✗ | ✗ | B17 |
-| `GroundContactPersonalizationRegressionTest/writesExpectedResultFiles(run=neighbor)` | ✗ | ✗ | B18 |
-| `InverseKinematicsErrorTest/usesEveryFrameInMarkerFile` | ✗ | ✗ | B1 |
-| `JointModelPersonalizationParsingTest/allTasksDisabledIsReported` | ✗ | ✗ | B2 |
+| `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | fixed | ✗ | B14 |
+| `GcpTermSmokeTest/termGivesFiniteCosts(type=neighbor_spring_constant)` | fixed | not run | B18 |
+| `GroundContactPersonalizationParsingTest/misspelledForceColumnIsReported` | fixed | ✗ | B16 |
+| `GroundContactPersonalizationParsingTest/missingResultsDirectoryIsReported` | fixed | ✗ | B7 |
+| `GroundContactPersonalizationParsingTest/noEnabledSurfaceIsReported` | fixed | ✗ | B15 |
+| `GroundContactPersonalizationRegressionTest/laterTasksKeepTheForcePlateAngle` | fixed | ✗ | B27 |
+| `GroundContactPersonalizationRegressionTest/neighborTermWorksWithoutMomentTerms` | fixed | ✗ | B18 |
+| `GroundContactPersonalizationRegressionTest/rotationFindsForcePlateAngle` | fixed | ✗ | B17 |
+| `GroundContactPersonalizationRegressionTest/writesExpectedResultFiles(run=neighbor)` | fixed | ✗ | B18 |
+| `InverseKinematicsErrorTest/usesEveryFrameInMarkerFile`, `usesEveryFrameWhenTimesAreRounded` | fixed | ✗ | B1 |
+| `JointModelPersonalizationParsingTest/allTasksDisabledIsReported` | fixed | ✗ | B2 |
+| `MarkerFrameTimesTest/errorReportHasEveryFrame` (exact, rounded) | fixed | ✗ | B1 |
 | `MtliCostTermsTest/absoluteLengthsSwitchTheLengthTerms` | | ✗ | D1 |
 | `MtliCostTermsTest/enabledTermsAreStacked` | | ✗ | D1 |
 | `MtliCostTermsTest/muscleStressDefaults` | | ✗ | D1 |
 | `MtliCostTermsTest/passiveMomentTermNeedsPassiveData` | | ✗ | D1 |
 | `MtliCostTermsTest/passiveMomentTrackingWorksForAnyTrialLength` | ✗ | ✗ | B10 |
-| `MtliCostTermsTest/unknownTermIsReported` | ✗ | | B11 |
+| `MtliCostTermsTest/unknownTermIsReported` | fixed | | B11 |
 | `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles` | ✗ | ✗ | B4 |
 | `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit` | ✗ | ✗ | B5 |
 | `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit` | ✗ | ✗ | B5 |
@@ -369,11 +421,11 @@ column points to the explanation above.
 | `MtpCostTest/infiniteCostIsCapped`, `sumsOnlyEnabledTerms`, `synergyOnlyTermsAddNothingWithoutSynergies`, `synergyRunUsesSynergyModeledFiberLengths` | | ✗ | D1 |
 | `MuscleModelTest/commonDelayShiftsEmgLater` | ✗ | | B3 |
 | `MuscleModelTest/muscleForceAtOptimalLengthAndZeroVelocity` | | ✗ | D4 |
-| `MuscleTendonPersonalizationParsingTest/allTasksDisabledIsReported` | ✗ | ✗ | B6 |
-| `MuscleTendonPersonalizationParsingTest/emgChannelMissingFromDataIsReported` | ✗ | ✗ | B9 |
+| `MuscleTendonPersonalizationParsingTest/allTasksDisabledIsReported` | fixed | ✗ | B6 |
+| `MuscleTendonPersonalizationParsingTest/emgChannelMissingFromDataIsReported` | fixed | ✗ | B9 |
 | `MuscleTendonPersonalizationParsingTest/minimalUsesDefaults`, `missingMuscleSpecificDelaysIsReported`, `sharedDelaySettingIsRead` | | ✗ | D1 |
-| `MuscleTendonPersonalizationParsingTest/missingResultsDirectoryIsReported` | ✗ | ✗ | B7 |
-| `MuscleTendonPersonalizationParsingTest/unknownCoordinateIsReported` | ✗ | ✗ | B8 |
+| `MuscleTendonPersonalizationParsingTest/missingResultsDirectoryIsReported` | fixed | ✗ | B7 |
+| `MuscleTendonPersonalizationParsingTest/unknownCoordinateIsReported` | fixed | ✗ | B8 |
 | `MuscleTendonPersonalizationRegressionTest/*` (9: four truth/fit checks, five nominal) | | ✗ | R1 |
 | `NcpCostTest/activationTrackingWithoutMtpDataCostsNothing` | | ✗ | D1 |
 | `NcpInitialValuesTest/*` (5) | | ✗ | D1 |
@@ -381,8 +433,8 @@ column points to the explanation above.
 | `NeuralControlPersonalizationParsingTest/duplicateMusclesAreRejectedWhenNcpRuns` | | ✗ | R3 |
 | `NeuralControlPersonalizationParsingTest/fixedWeights*` (5) | | ✗ | D1 |
 | `NeuralControlPersonalizationParsingTest/fullAlsoParsesMtli`, `mtliCanBeEnabled` | | ✗ | R2 |
-| `NeuralControlPersonalizationParsingTest/missingResultsDirectoryIsReported` | ✗ | ✗ | B7 |
-| `NeuralControlPersonalizationRegressionTest/acceptsCharacterSettingsFileName` | ✗ | ✗ | B13 |
+| `NeuralControlPersonalizationParsingTest/missingResultsDirectoryIsReported` | fixed | ✗ | B7 |
+| `NeuralControlPersonalizationRegressionTest/acceptsCharacterSettingsFileName` | fixed | ✗ | B13 |
 | `NeuralControlPersonalizationRegressionTest/fixedWeightsKeepWeightsAndRecoverCommands`, `matchesNominalResult(nominalRun=fixedWeights)`, `writesExpectedResultFiles(run=fixedWeights)` | | ✗ | D1 |
 | `NeuralControlPersonalizationRegressionTest/iliacusHiddenPredictsIliacus`, `mtliRunCompletesAndFits`, `writesExpectedResultFiles(run=iliacusHidden)`, `writesExpectedResultFiles(run=mtli)` | ✗ | ✗ | B12 (and R2 for mtli) |
 | `NeuralControlPersonalizationRegressionTest/writesExpectedResultFiles(run=allTracked)`, `(run=sum)`, `(run=tutorial)` | | ✗ | R4 |
@@ -395,6 +447,8 @@ column points to the explanation above.
 | `ToTermRegistryTest/*` (42) | | ✗ | D1 |
 | `TrackingOptimizationParsingTest/muscleParametersFollowTheModeledMuscles` | ✗ | ✗ | B25 |
 | `TrackingOptimizationParsingTest/synergyControllerDefaults`, `synergyControllerReadsTheSynergyGroups`, `torqueTutorialTracksCoordinatesAndLoads` | | ✗ | D1 |
-| `TreatmentOptimizationParsingTest/omittedResultsDirectoryIsTheCurrentFolder` | ✗ | ✗ | B23 |
-| `TreatmentOptimizationParsingTest/unknownStatesCoordinateIsReported` | ✗ | ✗ | B24 |
+| `TreatmentOptimizationParsingTest/missingResultsDirectoryIsReported` (was `omittedResultsDirectoryIsTheCurrentFolder`) | fixed | ✗ | B23 |
+| `TreatmentOptimizationParsingTest/unknownStatesCoordinateIsReported` | fixed | ✗ | B24 |
 | `TreatmentOptimizationParsingTest/*` (the other 24) | | ✗ | D2 |
+| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `joint_energy_generation_goal`, `joint_energy_absorption_goal`, `angular_momentum_minimization` (6: designTorque and designSynergy) | ✗ | not run | B20 |
+| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `inverse_dynamics_shape_tracking` (2: designTorque and designSynergy) | ✗ | not run | B21 |

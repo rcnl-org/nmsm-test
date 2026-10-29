@@ -66,7 +66,34 @@ classdef (TestTags = {'Unit'}) JmpFixtureTest < matlab.unittest.TestCase
             testCase.verifyEqual([timeRange.get(0), timeRange.get(1)], ...
                 testCase.expected.markerFileTimeRange, "AbsTol", 1e-4);
         end
+
+        function roundedTimesFileDiffersOnlyInItsTimes(testCase)
+            % simple_arm_rounded_times.trc must hold the same markers as
+            % simple_arm.trc, with each time rounded to 5 decimals. Line 1
+            % (the file name) and the Time column are compared separately.
+            exact = readTrcCells(testDataPath("jmp", "simple_arm.trc"));
+            rounded = readTrcCells(testDataPath("jmp", ...
+                "simple_arm_rounded_times.trc"));
+            testCase.verifyEqual(rounded(2:end, [1 3:end]), ...
+                exact(2:end, [1 3:end]));
+            firstFrameRow = find(exact(:, 1) == "1", 1);
+            exactTimes = str2double(exact(firstFrameRow:end, 2));
+            roundedTimes = str2double(rounded(firstFrameRow:end, 2));
+            testCase.verifyNumElements(roundedTimes, ...
+                testCase.expected.markerFileNumFrames);
+            testCase.verifyEqual(roundedTimes, round(exactTimes, ...
+                testCase.expected.roundedTimesDecimals), "AbsTol", 1e-12);
+        end
     end
+end
+
+function cells = readTrcCells(fileName)
+lines = readlines(fileName, "EmptyLineRule", "skip");
+cells = strings(numel(lines), max(count(lines, sprintf("\t"))) + 1);
+for i = 1:numel(lines)
+    fields = split(lines(i), sprintf("\t"))';
+    cells(i, 1:numel(fields)) = fields;
+end
 end
 
 function fieldName = fixtureFieldName(fixture)

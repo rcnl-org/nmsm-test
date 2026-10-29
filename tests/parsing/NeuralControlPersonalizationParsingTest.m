@@ -313,9 +313,9 @@ classdef (TestTags = {'Parsing'}) NeuralControlPersonalizationParsingTest < ...
         end
 
         function missingResultsDirectoryIsReported(testCase)
-            % Expected to fail: "Dot indexing is not supported for
+            % Fixed 2026-10-27; before, "Dot indexing is not supported for
             % variables of this type." (the same as MTP). See
-            % tests/README.md.
+            % docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_missing_results_directory.xml"), ...
                 "results_directory");

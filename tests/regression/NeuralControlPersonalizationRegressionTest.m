@@ -206,10 +206,10 @@ classdef (TestTags = {'Regression'}) NeuralControlPersonalizationRegressionTest 
 
         function acceptsCharacterSettingsFileName(testCase)
             % NeuralControlPersonalizationTool('file.xml') with single
-            % quotes should work like "file.xml". Expected to fail on
-            % candidate-1.5.4: the copied settings file name is built
-            % with fname + fext, which adds character codes for char
-            % input. See tests/README.md.
+            % quotes should work like "file.xml". Fixed 2026-10-28;
+            % before, the copied settings file name was built with
+            % fname + fext, which adds character codes for char input.
+            % See docs/failures.md.
             folder = tempname;
             copyNcpFixtures(folder, "settings_synthetic_all_tracked.xml");
             cleanUp = onCleanup(@() rmdir(folder, "s"));

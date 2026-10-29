@@ -183,10 +183,10 @@ classdef (TestTags = {'Unit'}) MtliCostTermsTest < matlab.unittest.TestCase
         end
 
         function unknownTermIsReported(testCase)
-            % Expected to fail on candidate-1.5.4: the message is built
+            % Fixed 2026-10-27; before, the message is built
             % from "type", which is not a variable there, so MATLAB calls
             % its built-in type function and fails with "Too many output
-            % arguments." instead. See tests/README.md.
+            % arguments." instead. See docs/failures.md.
             data = twoMuscleData();
             data.costTerms = {term("not_a_term", true, 1, 0)};
             verifyErrorMessage(testCase, ...

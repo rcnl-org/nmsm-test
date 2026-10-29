@@ -9,6 +9,7 @@ but they are not needed.
 |---|---|
 | `simple_arm.osim` | The "truth" model. |
 | `simple_arm.trc` | Markers generated from `simple_arm.osim`: 120 frames at 60 Hz, 0 to 1.9833 s, in meters. IK on the truth model matches them with essentially zero error. |
+| `simple_arm_rounded_times.trc` | `simple_arm.trc` with its times written to 5 decimals, as motion capture exports often write them; the markers are identical. Stepping by 1/60 s from a rounded time overshoots the last frame's rounded time, which made JMP's IK skip the last frame. |
 | `simple_arm_translated_away.osim` | `r_elbow` parent frame x-translation moved from 0.0061 m to 0.0091 m (+3 mm). IK marker error is 1.8 mm RMS. |
 | `simple_arm_oriented_away.osim` | `r_elbow` parent frame x-orientation rotated from 0 to 0.5 rad. IK marker error is 45 mm RMS. |
 

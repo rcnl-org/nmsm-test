@@ -27,7 +27,7 @@ GCP settings files for the parsing and regression tests (`Version="1.5.4"`, writ
 | `settings_minimal.xml` | Only the elements the 1.5.4 parser requires. The base for every `bad_*` and `edge_*` file. |
 | `settings_full.xml` | Every option, with non-default values: grid size, filter cutoff, latching velocity, every initial value and optimizer option, a 0.6 to 1.5 s window, and three tasks out of index order with one disabled; task 1 turns on every design variable and every cost term type. |
 | `settings_tutorial.xml` | The tutorial's `GCPSettingsV1.xml` with the version changed and `max_iterations` 5 instead of 20 (about 3 minutes instead of 6). Used by the regression tests. |
-| `settings_synthetic_*.xml` | The synthetic cases (below), plus `neighbor`: the springs data with `neighbor_spring_constant` instead of `spring_constant_mean` and no moment cost term. Used by the regression tests. |
+| `settings_synthetic_*.xml` | The synthetic cases (below), plus `neighbor`: the springs data with `neighbor_spring_constant` instead of `spring_constant_mean` and no moment cost term; and `rotation_kept`: the rotation case followed by a second task that optimizes damping and dynamic friction but not the rotation, so it only stays at the truth if later tasks use the rotation found earlier. Used by the regression tests. |
 | `bad_*.xml`, `edge_*.xml` | `settings_minimal.xml` with one change, described in the comment at the top of each file. |
 
 ## `synthetic/`
@@ -45,7 +45,7 @@ moment terms.
 |---|---|---|
 | `globals/` | Damping 1.5, dynamic friction 0.7, resting length 0.045 m | Find those three values. It does, exactly. |
 | `springs/` | Every spring at 3000 N/m | Find it for all 37 springs (also optimizing the three values above, which stay at the truth). The `spring_constant_mean` term, which the truth meets exactly, pins the springs that never touch the ground. GCP gets them to 5e-12 relative in 2 iterations. |
-| `rotation/` | The `globals` truth, measured by a plate turned 0.05 rad about the vertical axis | Starting at the `globals` truth, find the angle. **Fails on candidate-1.5.4** (see the expected failures in `tests/README.md`). |
+| `rotation/` | The `globals` truth, measured by a plate turned 0.05 rad about the vertical axis | Starting at the `globals` truth, find the angle. Failed on candidate-1.5.4 (B17 in `docs/failures.md`); fixed on `gcp-bug-fixes`. |
 
 **Spring constants that differ from spring to spring are not recoverable.** A case with constants rising from
 2000 N/m at the heel to 3500 N/m at the toe was tried and dropped: springs that never touch the ground do not
@@ -59,11 +59,12 @@ project open: `addpath("tests/data/gcp/synthetic"); generateGcpSyntheticData()`.
 
 ## `nominal/`
 
-Results of the regression runs that complete with a correct answer on candidate-1.5.4 (`globals`, `springs`,
-`tutorial`): `<case>_bodyModel_gcp.osimx` and `<case>_bodyModel_Foot_1_optimizedGroundReactions.sto`. Two runs
+Results of every regression run (`globals`, `springs`, `rotation`, `rotationKept`, `neighbor`, `tutorial`),
+regenerated on 2026-10-29 after the GCP fixes on `gcp-bug-fixes`: `<case>_bodyModel_gcp.osimx` and
+`<case>_bodyModel_Foot_1_optimizedGroundReactions.sto`. Two runs
 agree exactly. Regenerate them only with `tests/regression/updateGcpNominal.m`.
 
-The 5-iteration tutorial run does not converge (RMS of modeled minus experimental vertical force 64 N, against
+The 5-iteration tutorial run does not converge (RMS of modeled minus experimental vertical force 80 N, against
 an 810 N peak), so it is checked against its own nominal and against fit ceilings 25% above it, not against the
 tutorial's published 20-iteration results.
 

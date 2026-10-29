@@ -10,17 +10,23 @@
 %   truth.
 % - rotation: the globals truth measured by a force plate turned by a known
 %   angle. GCP must find the angle.
+% - rotationKept: rotation, then a second task that optimizes damping and
+%   dynamic friction (starting at the truth) but not the rotation. The
+%   second task must use the rotated ground reactions, so both stay at the
+%   truth.
 % - neighbor: the springs case kept near neighboring springs instead of
 %   the mean, without a moment cost term.
 % - tutorial: the nmsm-tutorial Step 2 problem (resting length
 %   initialization and three tasks), with 5 iterations per task instead of
 %   20 to keep the run short; checked for fit and against its nominal.
 %
-% On candidate-1.5.4, rotation does not find the angle (the cost uses the
-% stored rotation, not the design variable) and neighbor crashes (the
-% neighbor term needs spring positions only computed for the moment terms).
-% A case that errors is recorded in TestClassSetup, and its tests fail with
-% that error, so the other cases still run. See tests/README.md.
+% Before the fixes on branch gcp-bug-fixes (2026-10-28), rotation did not
+% find the angle (the cost used the stored rotation, not the design
+% variable), rotationKept's second task ignored the angle, and neighbor
+% crashed (spring positions were only computed for the moment terms, and
+% saving only computed what the last task's cost terms needed). A case that
+% errors is recorded in TestClassSetup, and its tests fail with that error,
+% so the other cases still run. See docs/failures.md.
 %
 % Cases that run are also compared with their nominal results
 % (tests/data/gcp/nominal). If a change is intentional, regenerate them
@@ -37,11 +43,12 @@ classdef (TestTags = {'Regression'}) GroundContactPersonalizationRegressionTest 
         % exactly), so these only allow for summing in a different order.
         nominalForceTolerance = 1e-6 % N and Nm
         nominalValueRelativeTolerance = 1e-9
-        % The 5-iteration tutorial run on candidate-1.5.4: RMS of modeled
-        % minus experimental Fx, Fy, Fz (N) and Mx, My, Mz (Nm). Not
-        % converged (vertical 64 N against an 810 N peak); the test's
-        % ceilings are 25% above.
-        tutorialRms = [22.48, 63.83, 24.00, 3.153, 3.823, 7.574]
+        % The 5-iteration tutorial run after the B14 fix (2026-10-29): RMS
+        % of modeled minus experimental Fx, Fy, Fz (N) and Mx, My, Mz
+        % (Nm). Not converged (vertical 80 N against an 810 N peak); the
+        % test's ceilings are 25% above. Before the fix it was [22.48,
+        % 63.83, 24.00, 3.153, 3.823, 7.574].
+        tutorialRms = [30.46, 79.95, 30.31, 3.353, 4.099, 8.317]
     end
 
     properties
@@ -56,11 +63,12 @@ classdef (TestTags = {'Regression'}) GroundContactPersonalizationRegressionTest 
             "globals", "settings_synthetic_globals.xml", ...
             "springs", "settings_synthetic_springs.xml", ...
             "rotation", "settings_synthetic_rotation.xml", ...
+            "rotationKept", "settings_synthetic_rotation_kept.xml", ...
             "neighbor", "settings_synthetic_neighbor.xml", ...
             "tutorial", "settings_tutorial.xml")
-        % Cases with nominal results: those that run on candidate-1.5.4
-        % and give a correct answer
-        nominalRun = {"globals", "springs", "tutorial"}
+        % Cases with nominal results (every case; see updateGcpNominal)
+        nominalRun = {"globals", "springs", "rotation", "rotationKept", ...
+            "neighbor", "tutorial"}
         % Synthetic cases whose truth GCP finds on candidate-1.5.4
         fitRun = {"globals", "springs"}
     end
@@ -125,10 +133,10 @@ classdef (TestTags = {'Regression'}) GroundContactPersonalizationRegressionTest 
         end
 
         function rotationFindsForcePlateAngle(testCase)
-            % Expected to fail on candidate-1.5.4: the cost rotates the
+            % Failed on candidate-1.5.4 (fixed on gcp-bug-fixes): the cost rotated the
             % ground reactions by the surface's stored rotation (0 during
             % the task) instead of the design variable, so the optimizer
-            % sees no change and reports 0 degrees. See tests/README.md.
+            % saw no change and reported 0 degrees. See docs/failures.md.
             testCase.assertCaseRan("rotation");
             angle = regexp(testCase.outputs.rotation, ...
                 "Foot 1 force plate rotation: (\S+) degrees", "tokens", ...
@@ -145,8 +153,33 @@ classdef (TestTags = {'Regression'}) GroundContactPersonalizationRegressionTest 
                 0.01 * ones(1, 6));
         end
 
+        function laterTasksKeepTheForcePlateAngle(testCase)
+            % Before 2026-10-28, a task that did not optimize the rotation
+            % fit the unrotated ground reactions, so damping and friction
+            % moved away from the truth to make up for the angle.
+            testCase.assertCaseRan("rotationKept");
+            angle = regexp(testCase.outputs.rotationKept, ...
+                "Foot 1 force plate rotation: (\S+) degrees", "tokens", ...
+                "once");
+            testCase.assertNotEmpty(angle, ...
+                "GCP did not report the force plate rotation.");
+            testCase.verifyEqual(str2double(angle{1}), rad2deg( ...
+                testCase.expected.synthetic.rotation.forcePlateRotation), ...
+                "AbsTol", 0.01, "GCP did not find the force plate angle.");
+            truth = testCase.expected.synthetic.rotation;
+            values = testCase.osimxValues("rotationKept");
+            testCase.verifyEqual([values.dampingFactor, ...
+                values.dynamicFrictionCoefficient], ...
+                [truth.dampingFactor, truth.dynamicFrictionCoefficient], ...
+                "RelTol", testCase.osimxRelativeTolerance, ...
+                "The second task did not use the rotated ground reactions.");
+            [modeled, experimental] = testCase.groundReactions("rotationKept");
+            testCase.verifyLessThan(rms(modeled - experimental), ...
+                0.01 * ones(1, 6));
+        end
+
         function neighborTermWorksWithoutMomentTerms(testCase)
-            % Expected to fail on candidate-1.5.4 (GCP crashes: the
+            % Failed on candidate-1.5.4 (fixed on gcp-bug-fixes; GCP crashed: the
             % neighbor term uses spring x and z positions only computed
             % when a moment cost term is enabled). Once fixed, the uniform
             % true spring constants have no neighbor error, so GCP should

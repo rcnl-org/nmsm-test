@@ -216,7 +216,7 @@ classdef (TestTags = {'Parsing'}) JointModelPersonalizationParsingTest ...
     % ------------------------------------------------------------------- %
     methods (Test)
         function allTasksDisabledIsReported(testCase)
-            % Currently: 'Output argument "inputs" ... not assigned'.
+            % Fixed 2026-10-27; before, 'Output argument "inputs" ... not assigned'.
             verifyErrorMessage(testCase, @() testCase.parse( ...
                 "edge_all_tasks_disabled.xml"), "enabled");
         end

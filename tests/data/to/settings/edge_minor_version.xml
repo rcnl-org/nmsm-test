@@ -1,6 +1,7 @@
 <NMSMPipelineDocument Version="1.4.0">
 	<!--settings_tracking_torque_minimal.xml with one change: the version is 1.4.0 (a different minor version only warns).-->
 	<TrackingOptimizationTool name="minimal">
+		<results_directory>TrackingResults</results_directory>
 		<initial_guess_directory>preprocessed</initial_guess_directory>
 		<tracked_quantities_directory>preprocessed</tracked_quantities_directory>
 		<input_model_file>KickingModel.osim</input_model_file>

@@ -1,7 +1,7 @@
 # Test catalog
 
-Every test class in `tests/`, with a one-line description of each test. The suite has 59 test classes and 567
-test methods; with parameterized tests expanded, a full run is 717 tests.
+Every test class in `tests/`, with a one-line description of each test. The suite has 65 test classes and 583
+test methods; with parameterized tests expanded, a full run is 1,199 tests.
 
 - **Tiers.** Each class is tagged `Unit` (one function at a time, values worked out by hand), `Parsing`
   (settings file → `inputs`/`params`) or `Regression` (full tool runs). Run a tier with `runTests("unit")`,
@@ -124,6 +124,7 @@ muscles.
 | `modelHasExpectedMarkers` | The models have the six expected markers. |
 | `markerFileWasGeneratedFromTruthModel` | IK on the truth model reproduces the marker file. |
 | `markerFileHasExpectedTimeRange` | The marker file covers its recorded frames and times. |
+| `roundedTimesFileDiffersOnlyInItsTimes` | `simple_arm_rounded_times.trc` is `simple_arm.trc` with its times rounded to 5 decimals. |
 
 ### `AdjustFunctionsTest` — Unit
 `tests/unit/JointModelPersonalization/AdjustFunctionsTest.m`. The `adjust*` functions JMP uses to change one
@@ -155,7 +156,9 @@ hand-worked values.
 
 | Test | Description |
 |---|---|
-| ⚠ `usesEveryFrameInMarkerFile` | The IK error uses all 120 marker frames. |
+| `usesEveryFrameInMarkerFile` | The IK error uses all 120 marker frames. |
+| `usesEveryFrameWhenTimesAreRounded` | It still uses all 120 frames when the file's times are rounded to 5 decimals. |
+| `timeRangeLimitsTheFrames` | A start and finish time limit the IK error to the frames between them. |
 | `truthModelHasZeroError` | The truth model has zero marker error. |
 | `fixedBodyMarkerOffsetGivesExactError` | Moving a marker by a known offset gives exactly that error. |
 | `desiredErrorScalesOutput` | The error is divided by the desired error. |
@@ -163,6 +166,21 @@ hand-worked values.
 | `innerOptimizationIsZeroAtTruth` | JMP's objective is zero at the true parameter. |
 | `innerOptimizationMatchesKnownStartingError` | At the translated-away value the RMS error is the known 1.8 mm. |
 | `failureReturnsLargeErrorInsteadOfThrowing` | A failed IK returns a large error instead of throwing (current behavior). |
+
+### `MarkerFrameTimesTest` — Unit
+`tests/unit/JointModelPersonalization/MarkerFrameTimesTest.m`. The marker frames JMP's IK runs on
+(`getMarkerFrameTimes`), and the per-marker error report (`reportDistanceErrorByMarker`) that uses them. Tests
+marked (exact, rounded) run once on `simple_arm.trc` and once on `simple_arm_rounded_times.trc`.
+
+| Test | Description |
+|---|---|
+| `everyFrameIsUsedByDefault` (exact, rounded) | With no time range, all 120 frames are used. |
+| `timeRangeIncludesBothEndFrames` (exact, rounded) | 0.5–1.0 s gives the 31 frames from 0.5 s to 1.0 s. |
+| `timeRangeEndsMatchTheNearestFrame` (exact, rounded) | Ends typed to 4 decimals, just past a frame, still include that frame. |
+| `timeRangeWithoutFramesIsReported` | A time range with no frames gives a clear error. |
+| `nonNumericTimeRangeIsReported` | A non-numeric time range (parsed as NaN) gives the same clear error. |
+| `errorReportHasEveryFrame` (exact, rounded) | The per-marker error `.sto` has a row for every frame. |
+| `errorReportUsesTheTimeRange` | With a time range, the error report has only that range's frames. |
 
 ### `JointModelPersonalizationParsingTest` — Parsing
 `tests/parsing/JointModelPersonalizationParsingTest.m`. JMP settings files → `outputFile`, `inputs`, `params`.
@@ -183,7 +201,7 @@ hand-worked values.
 | `translationWithTwoValuesIsReported` | A translation parameter with the wrong number of values is reported. |
 | `missingModelFileIsNamed` | A missing model file is named in the error. |
 | `misspelledJointIsNamed` | A misspelled joint is named in the error. |
-| ⚠ `allTasksDisabledIsReported` | Disabling every task gives a clear message. |
+| `allTasksDisabledIsReported` | Disabling every task gives a clear message. |
 
 ### `JointModelPersonalizationRegressionTest` — Regression
 `tests/regression/JointModelPersonalizationRegressionTest.m`. Full JMP runs from models with r_elbow's parent
@@ -289,6 +307,16 @@ terms.
 | `unknownTermIsReported` | An unknown term type is reported. |
 | `infiniteCostIsCapped` | An infinite cost is replaced by a large finite one. |
 
+### `MtpTermSmokeTest` — Unit
+`tests/unit/MuscleTendonPersonalization/MtpTermSmokeTest.m`. Every cost term type `calcMtpCost` handles (read
+from its switch statement) runs on its own in MTP's objective, at the starting values of `settings_full.xml`
+(with synergy extrapolation and MTLI) prepared by the tool's own steps. The optimizers are replaced by
+stand-ins that record their arguments (`stubOptimizer`).
+
+| Test | Description |
+|---|---|
+| `termGivesOneFiniteCost` (every MTP cost type, 18 on candidate) | The term runs and the cost is one finite number. |
+
 ### `DesignVariablesTest` — Unit
 `tests/unit/MuscleTendonPersonalization/DesignVariablesTest.m`. How MTP packs its seven parameter sets into
 fmincon's design vector and back.
@@ -353,15 +381,15 @@ MTP's optimizer must meet.
 | `tutorialSynergyWeightCount` | The tutorial's synergy weight count matches the hand count. |
 | `synergyExtrapolationCanBeEnabled` | Synergy extrapolation can be turned on. |
 | `sharedDelaySettingIsRead` | The shared-delay setting is read (but not used on candidate). |
-| ⚠ `allTasksDisabledIsReported` | Disabling every task gives a clear message. |
+| `allTasksDisabledIsReported` | Disabling every task gives a clear message. |
 | `wrongMajorVersionIsRejected` | A different major version is rejected. |
 | `wrongToolIsRejected` | Another tool's settings file is rejected. |
 | `missingDataDirectoryIsReported` | A missing data directory is reported. |
 | `missingMuscleSpecificDelaysIsReported` | A missing muscle-specific delays setting is reported. |
 | `unknownMuscleGroupIsReported` | An unknown muscle group is reported. |
-| ⚠ `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
-| ⚠ `unknownCoordinateIsReported` | A misspelled coordinate is named in the error. |
-| ⚠ `emgChannelMissingFromDataIsReported` | An EMG channel not in the data is named in the error. |
+| `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
+| `unknownCoordinateIsReported` | A misspelled coordinate is named in the error. |
+| `emgChannelMissingFromDataIsReported` | An EMG channel not in the data is named in the error. |
 
 ### `MuscleTendonPersonalizationRegressionTest` — Regression
 `tests/regression/MuscleTendonPersonalizationRegressionTest.m`. Full MTP runs: four synthetic known-truth cases
@@ -421,7 +449,16 @@ maximum isometric force, and hands results to MTP and NCP.
 | `enabledTermsAreStacked` | Enabled terms are stacked in order. |
 | `absoluteLengthsSwitchTheLengthTerms` | Absolute lengths switch to the absolute length terms. |
 | `passiveMomentTermNeedsPassiveData` | The passive moment term needs passive data. |
-| ⚠ `unknownTermIsReported` | An unknown term type is reported by name. |
+| `unknownTermIsReported` | An unknown term type is reported by name. |
+
+### `MtliTermSmokeTest` — Unit
+`tests/unit/MuscleTendonLengthInitialization/MtliTermSmokeTest.m`. Every cost term type
+`calcMuscleTendonLengthInitializationCost` handles runs on its own in MTLI's objective, at the starting values
+of MTP's `settings_full.xml`, prepared as for `MtpTermSmokeTest`.
+
+| Test | Description |
+|---|---|
+| `termGivesFiniteCosts` (every MTLI cost type, 9 on candidate) | The term runs and gives a nonempty column of finite costs. |
 
 ### `MuscleTendonLengthInitializationParsingTest` — Parsing
 `tests/parsing/MuscleTendonLengthInitializationParsingTest.m`. The `<MuscleTendonLengthInitialization>` section
@@ -525,6 +562,15 @@ from fmincon's.
 | `enabledTermsAddUp` | Enabled terms add up. |
 | `unknownTermIsReported` | An unknown term type is reported. |
 
+### `NcpTermSmokeTest` — Unit
+`tests/unit/NeuralControlPersonalization/NcpTermSmokeTest.m`. Every cost term type `calcNcpCost` handles runs
+on its own in NCP's objective, at the starting values of `settings_full.xml` prepared by the tool's own steps
+(optimizers replaced by recording stand-ins).
+
+| Test | Description |
+|---|---|
+| `termGivesOneFiniteCost` (every NCP cost type, 5 on candidate) | The term runs and the cost is one finite number. |
+
 ### `NeuralControlPersonalizationParsingTest` — Parsing
 `tests/parsing/NeuralControlPersonalizationParsingTest.m`. NCP settings files → `inputs` and `params`.
 
@@ -556,7 +602,7 @@ from fmincon's.
 | `muscleOutsideSynergyGroupsIsReported` | A muscle outside every synergy group is reported. |
 | `osimxWithoutMusclesIsReported` | An osimx without muscles is reported. |
 | `fixedWeightsWithoutFileAreReported` | Fixed weights without a weights file are reported. |
-| ⚠ `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
+| `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
 
 ### `NeuralControlPersonalizationRegressionTest` — Regression
 `tests/regression/NeuralControlPersonalizationRegressionTest.m`. Full NCP runs: synthetic known-truth cases
@@ -574,7 +620,7 @@ and the tutorial.
 | `combinedActivationsUseMtpWhereAvailable` | Saved activations are MTP's where MTP has them. |
 | `matchesNominalResult` (allTracked, fixedWeights, sum, tutorial) | Results match the stored nominal results. |
 | `writesExpectedResultFiles` (6 cases; ⚠ for iliacusHidden and mtli) | The weights, commands, activations, moments and osimx are written. |
-| ⚠ `acceptsCharacterSettingsFileName` | The tool accepts a single-quoted (char) settings file name. |
+| `acceptsCharacterSettingsFileName` | The tool accepts a single-quoted (char) settings file name. |
 
 ---
 
@@ -649,9 +695,19 @@ result is merged back.
 | `forcePlateRotationErrorIsTheAngle` | Force plate rotation error is the angle. |
 | `wallErrorIsScaledPower` | The wall error is a scaled power. |
 | `forceErrorsAreExperimentalMinusModeled` | Force errors are experimental − modeled. |
-| ⚠ `mergedResultFollowsDesignVariableOrder` | A task's result is merged back in design variable order. |
+| `mergedResultFollowsDesignVariableOrder` | A task's result is merged back in design variable order. |
 | `mergedResultWithoutRestingLengthFollowsOrder` | The same, without the resting length. |
 | `excludedVariablesAreLeftAlone` | Variables not optimized are left alone. |
+
+### `GcpTermSmokeTest` — Unit
+`tests/unit/GroundContactPersonalization/GcpTermSmokeTest.m`. Every cost term type
+`calcGroundContactPersonalizationTaskCost` handles runs on its own in GCP's task cost, at the starting values of
+`settings_full.xml` prepared by the tool's own steps, for the task with the most design variables. `lsqnonlin`
+is replaced by a recording stand-in, and the cost function's fixed arguments are read from the recorded call.
+
+| Test | Description |
+|---|---|
+| ⚠ `termGivesFiniteCosts` (every GCP cost type, 15 on candidate; ⚠ for neighbor_spring_constant) | The term runs and gives a nonempty column of finite costs. |
 
 ### `GroundContactPersonalizationParsingTest` — Parsing
 `tests/parsing/GroundContactPersonalizationParsingTest.m`. GCP settings files → `inputs` and `params`.
@@ -670,18 +726,18 @@ result is merged back.
 | `allTasksDisabledGivesNoTasks` | Disabling every task gives no tasks. |
 | `timeWindowIsClippedToTheData` | A time window past the data is clipped. |
 | `pathsAreRelativeToCurrentFolderWithoutInputDirectory` | Without `<input_directory>`, paths are relative to the current folder. |
-| ⚠ `noEnabledSurfaceIsReported` | No enabled contact surface gives a clear message. |
+| `noEnabledSurfaceIsReported` | No enabled contact surface gives a clear message. |
 | `wrongMajorVersionIsRejected` | A different major version is rejected. |
 | `wrongToolIsRejected` | Another tool's settings file is rejected. |
 | `missingContactSurfaceSetIsReported` | A missing contact surface set is reported. |
 | `legacyToesCoordinateIsExplained` | The old toes coordinate setting is explained. |
 | `unknownMarkerIsReportedWhenPreparingInputs` | An unknown marker is reported when preparing inputs. |
 | `hindfootMustStartATwoSegmentFoot` | A hindfoot body that is not a two-segment foot is reported. |
-| ⚠ `misspelledForceColumnIsReported` | A misspelled force column is reported. |
-| ⚠ `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
+| `misspelledForceColumnIsReported` | A misspelled force column is reported. |
+| `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
 
 ### `GroundContactPersonalizationRegressionTest` — Regression
-`tests/regression/GroundContactPersonalizationRegressionTest.m`. Full GCP runs: three synthetic cases, one crash
+`tests/regression/GroundContactPersonalizationRegressionTest.m`. Full GCP runs: four synthetic cases, one crash
 check and the tutorial.
 
 | Test | Description |
@@ -689,12 +745,13 @@ check and the tutorial.
 | `globalsRecoversContactValues` | GCP finds the true damping, friction and resting length. |
 | `springsRecoversSpringConstants` | GCP finds the true spring constant for every spring. |
 | `syntheticRunFitsGroundReactions` (globals, springs) | The synthetic runs fit their ground reactions. |
-| ⚠ `rotationFindsForcePlateAngle` | GCP finds the force plate's rotation. |
-| ⚠ `neighborTermWorksWithoutMomentTerms` | The neighbor spring term runs without a moment term. |
-| `tutorialFitsGroundReactions` | The tutorial fits within 25% of its candidate run. |
+| `rotationFindsForcePlateAngle` | GCP finds the force plate's rotation. |
+| `laterTasksKeepTheForcePlateAngle` | A later task that does not optimize the rotation still uses the angle found earlier. |
+| `neighborTermWorksWithoutMomentTerms` | The neighbor spring term runs without a moment term. |
+| `tutorialFitsGroundReactions` | The tutorial fits within 25% of its recorded run. |
 | `tutorialValuesArePhysical` | The tutorial's values are physically plausible. |
-| `matchesNominalResult` (globals, springs, tutorial) | Results match the stored nominal results. |
-| `writesExpectedResultFiles` (5 cases; ⚠ for neighbor) | The osimx, kinematics, ground reactions and settings copy are written. |
+| `matchesNominalResult` (all 6 cases) | Results match the stored nominal results. |
+| `writesExpectedResultFiles` (6 cases) | The osimx, kinematics, ground reactions and settings copy are written. |
 
 ---
 
@@ -893,7 +950,7 @@ and their bounds.
 | `statesCoordinatesAreFoundInTheData` | The states coordinates are found in the data. |
 | `modelMassIsRead` | The model's mass is read. |
 | `minimalUsesDefaults` | The minimal file gets every default. |
-| ⚠ `omittedResultsDirectoryIsTheCurrentFolder` | Without `<results_directory>`, results go to the current folder. |
+| `missingResultsDirectoryIsReported` | A missing `<results_directory>` is named in the error. |
 | `fullReadsEveryOption` | The full file sets every option. |
 | `listsAreSplitIntoOneTermEach` | `*_list` elements are split into one term each. |
 | `axesAreSplitIntoOneTermEach` | `<axes>` are split into one term each. |
@@ -913,7 +970,7 @@ and their bounds.
 | `missingCostTermSetIsReported` | A missing cost term set is reported. |
 | `missingInitialGuessDirectoryIsReported` | A missing initial guess directory is reported. |
 | `missingSolverSettingsFileIsReported` | A missing solver settings file is named. |
-| ⚠ `unknownStatesCoordinateIsReported` | A misspelled states coordinate is named in the error. |
+| `unknownStatesCoordinateIsReported` | A misspelled states coordinate is named in the error. |
 
 ### `TrackingOptimizationParsingTest` — Parsing
 `tests/parsing/TrackingOptimizationParsingTest.m`. The tutorial's Tracking files and the synergy controller.
@@ -967,6 +1024,20 @@ designSynergy.
 | `publishedSolutionsTrackThemselves` | Published solutions have zero tracking cost against themselves. |
 | `publishedVerificationMeetsItsEndConditions` | The published Verification meets its end conditions. |
 | `userDefinedConstraintMatchesBuiltInTerm` | The user-defined toe speed matches the built-in toe velocity. |
+
+### `TreatmentOptimizationTermSmokeTest` — Regression
+`tests/regression/TreatmentOptimizationTermSmokeTest.m`. Every cost and constraint term the registries
+(`generateCostTermStruct`, `generateConstraintTermStruct`) allow, for five cases: Tracking, Verification and
+Design with the torque controller (Step 6 kick) and Tracking and Design with the synergy controller (Step 8
+kick, synergy vectors optimized). Each case is prepared once from its tutorial settings with one disabled term
+of every allowed type added, and each term is enabled on its own and evaluated at the initial guess. Muscle
+terms run in the synergy cases only. Contact-surface terms (external forces and moments, center of pressure,
+braking and propulsive impulse) are reported as not run: the kick fixtures have no contact surfaces. Needs
+GPOPS-II.
+
+| Test | Description |
+|---|---|
+| ⚠ `termRunsAndHasTheRightSize` (one per case, kind and type: 416 on candidate; ⚠ for the B20 and B21 terms in both Design cases) | The term runs and gives finite values: one per collocation point for continuous and path terms, one for discrete and terminal terms. |
 
 ### `TrackingOptimizationRegressionTest` — Regression
 `tests/regression/TrackingOptimizationRegressionTest.m`. Full Tracking runs (torque, synergy).

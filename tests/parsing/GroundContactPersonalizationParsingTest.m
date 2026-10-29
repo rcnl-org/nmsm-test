@@ -206,9 +206,9 @@ classdef (TestTags = {'Parsing'}) GroundContactPersonalizationParsingTest < ...
         end
 
         function noEnabledSurfaceIsReported(testCase)
-            % Expected to fail: getContactSurfaces returns nothing and
+            % Fixed 2026-10-27; before, getContactSurfaces returns nothing and
             % MATLAB reports 'Output argument "output" ... not assigned'.
-            % See tests/README.md.
+            % See docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("edge_no_enabled_surface.xml"), "enabled");
         end
@@ -252,20 +252,20 @@ classdef (TestTags = {'Parsing'}) GroundContactPersonalizationParsingTest < ...
         end
 
         function misspelledForceColumnIsReported(testCase)
-            % Expected to fail: the check for missing GRF columns,
+            % Fixed 2026-10-27; before, the check for missing GRF columns,
             % if any([isnan(grf) isnan(moments) isnan(ec)]), uses any() on
             % a matrix, so it only fails if every column has a NaN. A
             % misspelled force column parses, leaving NaN forces. See
-            % tests/README.md.
+            % docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_misspelled_force_column.xml"), ...
                 "Unable to parse GRF file");
         end
 
         function missingResultsDirectoryIsReported(testCase)
-            % Expected to fail: "Dot indexing is not supported for
+            % Fixed 2026-10-27; before, "Dot indexing is not supported for
             % variables of this type." (as in MTP and NCP). See
-            % tests/README.md.
+            % docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_missing_results_directory.xml"), ...
                 "results_directory");

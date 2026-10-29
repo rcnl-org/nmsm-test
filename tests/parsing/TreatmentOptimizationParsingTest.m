@@ -87,13 +87,12 @@ classdef (TestTags = {'Parsing'}) TreatmentOptimizationParsingTest < ...
             testCase.verifyEmpty(inputs.terminal);
         end
 
-        function omittedResultsDirectoryIsTheCurrentFolder(testCase)
-            % Expected to fail on candidate-1.5.4: the current folder is
-            % only used when <results_directory> is present but empty.
-            % When it is left out, getFieldByName returns false, so
-            % resultsDirectory is false. See tests/README.md.
-            testCase.verifyEqual(string(testCase.minimal.resultsDirectory), ...
-                string(pwd));
+        function missingResultsDirectoryIsReported(testCase)
+            % <results_directory> is required by every tool except JMP.
+            % Before 2026-10-27, leaving it out gave a results directory
+            % of false. See docs/failures.md.
+            verifyErrorMessage(testCase, @() parseQuietly( ...
+                "bad_missing_results_directory.xml"), "results_directory");
         end
 
         function fullReadsEveryOption(testCase)
@@ -285,11 +284,11 @@ classdef (TestTags = {'Parsing'}) TreatmentOptimizationParsingTest < ...
         end
 
         function unknownStatesCoordinateIsReported(testCase)
-            % Expected to fail on candidate-1.5.4: a misspelled
+            % Fixed 2026-10-27; before, a misspelled
             % <states_coordinate_list> entry fails with "Unable to
             % perform assignment because the left and right sides have a
             % different number of elements." instead of naming it. See
-            % tests/README.md.
+            % docs/failures.md.
             verifyErrorMessage(testCase, @() parseQuietly( ...
                 "bad_unknown_states_coordinate.xml"), "hip_flex_r");
         end

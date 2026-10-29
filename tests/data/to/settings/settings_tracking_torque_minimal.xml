@@ -1,9 +1,9 @@
 <NMSMPipelineDocument Version="1.5.4">
 	<!--Only the elements candidate-1.5.4's Treatment Optimization parser requires, for a torque-driven Tracking
-	Optimization of the three right-leg coordinates: no results directory (documented to default to the current
-	folder, which candidate-1.5.4 only does for an empty element; see tests/README.md) and
-	empty cost and constraint term sets. The base for the bad_* and edge_* files.-->
+	Optimization of the three right-leg coordinates, with empty cost and constraint term sets. The base for the
+	bad_* and edge_* files.-->
 	<TrackingOptimizationTool name="minimal">
+		<results_directory>TrackingResults</results_directory>
 		<initial_guess_directory>preprocessed</initial_guess_directory>
 		<tracked_quantities_directory>preprocessed</tracked_quantities_directory>
 		<input_model_file>KickingModel.osim</input_model_file>

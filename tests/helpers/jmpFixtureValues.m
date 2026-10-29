@@ -26,4 +26,12 @@ values.orientedAway.parentOrientation = [0.5, 0, 0];
 values.markerNames = ["r_humerus1", "r_humerus2", "r_humerus3", ...
     "r_radius1", "r_radius2", "r_radius3"];
 values.markerFileTimeRange = [0, 1.9833]; % s, 120 frames at 60 Hz
+values.markerFileNumFrames = 120;
+values.markerFileFrequency = 60; % Hz
+
+% simple_arm_rounded_times.trc is simple_arm.trc with its times written to
+% 5 decimals, as motion capture exports often write them. Adding 1/60 s to
+% a rounded time can land past the next rounded time, which made JMP's IK
+% skip the last frame.
+values.roundedTimesDecimals = 5;
 end

@@ -284,9 +284,9 @@ classdef (TestTags = {'Parsing'}) MuscleTendonPersonalizationParsingTest < ...
         end
 
         function allTasksDisabledIsReported(testCase)
-            % Expected to fail: getTasks returns nothing and MATLAB reports
+            % Fixed 2026-10-27; before, getTasks returns nothing and MATLAB reports
             % 'Output argument "output" ... not assigned'. See
-            % tests/README.md.
+            % docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("edge_all_tasks_disabled.xml"), "enabled");
         end
@@ -320,23 +320,23 @@ classdef (TestTags = {'Parsing'}) MuscleTendonPersonalizationParsingTest < ...
         end
 
         function missingResultsDirectoryIsReported(testCase)
-            % Expected to fail: "Dot indexing is not supported for
-            % variables of this type." See tests/README.md.
+            % Fixed 2026-10-27; before, "Dot indexing is not supported for
+            % variables of this type." See docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_missing_results_directory.xml"), ...
                 "results_directory");
         end
 
         function unknownCoordinateIsReported(testCase)
-            % Expected to fail: "Unable to perform assignment because the
-            % size of the left side is 0-by-139 ...". See tests/README.md.
+            % Fixed 2026-10-27; before, "Unable to perform assignment because the
+            % size of the left side is 0-by-139 ...". See docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_unknown_coordinate.xml"), "knee_angl_r");
         end
 
         function emgChannelMissingFromDataIsReported(testCase)
-            % Expected to fail: "Index in position 1 exceeds array bounds."
-            % See tests/README.md.
+            % Fixed 2026-10-27; before, "Index in position 1 exceeds array bounds."
+            % See docs/failures.md.
             verifyErrorMessage(testCase, ...
                 @() parse("bad_emg_channel_not_in_data.xml"), ...
                 "HipFlexorsMissingEMGChannelGroup");

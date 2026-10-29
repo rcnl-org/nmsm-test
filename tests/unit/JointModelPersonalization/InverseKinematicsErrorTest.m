@@ -56,6 +56,28 @@ classdef (TestTags = {'Unit'}) InverseKinematicsErrorTest < matlab.unittest.Test
                 "Every frame of the marker file should be used.");
         end
 
+        function usesEveryFrameWhenTimesAreRounded(testCase)
+            % simple_arm_rounded_times.trc has its times written to 5
+            % decimals. Stepping by 1/60 s from a rounded time overshoots
+            % the last frame's rounded time, which skipped the last frame.
+            testCase.markerFile = char(testDataPath("jmp", ...
+                "simple_arm_rounded_times.trc"));
+            error = testCase.computeError("simple_arm", 0, testCase.params);
+            numFramesUsed = numel(error) / testCase.numMarkers;
+            testCase.verifyEqual(numFramesUsed, ...
+                testCase.numFramesInMarkerFile, ...
+                "Every frame of the marker file should be used.");
+            testCase.verifyLessThan(max(abs(error)), 1e-7);
+        end
+
+        function timeRangeLimitsTheFrames(testCase)
+            % 0.5 s and 1.0 s are frames 31 and 61, so 31 frames.
+            testCase.params.startTime = 0.5;
+            testCase.params.finishTime = 1.0;
+            error = testCase.computeError("simple_arm", 0, testCase.params);
+            testCase.verifyEqual(numel(error) / testCase.numMarkers, 31);
+        end
+
         function truthModelHasZeroError(testCase)
             error = testCase.computeError("simple_arm", 0, testCase.params);
             testCase.verifyLessThan(max(abs(error)), 1e-7);
