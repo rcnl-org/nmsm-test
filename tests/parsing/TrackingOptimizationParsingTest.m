@@ -123,10 +123,10 @@ classdef (TestTags = {'Parsing'}) TrackingOptimizationParsingTest < ...
             % only, the modeled muscles are gasmed_r, soleus_r and
             % tibant_r; each muscle's max isometric force and pennation
             % angle must be that muscle's.
-            % Expected to fail on candidate-1.5.4: getModelOrOsimxInputs
+            % Failed on candidate-1.5.4 (fixed later): getModelOrOsimxInputs
             % reads them from the model's first, second and third muscles
             % (bflh_r, bfsh_r, gasmed_r) instead of by name. See
-            % tests/README.md.
+            % docs/failures.md.
             inputs = testCase.parse("synergy", ...
                 "edge_synergy_ankle_surrogate.xml");
             testCase.assertEqual(inputs.muscleNames, ["gasmed_r", ...

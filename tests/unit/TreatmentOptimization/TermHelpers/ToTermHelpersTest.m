@@ -157,12 +157,12 @@ classdef (TestTags = {'Unit'}) ToTermHelpersTest < matlab.unittest.TestCase
             % Groups A (2 synergies over 3 muscles) and B (2 synergies
             % over 4 muscles): A's synergies use weight columns 1-3 and
             % B's columns 4-7.
-            % Expected to fail on candidate-1.5.4:
+            % Failed on candidate-1.5.4 (fixed later):
             % findSynergyWeightIndicesByIndex does not stop at the
             % synergy's group, so a synergy in an earlier group gets the
             % column count of the last group (here 1-4 instead of 1-3).
             % It only matters when groups have different numbers of
-            % muscles. See tests/README.md.
+            % muscles. See docs/failures.md.
             inputs.synergyGroups = {struct("numSynergies", 2, ...
                 "muscleNames", ["a1", "a2", "a3"]), struct( ...
                 "numSynergies", 2, "muscleNames", ["b1", "b2", "b3", "b4"])};

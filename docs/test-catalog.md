@@ -1,7 +1,7 @@
 # Test catalog
 
-Every test class in `tests/`, with a one-line description of each test. The suite has 65 test classes and 583
-test methods; with parameterized tests expanded, a full run is 1,199 tests.
+Every test class in `tests/`, with a one-line description of each test. The suite has 66 test classes and 587
+test methods; with parameterized tests expanded, a full run is 1,208 tests.
 
 - **Tiers.** Each class is tagged `Unit` (one function at a time, values worked out by hand), `Parsing`
   (settings file → `inputs`/`params`) or `Regression` (full tool runs). Run a tier with `runTests("unit")`,
@@ -822,6 +822,7 @@ values, and the dynamic constraint.
 | `synergyActivationsComeBeforeTorqueControls` | Controls are [accelerations, synergies, torques]. |
 | `optimizedSynergyWeightsComeFromParameters` | Optimized synergy weights come from the parameters. |
 | `designVariablesFollowSynergyWeights` | Design's user-defined variables come after the synergy weights. |
+| `variablesOfTheSameTypeAreAllKept` | Two user-defined variables of the same type both keep their values (B28). |
 | `stateBoundsExtendTheDataRange` | State bounds extend the data's range by the multiple. |
 | `minimumRangeWinsWhenDataBarelyMoves` | The minimum range is used when the scaled range is smaller. |
 | `controlBoundsCoverAccelerationsAndTorques` | Control bounds cover accelerations and torques. |
@@ -908,7 +909,7 @@ and their bounds.
 | `loadNamesMapToCoordinates` | Load names map to coordinates. |
 | `synergyNamesCountAcrossGroups` | Synergy names count across groups (`B_2` is the fourth). |
 | `synergyNamesNeedAGroupAndNumber` | Synergy names need `<group>_<number>`. |
-| ⚠ `synergyWeightColumnsAreTheGroupsMuscles` | Each synergy's weight columns are its group's muscles. |
+| `synergyWeightColumnsAreTheGroupsMuscles` | Each synergy's weight columns are its group's muscles. |
 
 ### `DoCostTermsTest` — Unit
 `tests/unit/DesignOptimization/DoCostTermsTest.m`. Design-only cost terms, called through the registry.
@@ -916,10 +917,10 @@ and their bounds.
 | Test | Description |
 |---|---|
 | `walkingSpeedGoalIsScaledSquaredDifference` | The walking speed goal is ((speed − center) / allowable)². |
-| ⚠ `jointEnergyGenerationRewardsPositivePower` | The joint energy generation goal runs and rewards positive power. |
-| ⚠ `jointEnergyAbsorptionRuns` | The joint energy absorption goal runs. |
-| ⚠ `angularMomentumMinimizationIsTheAxis` | Angular momentum minimization returns the chosen axis. |
-| ⚠ `inverseDynamicsShapeIgnoresScale` | ID shape tracking ignores a constant scale. |
+| `jointEnergyGenerationRewardsPositivePower` | The joint energy generation goal runs and rewards positive power. |
+| `jointEnergyAbsorptionRuns` | The joint energy absorption goal runs. |
+| `angularMomentumMinimizationIsTheAxis` | Angular momentum minimization returns the chosen axis. |
+| `inverseDynamicsShapeIgnoresScale` | ID shape tracking ignores a constant scale. |
 | `userDefinedTermCallsTheNamedFunction` | A user-defined term calls its function, for its own kind only. |
 
 ### `DoGaitMeasuresTest` — Unit
@@ -938,7 +939,7 @@ and their bounds.
 |---|---|
 | `noModelFunctionsChangeNothing` | No model functions change nothing. |
 | `userModelFunctionChangesTheSetup` | A user model function changes the problem. |
-| ⚠ `beltSpeedParameterSetsTheBeltSpeed` | The built-in belt speed function sets the belt speed. |
+| `beltSpeedParameterSetsTheBeltSpeed` | The built-in belt speed function sets the belt speed. |
 
 ### `TreatmentOptimizationParsingTest` — Parsing
 `tests/parsing/TreatmentOptimizationParsingTest.m`. The parsing all three tools share, on Tracking settings files.
@@ -983,7 +984,7 @@ and their bounds.
 | `synergyStartingValuesComeFromNcp` | Synergy weights, commands and activations come from NCP. |
 | `surrogateDataHasEverySample` | The surrogate data is read with every sample. |
 | `muscleParametersComeFromTheOsimx` | Muscle lengths come from the osimx. |
-| ⚠ `muscleParametersFollowTheModeledMuscles` | Each modeled muscle gets its own max force and pennation. |
+| `muscleParametersFollowTheModeledMuscles` | Each modeled muscle gets its own max force and pennation. |
 | `synergyControllerNeedsAnOsimx` | The synergy controller needs an osimx. |
 
 ### `VerificationOptimizationParsingTest` — Parsing
@@ -1009,7 +1010,7 @@ and their bounds.
 | `userDefinedTermsKeepTheirSettings` | User-defined terms keep their own elements. |
 | `tutorialUserDefinedFilesParse` | The tutorial's user-defined files parse. |
 | `synergyDesignStartsFromPublishedVerification` | Synergy Design starts from the published Verification. |
-| ⚠ `metabolicGoalTurnsOnMetabolicCost` | A metabolic goal turns on the metabolic calculation. |
+| `metabolicGoalTurnsOnMetabolicCost` | A metabolic goal turns on the metabolic calculation. |
 
 ### `TreatmentOptimizationSetupRegressionTest` — Regression
 `tests/regression/TreatmentOptimizationSetupRegressionTest.m`. Each case prepared up to the solve, compared with
@@ -1037,7 +1038,7 @@ GPOPS-II.
 
 | Test | Description |
 |---|---|
-| ⚠ `termRunsAndHasTheRightSize` (one per case, kind and type: 416 on candidate; ⚠ for the B20 and B21 terms in both Design cases) | The term runs and gives finite values: one per collocation point for continuous and path terms, one for discrete and terminal terms. |
+| `termRunsAndHasTheRightSize` (one per case, kind and type: 416 on candidate; the B20 and B21 terms failed before those fixes) | The term runs and gives finite values: one per collocation point for continuous and path terms, one for discrete and terminal terms. |
 
 ### `TrackingOptimizationRegressionTest` — Regression
 `tests/regression/TrackingOptimizationRegressionTest.m`. Full Tracking runs (torque, synergy).
@@ -1070,6 +1071,19 @@ GPOPS-II.
 | `solutionIsWithinBounds` (3 cases) | The solution stays within its bounds. |
 | `finalTimeIsInTheAllowedRange` (3 cases) | The final time is within `<final_time_range>`. |
 | `torqueSolutionIsKineticallyConsistent` (V3, V4) | The torque solutions are kinetically consistent. |
+
+### `DesignOptimizationMetabolicRegressionTest` — Regression
+`tests/regression/DesignOptimizationMetabolicRegressionTest.m`. Full Design Optimization runs of the synergy
+tutorial problem, each with one metabolic cost per time goal: relative (0.7 and 1.3 times the initial guess) and
+absolute (600 and 1200), on `gpops_synergy_metabolic.xml`. Each solution's metabolic cost per unit time is
+measured with `toMetabolicCostPerTime` and compared with the initial guess's (858). Asking in both directions is
+what shows a goal works: one with no effect fails both. Needs GPOPS-II; about 80 s.
+
+| Test | Description |
+|---|---|
+| `goalRunCompletes` (relativeLower, relativeHigher, absoluteLower, absoluteHigher) | The run completes and IPOPT does not fail. |
+| `lowerGoalLowersTheMetabolicCost` (relative, absolute) | A goal below the initial cost ends at least 10% below it. |
+| ⚠ `higherGoalRaisesTheMetabolicCost` (relative, absolute; ⚠ for absolute) | A goal above the initial cost ends at least 10% above it (B30 for absolute). |
 
 ---
 

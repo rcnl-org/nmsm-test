@@ -100,10 +100,10 @@ classdef (TestTags = {'Parsing'}) DesignOptimizationParsingTest < ...
         function metabolicGoalTurnsOnMetabolicCost(testCase)
             % An enabled metabolic cost goal needs the metabolic cost
             % computed during the optimization.
-            % Expected to fail on candidate-1.5.4: only the relative_*
+            % Failed on candidate-1.5.4 (fixed later): only the relative_*
             % metabolic terms switch on calculateMetabolicCost, so an
             % absolute_metabolic_cost_* term gets no metabolic cost. See
-            % tests/README.md.
+            % docs/failures.md.
             inputs = testCase.parse("synergy", ...
                 "edge_design_absolute_metabolic_cost.xml");
             testCase.verifyTrue(logical(inputs.calculateMetabolicCost));

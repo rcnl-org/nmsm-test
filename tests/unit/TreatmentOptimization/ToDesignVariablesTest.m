@@ -90,6 +90,26 @@ classdef (TestTags = {'Unit'}) ToDesignVariablesTest < matlab.unittest.TestCase
                 900, "AbsTol", 1e-9);
         end
 
+        function variablesOfTheSameTypeAreAllKept(testCase)
+            % Two max_isometric_force variables (one per muscle): the
+            % built-in model function reads one value per variable, in
+            % order (values.parameters.max_isometric_force(counter)).
+            % Failed on candidate-1.5.4 (fixed later): each variable
+            % overwrites values.parameters.<type>, so only the last one's
+            % value is kept. See docs/failures.md (B28).
+            [inputs, phase] = synergyWeightProblem("DesignOptimization");
+            inputs.userDefinedVariables = { ...
+                struct("type", "max_isometric_force", "initial_values", 1000), ...
+                struct("type", "max_isometric_force", "initial_values", 1000)};
+            inputs.maxParameter = [ones(1, 4), 2000, 2000];
+            inputs.minParameter = zeros(1, 6);
+            phase.parameter = scaleToBounds([0.2, 0.6, 0.8, 0.4, 900, ...
+                1200], inputs.maxParameter, inputs.minParameter);
+            values = makeGpopsValuesAsStruct(phase, inputs);
+            testCase.verifyEqual(values.parameters.max_isometric_force, ...
+                [900, 1200], "AbsTol", 1e-9);
+        end
+
         % ---- makeOptimalControlBounds -----------------------------------
 
         function stateBoundsExtendTheDataRange(testCase)

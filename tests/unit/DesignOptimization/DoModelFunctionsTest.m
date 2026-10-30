@@ -39,12 +39,12 @@ classdef (TestTags = {'Unit'}) DoModelFunctionsTest < matlab.unittest.TestCase
         function beltSpeedParameterSetsTheBeltSpeed(testCase)
             % The built-in belt speed function sets the belt speed of the
             % contact surfaces on the parameter's side.
-            % Expected to fail on candidate-1.5.4: the built-in
+            % Failed on candidate-1.5.4 (fixed later): the built-in
             % apply*Parameter functions return one output where
             % updateSystemFromUserDefinedFunctions expects two
             % ([inputs, values]), and read values.belt_speed where the
             % parameters are in values.parameters.belt_speed. See
-            % tests/README.md.
+            % docs/failures.md.
             setup.auxdata.systemFns = "applyBeltSpeedParameter";
             setup.auxdata.userDefinedVariables = {struct("type", ...
                 'belt_speed', "is_left_foot", false)};

@@ -39,10 +39,10 @@ classdef (TestTags = {'Unit'}) DoCostTermsTest < matlab.unittest.TestCase
         function jointEnergyGenerationRewardsPositivePower(testCase)
             % sqrt((moment x velocity - error center) / allowable error),
             % real part only, so absorbed power (negative) costs nothing.
-            % Expected to fail on candidate-1.5.4:
+            % Failed on candidate-1.5.4 (fixed later):
             % calcJointEnergyGenerationGoalIntegrand uses an undefined
             % variable (inputs), so it errors whenever it is enabled. See
-            % tests/README.md.
+            % docs/failures.md.
             [values, modeled, auxdata] = jointPowerProblem();
             costTerm = energyTerm('joint_energy_generation_goal');
             cost = testCase.continuous.joint_energy_generation_goal( ...
@@ -53,7 +53,7 @@ classdef (TestTags = {'Unit'}) DoCostTermsTest < matlab.unittest.TestCase
         end
 
         function jointEnergyAbsorptionRuns(testCase)
-            % Expected to fail on candidate-1.5.4 for the same reason as
+            % Failed on candidate-1.5.4 (fixed later) for the same reason as
             % generation (calcJointEnergyAbsorptionGoalIntegrand).
             [values, modeled, auxdata] = jointPowerProblem();
             costTerm = energyTerm('joint_energy_absorption_goal');
@@ -63,10 +63,10 @@ classdef (TestTags = {'Unit'}) DoCostTermsTest < matlab.unittest.TestCase
         end
 
         function angularMomentumMinimizationIsTheAxis(testCase)
-            % Expected to fail on candidate-1.5.4:
+            % Failed on candidate-1.5.4 (fixed later):
             % calcMinimizingAngularMomentumIntegrand passes an undefined
             % variable (inputs) to normalizeTimeColumn. See
-            % tests/README.md.
+            % docs/failures.md.
             values.time = [0; 0.5; 1];
             modeled.angularMomentum = [1, 2, 3; 4, 5, 6; 7, 8, 9];
             costTerm = struct("type", 'angular_momentum_minimization', ...
@@ -80,10 +80,10 @@ classdef (TestTags = {'Unit'}) DoCostTermsTest < matlab.unittest.TestCase
         function inverseDynamicsShapeIgnoresScale(testCase)
             % Shape tracking compares the shape of the moment, so an ID
             % moment twice the experimental one fits perfectly.
-            % Expected to fail on candidate-1.5.4:
+            % Failed on candidate-1.5.4 (fixed later):
             % calcTrackingInverseDynamicsShapeIntegrand computes its scale
             % factor from variables that do not exist (modeled \
-            % experimental). See tests/README.md.
+            % experimental). See docs/failures.md.
             auxdata.coordinateNames = ["a", "b"];
             auxdata.collocationTimeOriginal = [0; 0.5; 1];
             auxdata.inverseDynamicsMomentLabels = ["a_moment", "b_moment"];

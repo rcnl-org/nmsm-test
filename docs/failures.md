@@ -10,8 +10,9 @@ Every test that fails, why, whether the behavior it catches is intended, and how
 
 Both runs were on 2026-10-22/26 with MATLAB R2025a, OpenSim 4.5 and a licensed GPOPS-II.
 
-**Fixed since these runs (2026-10-27 to 29):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
-`candidate-1.5.4`; B14, B17, B18 and B27 (found later) on `gcp-bug-fixes`.
+**Fixed since these runs (2026-10-27 to 30):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
+`candidate-1.5.4`; B14, B17, B18 and B27 (found later) on `gcp-bug-fixes`; B19, B20, B21, B22, B25, B26 and B28 (found later) on
+`treatment-optimization-bug-fixes`. B29 and B30 were found later: B30 is not fixed, and B29 is left as is (see its entry).
 Their tests pass there now; each fixed bug below says so, and the quick reference marks them "fixed". The
 counts above are from before these fixes.
 
@@ -214,12 +215,14 @@ still in `matlab-gui-dev`'s code.
 ### Treatment Optimization
 
 **B19. Synergy weight columns are wrong for groups of different sizes** — `ToTermHelpersTest/synergyWeightColumnsAreTheGroupsMuscles`
+- **Fixed on `treatment-optimization-bug-fixes`** (uncommitted, 2026-10-30).
 - *Why:* `findSynergyWeightIndicesByIndex` has no `break` after finding the synergy's group, so later groups
   overwrite the end column. Affects `synergy_vector_symmetry` when groups differ in size.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* `break` after setting `indices{i}`.
 
 **B20. Three Design cost terms crash whenever enabled** — `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower`, `jointEnergyAbsorptionRuns`, `angularMomentumMinimizationIsTheAxis`, and `TreatmentOptimizationTermSmokeTest` for `joint_energy_generation_goal`, `joint_energy_absorption_goal` and `angular_momentum_minimization` (designTorque and designSynergy)
+- **Fixed on `treatment-optimization-bug-fixes`**: the energy terms in commit `5a509374`, angular momentum minimization uncommitted (2026-10-30).
 - *What happens:* "Unrecognized function or variable 'inputs'".
 - *Why:* `calcJointEnergyGenerationGoalIntegrand`, `calcJointEnergyAbsorptionGoalIntegrand` (argument named
   `params`) and `calcMinimizingAngularMomentumIntegrand` (no such argument) call
@@ -229,6 +232,7 @@ still in `matlab-gui-dev`'s code.
   `inputs` argument and pass `auxdata` to it from `generateCostTermStruct`.
 
 **B21. `inverse_dynamics_shape_tracking` crashes whenever enabled** — `DoCostTermsTest/inverseDynamicsShapeIgnoresScale`, and `TreatmentOptimizationTermSmokeTest` for `inverse_dynamics_shape_tracking` (designTorque and designSynergy)
+- **Fixed on `treatment-optimization-bug-fixes`** (commit `5a509374`).
 - *Why:* `calcTrackingInverseDynamicsShapeIntegrand.m` (line 42): `scaleFactor = modeled \ experimental`; neither
   variable exists.
 - *Intended:* no. *On dev:* code unchanged.
@@ -236,6 +240,7 @@ still in `matlab-gui-dev`'s code.
   experimental moment), keeping `cost = experimentalMoment - idMoment * scaleFactor`.
 
 **B22. The built-in Design model functions cannot be used** — `DoModelFunctionsTest/beltSpeedParameterSetsTheBeltSpeed`
+- **Fixed on `treatment-optimization-bug-fixes`** (uncommitted, 2026-10-30). The related overwrite of same-type variables is B28.
 - *Why:* `updateSystemFromUserDefinedFunctions` calls `[inputs, values] = func(inputs, values)`, but
   `applyBeltSpeedParameter`, `applyMaxIsometricForceParameter`, ... return one output, and they read
   `values.belt_speed` where `makeGpopsValuesAsStruct` puts it in `values.parameters.belt_speed`.
@@ -262,6 +267,7 @@ still in `matlab-gui-dev`'s code.
   coordinates and report the unknown name.
 
 **B25. Muscle parameters can belong to the wrong muscle** — `TrackingOptimizationParsingTest/muscleParametersFollowTheModeledMuscles`
+- **Fixed on `treatment-optimization-bug-fixes`** (commit `23eebd8b`).
 - *What happens:* with an ankle-only surrogate model, soleus_r gets 1,800 N instead of its 18,600 N, and every
   pennation angle is another muscle's.
 - *Why:* `getModelOrOsimxInputs` reads each modeled muscle's values from `getMuscles().get(i-1)` (the model's
@@ -269,12 +275,70 @@ still in `matlab-gui-dev`'s code.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* `muscle = model.getMuscles().get(char(inputs.muscleNames(i)));` and read every value from `muscle`.
 
-**B26. Absolute metabolic goals never compute the metabolic cost** — `DesignOptimizationParsingTest/metabolicGoalTurnsOnMetabolicCost`
+**B26. Absolute metabolic goals never compute the metabolic cost** — `DesignOptimizationParsingTest/metabolicGoalTurnsOnMetabolicCost`, and `DesignOptimizationMetabolicRegressionTest/lowerGoalLowersTheMetabolicCost(goal=absolute)` and `higherGoalRaisesTheMetabolicCost(goal=absolute)`
+- **Fixed on `treatment-optimization-bug-fixes`** (uncommitted, 2026-10-30). Only the four type names were added; the flags are still only set on Windows (`mexw64`), an open question.
 - *Why:* `parseTreatmentOptimizationInputs` sets `calculateMetabolicCost` only for the
   `relative_metabolic_cost_*` terms.
+- *Effect:* without the flag the metabolic power is never computed (the inverse dynamics MEX is asked not to), so in
+  the endpoint function `metabolicCost` is zeros and an absolute goal is a constant, `((0 - error center) /
+  allowable error)^2`, with no gradient. In `DesignOptimizationMetabolicRegressionTest` the absolute goal runs then
+  end at 891, exactly where a run with no goal ends, for either target.
 - *Intended:* no. *On dev:* still there.
 - *Fix:* include `absolute_metabolic_cost_per_time` and `absolute_metabolic_cost_per_distance` in that
   check.
+
+**B28. Design variables of the same type overwrite each other** — `ToDesignVariablesTest/variablesOfTheSameTypeAreAllKept`
+- Found on 2026-10-30 while fixing B22. **Fixed on `treatment-optimization-bug-fixes`** (uncommitted, 2026-10-30).
+- *What happens:* with two user-defined variables of one type (for example `max_isometric_force` for two
+  muscles), `values.parameters.max_isometric_force` holds only the last variable's value.
+- *Why:* `makeGpopsValuesAsStruct` assigns `values.parameters.(type)` once per variable, so each one replaces
+  the previous. The built-in model functions read one value per variable, in order
+  (`values.parameters.<type>(counter)`), so the first muscle gets the second's value and the second reads past
+  the end and crashes. With one variable per type (all current fixtures) it works.
+- *Intended:* no. *On dev:* not checked.
+- *Fix:* append same-type variables in order: start `values.parameters` as an empty struct and, for each
+  variable, `values.parameters.(type) = [values.parameters.(type), <its values>]` (creating the field empty
+  the first time).
+
+**B29. Metabolic cost goals fail to set up unless the initial guess was solved on the same grid** — no test
+- Found on 2026-10-30 while building the metabolic regression test. **Left as is** (decision of 2026-10-30): the
+  initial guess for a metabolic goal is in practice a previous run's output on the same grid, so the case is not
+  expected to come up, and its test was removed. If it does, the error does not name the cause; an `assert` with a
+  clear message in `checkInitialGuess` would be the cheap improvement.
+- *What happens:* with any enabled metabolic goal (relative or absolute), preparing the problem fails with
+  `Unrecognized field name "initialMetabolicCost"` in `setupMetabolicCost` (`convertToGpopsInputs`), unless the
+  initial guess files have exactly one row more than the solver settings' collocation points. That holds only when
+  the initial guess is the output of a run solved on the same mesh: the synergy tutorial's published Verification
+  results (51 rows) with its 1 interval x 50 points. A guess solved on another mesh (`gpops_small.xml`'s 8 x 3
+  against those 51 rows), mesh refinement, or a guess from preprocessed data (the kick's IK has 63 frames, the torque
+  tutorial's grid 25 x 4) all fail.
+- *Why:* `checkInitialGuess` evaluates the metabolic power at the initial guess's own times (`inputs.initialTime`,
+  read from the initial guess files) but only stores it as `inputs.initialMetabolicCost`
+  `if length(output.metabolicCost) == length(inputs.experimentalTime)`. By then `experimentalTime` is no longer the
+  tracked data's times: `splineExperimentalToCollocationPoints` has replaced it with the collocation points plus the
+  end point. `setupMetabolicCost` then reads `initialMetabolicCost` unconditionally.
+- *Intended:* no. *On dev:* not checked.
+- *Fix:* store it whenever the metabolic cost is calculated. The length the later code expects is the initial
+  guess's point count (`computeCollocationPointTimes` uses it when `length(phase.time) ==
+  length(initialMetabolicCost) - 1`), so compare with the guess's times, not `experimentalTime`, if a check is
+  kept at all.
+
+**B30. Absolute metabolic goals see the metabolic cost in GPOPS-II's scaled time** — `DesignOptimizationMetabolicRegressionTest/higherGoalRaisesTheMetabolicCost(goal=absolute)`
+- Found on 2026-10-30 while building the metabolic regression test. Not fixed yet.
+- *What happens:* an absolute metabolic goal pushes the metabolic cost toward a target that is off by a factor of
+  1 / (maxTime − minTime). In the synergy tutorial problem (final time range 0 to 0.36 s) the term sees 2384 where
+  the metabolic cost per unit time is 858, so targets of 600 and 1200 both pull the cost down (the runs end at 564
+  and 540). Relative goals are not affected: they divide by the initial guess's integral, which is scaled the same
+  way.
+- *Why:* GPOPS-II solves in scaled time (`scaleToBounds(time, maxTime, minTime)` maps the time range onto an
+  interval of length 1), so the metabolic power integral the endpoint function reads
+  (`setup.phase.integral(end - counter)`) is the energy divided by (maxTime − minTime): 739 instead of 266 J here.
+  `calcAbsoluteMetabolicCostPerTimeGoalDiscrete` divides it by the real final time as if it were the energy.
+- *Intended:* no. *On dev:* not checked.
+- *Fix:* multiply the integral by (maxTime − minTime) where the endpoint function reads it, and do the same where
+  the initial guess's integral is stored (`computeCollocationPointTimes`, `convertToGpopsInputs`) so the relative
+  goals stay consistent. The braking and propulsive impulse goals read their integrals the same way and probably
+  need the same correction (not checked).
 
 ---
 
@@ -386,15 +450,16 @@ column points to the explanation above.
 
 | Test | Cand. | Dev | See |
 |---|---|---|---|
-| `DesignOptimizationParsingTest/metabolicGoalTurnsOnMetabolicCost` | ✗ | ✗ | B26 |
+| `DesignOptimizationMetabolicRegressionTest/higherGoalRaisesTheMetabolicCost(goal=absolute)` | ✗ | not run | B30 |
+| `DesignOptimizationParsingTest/metabolicGoalTurnsOnMetabolicCost` | fixed | ✗ | B26 |
 | `DesignOptimizationParsingTest/synergyDesignStartsFromPublishedVerification` | | ✗ | D1 |
-| `DoCostTermsTest/angularMomentumMinimizationIsTheAxis` | ✗ | ✗ | B20 |
-| `DoCostTermsTest/inverseDynamicsShapeIgnoresScale` | ✗ | ✗ | B21 |
-| `DoCostTermsTest/jointEnergyAbsorptionRuns` | ✗ | ✗ | B20 |
-| `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower` | ✗ | ✗ | B20 |
+| `DoCostTermsTest/angularMomentumMinimizationIsTheAxis` | fixed | ✗ | B20 |
+| `DoCostTermsTest/inverseDynamicsShapeIgnoresScale` | fixed | ✗ | B21 |
+| `DoCostTermsTest/jointEnergyAbsorptionRuns` | fixed | ✗ | B20 |
+| `DoCostTermsTest/jointEnergyGenerationRewardsPositivePower` | fixed | ✗ | B20 |
 | `DoCostTermsTest/userDefinedTermCallsTheNamedFunction` | | ✗ | D1 |
 | `DoCostTermsTest/walkingSpeedGoalIsScaledSquaredDifference` | | ✗ | D1 |
-| `DoModelFunctionsTest/beltSpeedParameterSetsTheBeltSpeed` | ✗ | ✗ | B22 |
+| `DoModelFunctionsTest/beltSpeedParameterSetsTheBeltSpeed` | fixed | ✗ | B22 |
 | `DoModelFunctionsTest/userModelFunctionChangesTheSetup` | | ✗ | D1 |
 | `GcpCostTermsTest/mergedResultFollowsDesignVariableOrder` | fixed | ✗ | B14 |
 | `GcpTermSmokeTest/termGivesFiniteCosts(type=neighbor_spring_constant)` | fixed | not run | B18 |
@@ -443,12 +508,13 @@ column points to the explanation above.
 | `ToDesignVariablesTest/*` (11) | | ✗ | D1 |
 | `ToScalingAndDynamicsTest/dynamicConstraintIsScaledDerivatives` | | ✗ | D1 |
 | `ToSynergyModelTest/*` (6) | | ✗ | D1 |
-| `ToTermHelpersTest/synergyWeightColumnsAreTheGroupsMuscles` | ✗ | ✗ | B19 |
+| `ToDesignVariablesTest/variablesOfTheSameTypeAreAllKept` | fixed | not run | B28 |
+| `ToTermHelpersTest/synergyWeightColumnsAreTheGroupsMuscles` | fixed | ✗ | B19 |
 | `ToTermRegistryTest/*` (42) | | ✗ | D1 |
-| `TrackingOptimizationParsingTest/muscleParametersFollowTheModeledMuscles` | ✗ | ✗ | B25 |
+| `TrackingOptimizationParsingTest/muscleParametersFollowTheModeledMuscles` | fixed | ✗ | B25 |
 | `TrackingOptimizationParsingTest/synergyControllerDefaults`, `synergyControllerReadsTheSynergyGroups`, `torqueTutorialTracksCoordinatesAndLoads` | | ✗ | D1 |
 | `TreatmentOptimizationParsingTest/missingResultsDirectoryIsReported` (was `omittedResultsDirectoryIsTheCurrentFolder`) | fixed | ✗ | B23 |
 | `TreatmentOptimizationParsingTest/unknownStatesCoordinateIsReported` | fixed | ✗ | B24 |
 | `TreatmentOptimizationParsingTest/*` (the other 24) | | ✗ | D2 |
-| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `joint_energy_generation_goal`, `joint_energy_absorption_goal`, `angular_momentum_minimization` (6: designTorque and designSynergy) | ✗ | not run | B20 |
-| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `inverse_dynamics_shape_tracking` (2: designTorque and designSynergy) | ✗ | not run | B21 |
+| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `joint_energy_generation_goal`, `joint_energy_absorption_goal`, `angular_momentum_minimization` (6: designTorque and designSynergy) | fixed | not run | B20 |
+| `TreatmentOptimizationTermSmokeTest/termRunsAndHasTheRightSize` for `inverse_dynamics_shape_tracking` (2: designTorque and designSynergy) | fixed | not run | B21 |
