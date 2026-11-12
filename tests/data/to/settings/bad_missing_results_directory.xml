@@ -1,0 +1,16 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--settings_tracking_torque_minimal.xml with one change: <results_directory> is left out.-->
+	<TrackingOptimizationTool name="minimal">
+		<initial_guess_directory>preprocessed</initial_guess_directory>
+		<tracked_quantities_directory>preprocessed</tracked_quantities_directory>
+		<input_model_file>KickingModel.osim</input_model_file>
+		<optimal_control_solver_settings_file>gpops_torque_tutorial.xml</optimal_control_solver_settings_file>
+		<trial_name>drive_kick1</trial_name>
+		<states_coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</states_coordinate_list>
+		<RCNLTorqueController>
+			<coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</coordinate_list>
+		</RCNLTorqueController>
+		<RCNLCostTermSet/>
+		<RCNLConstraintTermSet/>
+	</TrackingOptimizationTool>
+</NMSMPipelineDocument>

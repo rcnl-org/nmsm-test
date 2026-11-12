@@ -1,0 +1,42 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--Synthetic known-truth case (see tests/data/ncp/README.md): settings_synthetic_all_tracked.xml with sum
+	normalization to 10 instead of magnitude. Used by the regression tests.-->
+	<NeuralControlPersonalizationTool name="synthetic_sum">
+		<results_directory>NCPResults</results_directory>
+		<input_model_file>UF_Subject_3_reduced_muscles.osim</input_model_file>
+		<input_osimx_file>mtpResults/UF_Subject_3_reduced_muscles_mtp.osimx</input_osimx_file>
+		<data_directory>synthetic/all_tracked/preprocessed</data_directory>
+		<coordinate_list>hip_flexion_r knee_angle_r ankle_angle_r</coordinate_list>
+		<activation_muscle_groups/>
+		<normalized_fiber_length_muscle_groups/>
+		<diff_min_change>0.0001</diff_min_change>
+		<step_tolerance>1e-06</step_tolerance>
+		<optimality_tolerance>1e-06</optimality_tolerance>
+		<function_tolerance>1e-06</function_tolerance>
+		<max_iterations>1000</max_iterations>
+		<synergy_vector_normalization_method>sum</synergy_vector_normalization_method>
+		<synergy_vector_normalization_value>10</synergy_vector_normalization_value>
+		<MuscleTendonLengthInitialization>
+			<is_enabled>false</is_enabled>
+		</MuscleTendonLengthInitialization>
+		<mtp_results_directory>synthetic/all_tracked/mtpResults</mtp_results_directory>
+		<RCNLCostTermSet>
+			<RCNLCostTerm>
+				<is_enabled>true</is_enabled>
+				<type>moment_tracking</type>
+				<max_allowable_error>10</max_allowable_error>
+			</RCNLCostTerm>
+			<RCNLCostTerm>
+				<is_enabled>true</is_enabled>
+				<type>activation_tracking</type>
+				<max_allowable_error>0.05</max_allowable_error>
+			</RCNLCostTerm>
+		</RCNLCostTermSet>
+		<RCNLSynergySet>
+			<RCNLSynergy>
+				<muscle_group_name>RightLeg</muscle_group_name>
+				<num_synergies>3</num_synergies>
+			</RCNLSynergy>
+		</RCNLSynergySet>
+	</NeuralControlPersonalizationTool>
+</NMSMPipelineDocument>

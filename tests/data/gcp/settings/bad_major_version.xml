@@ -1,0 +1,41 @@
+<NMSMPipelineDocument Version="2.0.0">
+	<!--settings_minimal.xml with Version 2.0.0, a different major version.-->
+	<GroundContactPersonalizationTool name="minimal">
+		<results_directory>GCPResults</results_directory>
+		<input_directory>preprocessed</input_directory>
+		<input_model_file>bodyModel.osim</input_model_file>
+		<input_motion_file>IKData/gait_1.sto</input_motion_file>
+		<input_grf_file>GRFData/gait_1.sto</input_grf_file>
+		<GCPContactSurfaceSet>
+			<GCPContactSurface name="Right foot">
+				<is_enabled>true</is_enabled>
+				<is_left_foot>false</is_left_foot>
+				<start_time>0.5</start_time>
+				<end_time>1.6</end_time>
+				<belt_speed>1.4</belt_speed>
+				<force_columns>ground_force_2_vx ground_force_2_vy ground_force_2_vz</force_columns>
+				<moment_columns>ground_moment_2_mx ground_moment_2_my ground_moment_2_mz</moment_columns>
+				<electrical_center_columns>ground_force_2_px ground_force_2_py ground_force_2_pz</electrical_center_columns>
+				<hindfoot_body>calcn_r</hindfoot_body>
+				<toe_marker>R_Toe</toe_marker>
+				<medial_marker>R_Toe_Medial</medial_marker>
+				<lateral_marker>R_Toe_Lateral</lateral_marker>
+				<heel_marker>R_Heel</heel_marker>
+				<midfoot_superior_marker>R_Midfoot_Superior</midfoot_superior_marker>
+			</GCPContactSurface>
+		</GCPContactSurfaceSet>
+		<GCPTaskList>
+			<GCPTask>
+				<is_enabled>true</is_enabled>
+				<springConstants>true</springConstants>
+				<RCNLCostTermSet>
+					<RCNLCostTerm>
+						<is_enabled>true</is_enabled>
+						<type>vertical_grf</type>
+						<max_allowable_error>5</max_allowable_error>
+					</RCNLCostTerm>
+				</RCNLCostTermSet>
+			</GCPTask>
+		</GCPTaskList>
+	</GroundContactPersonalizationTool>
+</NMSMPipelineDocument>
