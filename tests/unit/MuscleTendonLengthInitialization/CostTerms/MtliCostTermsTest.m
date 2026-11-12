@@ -136,15 +136,6 @@ classdef (TestTags = {'Unit'}) MtliCostTermsTest < matlab.unittest.TestCase
             testCase.verifyEqual(sum(r .^ 2), 1, "AbsTol", 1e-12);
         end
 
-        function passiveMomentTrackingWorksForAnyTrialLength(testCase)
-            % Same as above with 50 frames per passive trial. Expected to
-            % fail: the frame count is fixed at 101 in the code. See
-            % tests/README.md.
-            [data, modeled] = passiveMoments(50);
-            r = calcPassiveMomentTrackingCost(modeled, data, struct());
-            testCase.verifyEqual(sum(r .^ 2), 1, "AbsTol", 1e-12);
-        end
-
         % ---- collecting the terms ---------------------------------------
 
         function enabledTermsAreStacked(testCase)

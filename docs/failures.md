@@ -117,9 +117,12 @@ still in `matlab-gui-dev`'s code.
 
 ### Muscle-Tendon Length Initialization
 
-**B10. Passive moment tracking only works for 101-frame trials** — `MtliCostTermsTest/passiveMomentTrackingWorksForAnyTrialLength`
+**B10. Passive moment tracking only works for 101-frame trials** — no test
+- **Left as is** (decision of 2026-11-12): MTLI currently works with 101 points per trial by design, so this is a
+  limit of the current version, not a bug. Its test (`MtliCostTermsTest/passiveMomentTrackingWorksForAnyTrialLength`)
+  was removed. The fix below is for when MTLI is extended to other trial lengths.
 - *Why:* `calcPassiveMomentTrackingCost.m` (lines 35 and 37) uses `repmat(~columnsWithAllZeros, 1, 1, 101)`.
-- *Intended:* no. *On dev:* still there.
+- *On dev:* the same.
 - *Fix:* use the data's frame count:
   `repmat(~columnsWithAllZeros, 1, 1, size(experimentalData.passiveData.inverseDynamicsMoments, 3))`.
 
@@ -477,7 +480,6 @@ column points to the explanation above.
 | `MtliCostTermsTest/enabledTermsAreStacked` | | ✗ | D1 |
 | `MtliCostTermsTest/muscleStressDefaults` | | ✗ | D1 |
 | `MtliCostTermsTest/passiveMomentTermNeedsPassiveData` | | ✗ | D1 |
-| `MtliCostTermsTest/passiveMomentTrackingWorksForAnyTrialLength` | ✗ | ✗ | B10 |
 | `MtliCostTermsTest/unknownTermIsReported` | fixed | | B11 |
 | `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles` | ✗ | ✗ | B4 |
 | `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit` | ✗ | ✗ | B5 |

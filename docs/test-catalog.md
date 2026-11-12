@@ -445,7 +445,6 @@ maximum isometric force, and hands results to MTP and NCP.
 | `groupedMaximumFiberLengthTracksSetting` | Grouped muscles share a maximum-length design value. |
 | `groupedFiberLengthsPenalizeLargestDifference` | Grouped fiber lengths penalize their largest difference. |
 | `passiveMomentTrackingSkipsEmptyCoordinates` | Coordinates without passive data are skipped. |
-| ⚠ `passiveMomentTrackingWorksForAnyTrialLength` | Passive moment tracking works with trials that are not 101 frames. |
 | `enabledTermsAreStacked` | Enabled terms are stacked in order. |
 | `absoluteLengthsSwitchTheLengthTerms` | Absolute lengths switch to the absolute length terms. |
 | `passiveMomentTermNeedsPassiveData` | The passive moment term needs passive data. |
