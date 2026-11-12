@@ -153,10 +153,10 @@ classdef (TestTags = {'Unit'}) MtpCostTermsTest < matlab.unittest.TestCase
         function maximumFiberLengthPenaltyStartsAtTheLimit(testCase)
             % Limit 1.05. A muscle whose longest fiber is just over the
             % limit should cost about as little as one just under it.
-            % Expected to fail: the penalty is the whole length (1.06),
-            % not the amount over the limit, so crossing the limit jumps
-            % the cost from 0 to (1.06 / 0.05)^2 = 449. See
-            % tests/README.md.
+            % Failed on candidate-1.5.4 (fixed later): the penalty was the
+            % whole length (1.06), not the amount over the limit, so
+            % crossing the limit jumped the cost from 0 to
+            % (1.06 / 0.05)^2 = 449. See docs/failures.md.
             params.maxNormalizedMuscleFiberLength = 1.05;
             under.normalizedFiberLength = reshape([1, 1.04], 1, 1, 2);
             over.normalizedFiberLength = reshape([1, 1.06], 1, 1, 2);
@@ -169,8 +169,8 @@ classdef (TestTags = {'Unit'}) MtpCostTermsTest < matlab.unittest.TestCase
         end
 
         function minimumFiberLengthPenaltyStartsAtTheLimit(testCase)
-            % Limit 0.6. Expected to fail for the same reason: the
-            % shortest fiber (0.59) is penalized as a whole,
+            % Limit 0.6. Failed on candidate-1.5.4 for the same reason: the
+            % shortest fiber (0.59) was penalized as a whole,
             % (0.59 / 0.05)^2 = 139, not by its 0.01 shortfall.
             params.minNormalizedMuscleFiberLength = 0.6;
             under.normalizedFiberLength = reshape([1, 0.59], 1, 1, 2);

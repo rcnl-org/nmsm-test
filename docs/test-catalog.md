@@ -1,7 +1,7 @@
 # Test catalog
 
-Every test class in `tests/`, with a one-line description of each test. The suite has 66 test classes and 587
-test methods; with parameterized tests expanded, a full run is 1,208 tests.
+Every test class in `tests/`, with a one-line description of each test. The suite has 66 test classes and 591
+test methods; with parameterized tests expanded, a full run is 1,212 tests.
 
 - **Tiers.** Each class is tagged `Unit` (one function at a time, values worked out by hand), `Parsing`
   (settings file → `inputs`/`params`) or `Regression` (full tool runs). Run a tier with `runTests("unit")`,
@@ -260,8 +260,11 @@ cost terms.
 | `deviationCostIsMeanSquaredScaledDeviation` | Deviation cost is the mean of (deviation / allowable)². |
 | `deviationCostOfMatrixUsesEveryElement` | A matrix deviation averages every element. |
 | `groupDifferencesAreFromEachGroupMean` | Group differences are from each group's mean. |
-| ⚠ `groupsWithoutFirstMuscleCompareTheRightMuscles` | Groups that leave out the first muscle still compare the right muscles. |
-| `groupIndicesArePositionsInMuscleList` | Group indices are positions in the muscle list. |
+| `groupsWithoutFirstMuscleCompareTheRightMuscles` | Groups that leave out the first muscle still compare the right muscles. |
+| `groupIndicesArePositionsInMuscleList` | Given the modeled muscles, group indices are positions in that list. |
+| `groupIndicesFollowASubsetOfMuscles` | With only some muscles modeled, the positions are in the subset. |
+| `groupMuscleNotModeledIsReported` | A grouped muscle that is not modeled is named in the error. |
+| `groupIndicesWithoutMuscleNamesAreModelPositions` | Without the modeled muscles (NCP's call), indices are positions among the model's muscles. |
 | `magnitudeDeviationIsChangeInTrialMean` | Magnitude deviation is the change in each trial's mean. |
 | `shapeDeviationIgnoresAConstantShift` | Shape deviation ignores a constant shift. |
 | `meanDeviationIsChangeRelativeToGroup` | Mean deviation is a muscle's change relative to its group. |
@@ -287,8 +290,8 @@ values, with candidate-1.5.4's names.
 | `synergyMomentTrackingDefaultAllowableError` | Synergy moment tracking with its default (2 Nm). |
 | `passiveForceDefaults` | Passive force term with its default allowable error. |
 | `fiberLengthDeviationIsMagnitudePlusShape` | Fiber length deviation adds magnitude and shape parts. |
-| ⚠ `maximumFiberLengthPenaltyStartsAtTheLimit` | The maximum fiber length penalty grows from 0 at the limit. |
-| ⚠ `minimumFiberLengthPenaltyStartsAtTheLimit` | The minimum fiber length penalty grows from 0 at the limit. |
+| `maximumFiberLengthPenaltyStartsAtTheLimit` | The maximum fiber length penalty grows from 0 at the limit. |
+| `minimumFiberLengthPenaltyStartsAtTheLimit` | The minimum fiber length penalty grows from 0 at the limit. |
 | `fiberLengthPenaltiesAreZeroWithinLimits` | Both penalties are 0 inside the limits. |
 | `excitationPenaltySkipsPaddingAndMissingMuscles` | The excitation penalty skips padding and missing-EMG muscles. |
 | `residualActivationComparesMeasuredMuscles` | The residual activation term compares measured muscles. |
@@ -372,6 +375,7 @@ MTP's optimizer must meet.
 | `minimalUsesDefaults` | The minimal file gets every default. |
 | `fullReadsToolLevelOptions` | The full file sets every tool-level option. |
 | `groupsAreMusclePositionsInSettingsOrder` | Groups become muscle positions in settings order. |
+| `groupsFollowTheModeledMuscles` | With a gap in the modeled muscles and groups leaving out the first one, groups are modeled positions. |
 | `tasksAreOrderedByIndexAndDisabledTaskIsDropped` | Tasks are ordered by index; the disabled task is dropped. |
 | `taskOptimizeFlagsAndLimits` | Each task's optimize flags and limits are read. |
 | `costTermsKeepFileOrderAndValues` | Cost terms keep their file order and values. |

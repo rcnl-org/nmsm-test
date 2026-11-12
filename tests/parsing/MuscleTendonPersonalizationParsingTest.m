@@ -168,6 +168,18 @@ classdef (TestTags = {'Parsing'}) MuscleTendonPersonalizationParsingTest < ...
                 testCase.expected.muscleNames));
         end
 
+        function groupsFollowTheModeledMuscles(testCase)
+            % With only the knee in <coordinate_list>, three muscles in the
+            % middle of the model's nine are not modeled, and the groups
+            % leave out the first modeled muscle. tibant_r and vasmed_r,
+            % the model's muscles 8 and 9, are modeled muscles 5 and 6.
+            inputs = parse("edge_subset_of_muscles.xml").inputs;
+            testCase.assertEqual(inputs.muscleNames, ["bflh_r", "bfsh_r", ...
+                "recfem_r", "soleus_r", "tibant_r", "vasmed_r"]);
+            testCase.verifyEqual(inputs.activationGroups, {5, 6});
+            testCase.verifyEqual(inputs.normalizedFiberLengthGroups, {6});
+        end
+
         function tasksAreOrderedByIndexAndDisabledTaskIsDropped(testCase)
             % The file lists tasks 2, 3 (disabled), 1.
             tasks = testCase.full.inputs.tasks;

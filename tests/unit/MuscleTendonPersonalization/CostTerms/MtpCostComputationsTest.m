@@ -51,31 +51,57 @@ classdef (TestTags = {'Unit'}) MtpCostComputationsTest < matlab.unittest.TestCas
         end
 
         function groupsWithoutFirstMuscleCompareTheRightMuscles(testCase)
-            % Group indices are positions among the model's muscles
-            % (groupNamesToGroups). For the fixture model those are also
-            % positions in MTP's muscle list (see
-            % groupIndicesArePositionsInMuscleList). A group of muscles 2
-            % and 3 must compare values 2 and 3: [20 35] - 27.5.
-            % Expected to fail: the indices are shifted down by the lowest
-            % grouped index minus 1, which compares muscles 1 and 2
-            % instead whenever no group contains muscle 1. See
-            % tests/README.md.
+            % Group indices are positions in the modeled muscle list. A
+            % group of muscles 2 and 3 must compare values 2 and 3:
+            % [20 35] - 27.5. Failed on candidate-1.5.4 (fixed later): the
+            % indices were shifted down by the lowest grouped index minus
+            % 1, which compared muscles 1 and 2 instead. See
+            % docs/failures.md.
             differences = calcDifferencesInEmgGroups([10, 20, 35, 40], ...
                 {[2, 3]});
             testCase.verifyEqual(differences, [-7.5, 7.5], "AbsTol", 1e-12);
         end
 
         function groupIndicesArePositionsInMuscleList(testCase)
-            % For the fixture model, groupNamesToGroups gives each member's
-            % position in mtpFixtureValues().muscleNames.
+            % Given the modeled muscles, groupNamesToGroups gives each
+            % member's position in that list.
             values = mtpFixtureValues();
             groups = groupNamesToGroups(["HamslatActivationGroupR", ...
                 "GasActivationGroupR", "VasActivationGroupR"], ...
-                testDataPath("mtp", values.modelFileName));
+                testDataPath("mtp", values.modelFileName), values.muscleNames);
             position = @(name) find(values.muscleNames == name);
             testCase.verifyEqual(groups, {[position("bflh_r"), ...
                 position("bfsh_r")], position("gasmed_r"), ...
                 position("vasmed_r")});
+        end
+
+        function groupIndicesFollowASubsetOfMuscles(testCase)
+            % Only some of the model's muscles are modeled, with gaps: the
+            % positions are in the subset, not in the model.
+            values = mtpFixtureValues();
+            modeled = ["gasmed_r", "soleus_r", "vasmed_r"];
+            groups = groupNamesToGroups(["VasActivationGroupR", ...
+                "GasActivationGroupR"], testDataPath("mtp", ...
+                values.modelFileName), modeled);
+            testCase.verifyEqual(groups, {3, 1});
+        end
+
+        function groupMuscleNotModeledIsReported(testCase)
+            values = mtpFixtureValues();
+            verifyErrorMessage(testCase, @() groupNamesToGroups( ...
+                "VasActivationGroupR", testDataPath("mtp", ...
+                values.modelFileName), ["gasmed_r", "soleus_r"]), ...
+                "vasmed_r");
+        end
+
+        function groupIndicesWithoutMuscleNamesAreModelPositions(testCase)
+            % NCP's call, without the modeled muscles: positions among the
+            % model's force-applying muscles.
+            values = mtpFixtureValues();
+            groups = groupNamesToGroups("VasActivationGroupR", ...
+                testDataPath("mtp", values.modelFileName));
+            testCase.verifyEqual(groups, {find(values.muscleNames == ...
+                "vasmed_r")});
         end
 
         function magnitudeDeviationIsChangeInTrialMean(testCase)

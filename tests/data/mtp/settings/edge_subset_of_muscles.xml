@@ -1,0 +1,34 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--settings_minimal.xml with only the knee in <coordinate_list>, so gasmed_r, glmax2_r and iliacus_r, in the middle of
+	the model's muscles, are not modeled. Also has groups that leave out the first modeled muscle, and only the EMG channels
+	of modeled muscles. Used by the parsing tests.-->
+	<MuscleTendonPersonalizationTool name="minimal">
+		<results_directory>MTPResults</results_directory>
+		<input_model_file>UF_Subject_3_reduced_muscles.osim</input_model_file>
+		<input_osimx_file/>
+		<data_directory>preprocessed</data_directory>
+		<coordinate_list>knee_angle_r</coordinate_list>
+		<activation_muscle_groups>TibAnt VasActivationGroupR</activation_muscle_groups>
+		<normalized_fiber_length_muscle_groups>VasNormalizedFiberLengthGroupR</normalized_fiber_length_muscle_groups>
+		<collected_emg_channel_muscle_groups>RecFem BicFemLong BicFemShort VastMed Sol TibAnt</collected_emg_channel_muscle_groups>
+		<MuscleTendonLengthInitialization>
+			<is_enabled>false</is_enabled>
+		</MuscleTendonLengthInitialization>
+		<MTPSynergyExtrapolation>
+			<is_enabled>false</is_enabled>
+		</MTPSynergyExtrapolation>
+		<MTPTaskList>
+			<MTPTask>
+				<is_enabled>true</is_enabled>
+				<muscle_specific_electromechanical_delays>true</muscle_specific_electromechanical_delays>
+				<RCNLCostTermSet>
+					<RCNLCostTerm>
+						<is_enabled>true</is_enabled>
+						<type>inverse_dynamics_joint_moment</type>
+						<max_allowable_error>2.5</max_allowable_error>
+					</RCNLCostTerm>
+				</RCNLCostTermSet>
+			</MTPTask>
+		</MTPTaskList>
+	</MuscleTendonPersonalizationTool>
+</NMSMPipelineDocument>

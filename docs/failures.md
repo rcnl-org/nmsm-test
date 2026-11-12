@@ -1,7 +1,8 @@
 # Test failures
 
 Every test that fails, why, whether the behavior it catches is intended, and how to fix it. Test names are as
-`runTests` prints them; each test is described in [test-catalog.md](test-catalog.md).
+`runTests` prints them; each test is described in [test-catalog.md](test-catalog.md). The bugs still open on every
+branch are summarized in [candidateFailures.md](candidateFailures.md).
 
 | Branch | Commit | Pass | Fail | Total |
 |---|---|---|---|---|
@@ -10,9 +11,10 @@ Every test that fails, why, whether the behavior it catches is intended, and how
 
 Both runs were on 2026-10-22/26 with MATLAB R2025a, OpenSim 4.5 and a licensed GPOPS-II.
 
-**Fixed since these runs (2026-10-27 to 30):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
+**Fixed since these runs (2026-10-27 to 11-02):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
 `candidate-1.5.4`; B14, B17, B18 and B27 (found later) on `gcp-bug-fixes`; B19, B20, B21, B22, B25, B26 and B28 (found later) on
-`treatment-optimization-bug-fixes`. B29 and B30 were found later: B30 is not fixed, and B29 is left as is (see its entry).
+`treatment-optimization-bug-fixes`; B4 and B5 on `mtp-bug-fixes`. B29 and B30 were found later: B30 is not fixed, and B29
+is left as is (see its entry).
 Their tests pass there now; each fixed bug below says so, and the quick reference marks them "fixed". The
 counts above are from before these fixes.
 
@@ -71,21 +73,32 @@ still in `matlab-gui-dev`'s code.
 - *Fix:* bring dev's `calcEmgDataWithCommonTimeDelay` change to candidate.
 
 **B4. Muscle groups that leave out the first muscle compare the wrong muscles** — `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles`
+- **Fixed on `mtp-bug-fixes`** (commit `ffb1b026`).
 - *What happens:* group indices are shifted down by (lowest grouped index − 1), so if no group contains the
-  model's first muscle, every grouped term compares the wrong muscles.
-- *Why:* `lowestIndex = min(cell2mat(groups)) - 1` and `groups{i} - lowestIndex`, in
-  `calcDifferencesInEmgGroups`, `calcNormalizedFiberLengthGroupedSimilarityCost`,
-  `calcSynergyExtrapolationMuscleActivationCost` and synergy extrapolation's `updateEmgSignals`.
+  first modeled muscle, every grouped term compares the wrong muscles.
+- *Why:* `groupNamesToGroups` gives positions among all the model's force-applying muscles, and the shift
+  (`lowestIndex = min(cell2mat(groups)) - 1`, `groups{i} - lowestIndex`) converts them to positions among the
+  modeled muscles. That only works when the lowest grouped muscle is the first modeled muscle and the modeled
+  muscles are a contiguous block of the model. It is in `calcDifferencesInEmgGroups`,
+  `calcNormalizedFiberLengthGroupedSimilarityCost`, `calcSynergyExtrapolationMuscleActivationCost`, synergy
+  extrapolation's `updateEmgSignals`, and in MTLI `calcNormalizedFiberLengthMeanSimilarityCost` and
+  `parseMuscleTendonLengthInitializationSettingsTree`.
 - *Intended:* no. *On dev:* still there.
-- *Fix:* remove the `lowestIndex` shift; the group indices are already positions in the muscle list.
+- *Fix:* `groupNamesToGroups` takes the modeled muscle names and returns positions in that list, matched by name
+  (a grouped muscle that is not modeled is an error). MTP and MTLI pass them, and NCP does not. Then remove
+  every `lowestIndex`. Removing the shift alone would break models where only a subset of muscles is modeled.
 
 **B5. Fiber length penalties jump at the limit** — `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit`, `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit`
+- **Fixed on `mtp-bug-fixes`** (uncommitted, 2026-11-02).
 - *What happens:* crossing the limit makes the cost jump from 0 to about 450 (maximum) or 140 (minimum).
 - *Why:* `calcMaximumNormalizedFiberLengthMtpDeviationCost` zeroes lengths under the limit but then penalizes
   the whole length of those over it, not the amount over it (the minimum term likewise).
 - *Intended:* no. *On dev:* still there.
 - *Fix:* penalize the excess: `excess = max(0, maxLength - limit)` (and `max(0, limit - minLength)`), then
   `calcDeviationCostTerm(excess, errorCenter, allowableError)`.
+- *Results:* no regression run uses these two terms, so no nominal changed. The tutorial's terms of the same names are
+  in its MTLI section, which uses other functions that already penalize only the excess. Only `settings_full.xml`
+  enables them in an MTP task, and that file is parsed and smoke tested, not solved.
 
 **B6. Disabling every task gives an unclear error** — `MuscleTendonPersonalizationParsingTest/allTasksDisabledIsReported`
 - **Fixed on `candidate-1.5.4`** (2026-10-27).
@@ -481,9 +494,9 @@ column points to the explanation above.
 | `MtliCostTermsTest/muscleStressDefaults` | | ✗ | D1 |
 | `MtliCostTermsTest/passiveMomentTermNeedsPassiveData` | | ✗ | D1 |
 | `MtliCostTermsTest/unknownTermIsReported` | fixed | | B11 |
-| `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles` | ✗ | ✗ | B4 |
-| `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit` | ✗ | ✗ | B5 |
-| `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit` | ✗ | ✗ | B5 |
+| `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles` | fixed | ✗ | B4 |
+| `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit` | fixed | ✗ | B5 |
+| `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit` | fixed | ✗ | B5 |
 | `MtpCostTermsTest/activationNonlinearityDefaults`, `activationTimeConstantDefaults`, `activationTimeConstantWithParsedZeroCenter`, `emgScaleFactorDefaults`, `excitationPenaltySkipsPaddingAndMissingMuscles`, `groupedElectromechanicalDelayDefaults`, `groupedEmgScaleFactorUsesActivationGroups` | | ✗ | D1 |
 | `MtpCostTest/infiniteCostIsCapped`, `sumsOnlyEnabledTerms`, `synergyOnlyTermsAddNothingWithoutSynergies`, `synergyRunUsesSynergyModeledFiberLengths` | | ✗ | D1 |
 | `MuscleModelTest/commonDelayShiftsEmgLater` | ✗ | | B3 |
