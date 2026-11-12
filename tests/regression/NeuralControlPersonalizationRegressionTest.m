@@ -16,7 +16,7 @@
 % - tutorial: the nmsm-tutorial problem, compared with the tutorial's
 %   published run.
 %
-% On candidate-1.5.4, iliacusHidden and mtli crash: NCP's starting values
+% Before the B12 fix, iliacusHidden and mtli crash: NCP's starting values
 % assume every muscle has MTP activations. A case that errors is recorded
 % in TestClassSetup, and its tests fail with that error, so the other
 % cases still run. See tests/README.md.
@@ -123,11 +123,14 @@ classdef (TestTags = {'Regression'}) NeuralControlPersonalizationRegressionTest 
         end
 
         function mtliRunCompletesAndFits(testCase)
-            % Expected to fail on candidate-1.5.4 (NCP crashes, as for
-            % iliacusHidden). 1 Nm is provisional: set it from a correct
-            % run once the crash is fixed.
+            % About 10% above a correct run (B12 fixed), per coordinate
+            % (hip_flexion_r, knee_angle_r, ankle_angle_r): 1.328, 0.425
+            % and 0.080 Nm. The hip fits worst because MTLI changes
+            % iliacus_r's lengths, so its moment no longer matches the
+            % synthetic inverse dynamics exactly.
             testCase.assertCaseRan("mtli");
-            testCase.verifyLessThan(testCase.momentRms("mtli"), 1);
+            testCase.verifyLessThan(testCase.momentRms("mtli"), ...
+                [1.46, 0.47, 0.09]);
         end
 
         function tutorialFitsAsWellAsPublishedRun(testCase)
