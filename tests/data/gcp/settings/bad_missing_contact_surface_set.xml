@@ -1,0 +1,23 @@
+<NMSMPipelineDocument Version="1.5.4">
+	<!--settings_minimal.xml without the GCPContactSurfaceSet.-->
+	<GroundContactPersonalizationTool name="minimal">
+		<results_directory>GCPResults</results_directory>
+		<input_directory>preprocessed</input_directory>
+		<input_model_file>bodyModel.osim</input_model_file>
+		<input_motion_file>IKData/gait_1.sto</input_motion_file>
+		<input_grf_file>GRFData/gait_1.sto</input_grf_file>
+		<GCPTaskList>
+			<GCPTask>
+				<is_enabled>true</is_enabled>
+				<springConstants>true</springConstants>
+				<RCNLCostTermSet>
+					<RCNLCostTerm>
+						<is_enabled>true</is_enabled>
+						<type>vertical_grf</type>
+						<max_allowable_error>5</max_allowable_error>
+					</RCNLCostTerm>
+				</RCNLCostTermSet>
+			</GCPTask>
+		</GCPTaskList>
+	</GroundContactPersonalizationTool>
+</NMSMPipelineDocument>

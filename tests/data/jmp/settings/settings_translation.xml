@@ -1,0 +1,30 @@
+<NMSMPipelineDocument Version="1.5.4">
+<!--Recover the r_elbow parent x-translation moved 3 mm away from truth (0.0091 -> 0.0061 m).
+    Also used by the regression tests.-->
+<JointModelPersonalizationTool>
+    <results_directory>JMPResults</results_directory>
+    <input_model_file>simple_arm_translated_away.osim</input_model_file>
+    <output_model_file>simple_arm_translated_jmp.osim</output_model_file>
+    <allowable_error>0.0001</allowable_error>
+    <JMPTaskList>
+        <JMPTask>
+            <is_enabled>true</is_enabled>
+            <marker_file_name>simple_arm.trc</marker_file_name>
+            <JMPJointSet>
+                <JMPJoint name="r_elbow">
+                    <parent_frame_transformation>
+                        <translation>true false false</translation>
+                        <orientation>false false false</orientation>
+                        <translation_bounds>0.01</translation_bounds>
+                    </parent_frame_transformation>
+                    <child_frame_transformation>
+                        <translation>false false false</translation>
+                        <orientation>false false false</orientation>
+                    </child_frame_transformation>
+                </JMPJoint>
+            </JMPJointSet>
+        </JMPTask>
+    </JMPTaskList>
+    <accuracy>1e-08</accuracy>
+</JointModelPersonalizationTool>
+</NMSMPipelineDocument>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NMSMPipelineDocument Version="0.1.0">
+   <OsimxModel name="UF_Subject_3_reduced_muscles">
+      <!--An osimx file with no RCNLMuscle elements, for bad_osimx_without_muscles.xml.-->
+      <associated_osim_model>UF_Subject_3_reduced_muscles.osim</associated_osim_model>
+   </OsimxModel>
+</NMSMPipelineDocument>
