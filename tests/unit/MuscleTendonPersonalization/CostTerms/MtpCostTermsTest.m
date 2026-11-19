@@ -112,6 +112,90 @@ classdef (TestTags = {'Unit'}) MtpCostTermsTest < matlab.unittest.TestCase
                 data, struct()), 1, "AbsTol", 1e-12);
         end
 
+        function groupedFiberLengthAllowsOneMuscleGroupFirst(testCase)
+            % Expected to fail on candidate-1.5.4 (B31 in
+            % docs/failures.md), as groupedActivationAllowsOneMuscleGroup-
+            % First: with one trial, a first group of one muscle creates
+            % the shape deviations frames-by-1 and the next group cannot
+            % be stored. The fixtures' fiber length groups all have one
+            % muscle, so the smoke test does not reach this.
+            % Muscle 1 alone in its group is 0 from its group's mean
+            % change; muscle 3's curve rises by 0.1 and muscle 2's does
+            % not, so each is 0.05 from theirs. Magnitude with allowable
+            % error 0.05: (0 + 1 + 1) / 3 = 2 / 3; shapes match: 0.
+            data.normalizedFiberLength = repmat(reshape([1, 1.1, 1.2], ...
+                1, 1, 3), 1, 3, 1);
+            data.normalizedFiberLengthGroups = {1, [2, 3]};
+            modeled.normalizedFiberLength = data.normalizedFiberLength;
+            modeled.normalizedFiberLength(1, 3, :) = ...
+                modeled.normalizedFiberLength(1, 3, :) + 0.1;
+            testCase.verifyEqual( ...
+                calcNormalizedFiberLengthGroupedSimilarityCost(modeled, ...
+                data, struct()), 2 / 3, "AbsTol", 1e-12);
+        end
+
+        function groupedActivationComparesMeanActivations(testCase)
+            % Two muscles in one group with the same shape, mean
+            % activations 0.4 and 0.2. Each is 0.1 from the group's mean
+            % (0.3): with the default allowable error 0.1,
+            % (1^2 + 1^2) / 2 = 1. The shapes match, so the shape part
+            % adds 0.
+            modeled.muscleActivations = cat(2, ...
+                reshape([0.3, 0.4, 0.5], 1, 1, 3), ...
+                reshape([0.1, 0.2, 0.3], 1, 1, 3));
+            data.activationGroups = {[1, 2]};
+            testCase.verifyEqual(calcActivationSimilarityCost(modeled, ...
+                data, struct()), 1, "AbsTol", 1e-12);
+        end
+
+        function groupedActivationComparesShapes(testCase)
+            % Same mean (0.2), so the magnitude part is 0. Shapes about
+            % the mean are [-0.1 0 0.1] and [0.1 0 -0.1], whose group
+            % mean is 0, so each frame differs by 0.1, 0 and 0.1: four of
+            % six elements are 1 with allowable error 0.1, giving 4 / 6.
+            modeled.muscleActivations = cat(2, ...
+                reshape([0.1, 0.2, 0.3], 1, 1, 3), ...
+                reshape([0.3, 0.2, 0.1], 1, 1, 3));
+            data.activationGroups = {[1, 2]};
+            testCase.verifyEqual(calcActivationSimilarityCost(modeled, ...
+                data, struct()), 4 / 6, "AbsTol", 1e-12);
+        end
+
+        function groupedActivationUsesOnlyTheGroupsMuscles(testCase)
+            % activationGroups are positions in muscleNames. Muscle 1
+            % (activation 0.9) is in no group and must not count; muscles
+            % 2 and 3 are the first test's pair, so the cost is 1. Reading
+            % the group as relative to its lowest member (as
+            % matlab-gui-dev does with model-wide positions) would compare
+            % muscles 1 and 2 instead.
+            modeled.muscleActivations = cat(2, ...
+                reshape([0.9, 0.9, 0.9], 1, 1, 3), ...
+                reshape([0.3, 0.4, 0.5], 1, 1, 3), ...
+                reshape([0.1, 0.2, 0.3], 1, 1, 3));
+            data.activationGroups = {[2, 3]};
+            testCase.verifyEqual(calcActivationSimilarityCost(modeled, ...
+                data, struct()), 1, "AbsTol", 1e-12);
+        end
+
+        function groupedActivationAllowsOneMuscleGroupFirst(testCase)
+            % Expected to fail on candidate-1.5.4 (B31 in
+            % docs/failures.md): when the first group has one muscle, the
+            % shape deviations are created 101-by-1 instead of 1-by-1-by-
+            % frames and the next group cannot be stored ("Unable to
+            % perform assignment"). The tutorial's and settings_full's
+            % group lists start with iliacus_r alone.
+            % Muscle 1 alone in its group is 0 from its group's mean;
+            % muscles 2 and 3 are the first test's pair, 0.1 from theirs.
+            % Magnitude: (0 + 1 + 1) / 3 = 2 / 3; shapes match: 0.
+            modeled.muscleActivations = cat(2, ...
+                reshape([0.9, 0.9, 0.9], 1, 1, 3), ...
+                reshape([0.3, 0.4, 0.5], 1, 1, 3), ...
+                reshape([0.1, 0.2, 0.3], 1, 1, 3));
+            data.activationGroups = {1, [2, 3]};
+            testCase.verifyEqual(calcActivationSimilarityCost(modeled, ...
+                data, struct()), 2 / 3, "AbsTol", 1e-12);
+        end
+
         % ---- modeled value terms ----------------------------------------
 
         function momentTrackingDefaultAllowableError(testCase)

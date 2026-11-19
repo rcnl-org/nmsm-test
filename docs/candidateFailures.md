@@ -23,6 +23,7 @@ JMP, Tracking and Verification regression tests were not rerun for this list.
 | [B10](#b10-passive-moment-tracking-only-works-for-101-frame-trials) | MTLI | 1 | Optimization | One expression, twice | Open |
 | [B12](#b12-ncp-crashes-when-a-muscle-has-no-mtp-activations) | NCP | 4 | Before the optimization | Medium; needs a decision | With other team members |
 | [B30](#b30-absolute-metabolic-goals-see-the-metabolic-cost-in-gpops-iis-scaled-time) | Design Optimization | 1 | Optimization | Small; a few files | Open |
+| [B31](#b31-grouped-activation-similarity-crashes-when-the-first-group-has-one-muscle) | MTP | 2 | Optimization | Small; two lines | Open |
 
 ---
 
@@ -96,6 +97,17 @@ JMP, Tracking and Verification regression tests were not rerun for this list.
 - **On `matlab-gui-dev`:** the same line is still there.
 - **Note:** only `treatment-optimization-bug-fixes` has B26's fix. Without it, the absolute goals have no effect at
   all, and `lowerGoalLowersTheMetabolicCost(goal=absolute)` fails too.
+
+### B31. Grouped activation similarity crashes when the first group has one muscle
+
+- **Tests:** `MtpCostTermsTest/groupedActivationAllowsOneMuscleGroupFirst`, `MtpTermSmokeTest/termGivesOneFiniteCost(type=grouped_activation_similarity)`
+- **What happens:** MTP stops with "Unable to perform assignment ..." when the first of the
+  `<activation_muscle_groups>` has one muscle and a later one has more (the tutorial's group list does).
+- **Why:** `calcActivationSimilarityCost.m` (`src/MuscleTendonPersonalization/Optimization/CostTerms/`) does not
+  preallocate `activationShapeDeviation`, so the first group's one-muscle block creates it frames-by-1.
+- **Fix:** preallocate both deviation arrays before the loop (see `docs/failures.md`). The same pattern is in
+  `calcNormalizedFiberLengthGroupedSimilarityCost`.
+- **On `matlab-gui-dev`:** the same code.
 
 ---
 

@@ -325,10 +325,13 @@ catch for the terms they happen to cover. Correct values remain the job of the u
 - **Treatment Optimization prepares the terms disabled.** Preparing evaluates every enabled term, so one broken
   term would stop a whole case; the tutorial's own terms stay enabled (preparing needs at least one), and the
   test sets the angular momentum and metabolic flags an enabled term would set.
-- **Not run, on purpose.** Treatment Optimization terms that need contact surfaces (external forces and moments,
-  center of pressure, braking and propulsive impulse; 94 tests) report "needs contact surfaces" and count as
-  *incomplete*, not failed: the kick fixtures have no GCP contact surfaces or ground reaction data. Muscle terms
-  run in the synergy cases only.
+- **Contact and muscle terms run in their own cases.** Treatment Optimization terms that need contact surfaces
+  (external forces and moments, center of pressure, braking and propulsive impulse) run only in the walking
+  cases (`trackingWalking`, `verificationWalking`, `designWalking`: `tests/data/to/walking`, which has a GCP
+  contact surface on each foot), and the walking cases run only those terms; the kick fixtures have no contact
+  surfaces. The impulse goals read the impulses from GPOPS-II's integral, so the test sets them to the
+  integral over the initial guess, as it does for the metabolic cost. Muscle terms run in the synergy cases
+  only.
 - **Time:** the four unit-tier classes take a few seconds each; `TreatmentOptimizationTermSmokeTest` about 65 s.
 
 ## Tests that are expected to fail
@@ -344,6 +347,7 @@ and "Fixed on `matlab-gui-dev`" record what that branch did as of October 2026.
 | `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit`, `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit` | The MTP min/max normalized fiber length terms penalize the whole length of a muscle past its limit, not the amount past it, so the cost jumps from 0 to about 450 (max, 1.05 → 1.06) or 140 (min, 0.6 → 0.59) when the limit is crossed. Also on `matlab-gui-dev`. |
 | `NeuralControlPersonalizationRegressionTest/iliacusHiddenPredictsIliacus`, `mtliRunCompletesAndFits`, `writesExpectedResultFiles(run=iliacusHidden)`, `writesExpectedResultFiles(run=mtli)` | **NCP crashes whenever a muscle has no MTP activations**, which is the case NCP exists for: `stackMtpActivations` in `prepareNcpInitialValues` reshapes the MTP activations as if every modeled muscle had them ("Number of elements must not change"). The tutorial only runs because all nine of its muscles have MTP results. This also means MTLI inside NCP, which only updates muscles without MTP results, can never do anything useful. Also on `matlab-gui-dev`. The tolerances in these tests are provisional until a run completes. |
 | `DesignOptimizationMetabolicRegressionTest/higherGoalRaisesTheMetabolicCost(goal=absolute)` | Absolute metabolic goals read GPOPS-II's metabolic integral in scaled time, so they see a value 1 / (maxTime − minTime) times too large and push the cost down for any target (B30 in `docs/failures.md`). |
+| `MtpCostTermsTest/groupedActivationAllowsOneMuscleGroupFirst`, `MtpTermSmokeTest/termGivesOneFiniteCost(type=grouped_activation_similarity)` | `grouped_activation_similarity` crashes ("Unable to perform assignment") when the first activation group has one muscle and a later one more: the shape deviation array is not preallocated, so the first group creates it with the wrong shape (B31 in `docs/failures.md`). Also on `dev`. |
 
 ## Settings that are deliberately not tested
 

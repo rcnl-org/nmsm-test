@@ -1,7 +1,8 @@
 % This function copies one Treatment Optimization problem's fixtures into a
 % folder, so Treatment Optimization can be parsed or run there: the
-% problem's model and starting data (tests/data/to/torque or
-% tests/data/to/synergy), the shared IK and ID data (preprocessed/), the
+% problem's model and starting data (tests/data/to/torque,
+% tests/data/to/synergy or tests/data/to/walking), the kick's IK and ID
+% data (preprocessed/, which the walking problem does not use), the
 % user-defined term functions (userFunctions/, on the path from the current
 % folder), every GPOPS solver settings file (gpops_*.xml), and the given
 % settings files.
@@ -17,7 +18,7 @@
 function copyToFixtures(folder, problem, settingsFileNames)
 arguments
     folder (1, 1) string
-    problem (1, 1) string {mustBeMember(problem, ["torque", "synergy"])}
+    problem (1, 1) string {mustBeMember(problem, ["torque", "synergy", "walking"])}
     settingsFileNames (1, :) string = strings(1, 0)
 end
 if ~isfolder(folder)

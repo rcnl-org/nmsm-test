@@ -287,6 +287,36 @@ classdef (TestTags = {'Parsing'}) MuscleTendonPersonalizationParsingTest < ...
                 parsed.inputs.numberOfResidualWeights], [4, 32]);
         end
 
+        function activationSimilarityTermIsRead(testCase)
+            % The second term in the file, exactly as written, with the
+            % errorCenter of 0 every parsed term without <error_center>
+            % gets on candidate-1.5.4.
+            terms = parse("edge_activation_similarity.xml").inputs. ...
+                tasks{1}.costTerms;
+            testCase.assertLength(terms, 2);
+            testCase.verifyEqual(terms{2}.type, ...
+                'grouped_activation_similarity');
+            testCase.verifyTrue(terms{2}.isEnabled);
+            testCase.verifyEqual(terms{2}.maxAllowableError, 0.1);
+            testCase.verifyEqual(terms{2}.errorCenter, 0);
+        end
+
+        function activationSimilarityTermUsesActivationGroups(testCase)
+            % The term compares muscles within <activation_muscle_groups>.
+            % The regression settings file lists only the hamstrings
+            % group, bflh_r and bfsh_r, which must parse to their
+            % positions in muscleNames.
+            inputs = parse( ...
+                "settings_synthetic_activation_similarity.xml").inputs;
+            testCase.verifyEqual(inputs.activationGroups, ...
+                {find(ismember(testCase.expected.muscleNames, ...
+                ["bflh_r", "bfsh_r"]))});
+            terms = inputs.tasks{1}.costTerms;
+            testCase.verifyEqual(cellfun(@(t) string(t.type), terms), ...
+                ["inverse_dynamics_joint_moment", ...
+                "grouped_activation_similarity"]);
+        end
+
         function sharedDelaySettingIsRead(testCase)
             % Parsed, but candidate-1.5.4's MTP does not use it: delays are
             % always one per muscle. See tests/README.md.

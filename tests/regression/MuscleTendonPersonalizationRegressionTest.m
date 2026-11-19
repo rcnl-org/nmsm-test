@@ -23,6 +23,13 @@
 % - tutorial: the nmsm-tutorial problem with MTLI and synergy
 %   extrapolation. There is no truth; the fit must be as good as the
 %   tutorial's own run.
+% - activationSimilarity and activationSimilarityTight: the emgScale
+%   problem with the grouped_activation_similarity term on the hamstrings
+%   group (bflh_r and bfsh_r), at allowable errors 0.1 and 0.01. At the
+%   truth found by emgScale, their mean activations differ by about 0.13.
+%   The term must pull them together (correct runs: 0.027 and 0.0045),
+%   more so with the smaller allowable error, at a bounded cost to the
+%   moment fit.
 %
 % Every case is also compared with its stored nominal result
 % (tests/data/mtp/nominal), so any change in MTP's results shows up even
@@ -70,7 +77,15 @@ classdef (TestTags = {'Regression'}) MuscleTendonPersonalizationRegressionTest .
                 "osimx", "UF_Subject_3_reduced_muscles_mtp.osimx"), ...
             "tutorial", struct("settings", "settings_tutorial.xml", ...
                 "results", "MTPResultsV1", ...
-                "osimx", "UF_Subject_3_reduced_muscles_mtp.osimx"))
+                "osimx", "UF_Subject_3_reduced_muscles_mtp.osimx"), ...
+            "activationSimilarity", struct("settings", ...
+                "settings_synthetic_activation_similarity.xml", ...
+                "results", "MTPResults", ...
+                "osimx", "UF_Subject_3_reduced_muscles_synthetic_mtp.osimx"), ...
+            "activationSimilarityTight", struct("settings", ...
+                "settings_synthetic_activation_similarity_tight.xml", ...
+                "results", "MTPResults", ...
+                "osimx", "UF_Subject_3_reduced_muscles_synthetic_mtp.osimx"))
     end
 
     methods (TestClassSetup)
@@ -187,6 +202,59 @@ classdef (TestTags = {'Regression'}) MuscleTendonPersonalizationRegressionTest .
                 testCase.parameters("tutorial"), lower, upper);
         end
 
+        function activationSimilarityPullsGroupTogether(testCase)
+            % emgScale is the same problem without the term: it finds the
+            % true scale factors, where the hamstrings' mean activations
+            % differ by about 0.13 (bflh_r lower). With the term at its
+            % default allowable error (0.1), a correct run brings that
+            % to 0.027; half the truth's gap is the most a run where the
+            % term works may leave.
+            truthGap = testCase.hamstringsGap("emgScale");
+            testCase.assertGreaterThan(truthGap, 0.1, "The emgScale " + ...
+                "truth no longer separates the hamstrings, so this " + ...
+                "test cannot show the term working.");
+            testCase.verifyLessThan(testCase.hamstringsGap( ...
+                "activationSimilarity"), 0.5 * truthGap, ...
+                "The term did not pull the hamstrings' activations " + ...
+                "together.");
+            % The term's own cost, worked out here from the saved
+            % activations, must be lower than at the truth.
+            testCase.verifyLessThan(testCase.hamstringsCost( ...
+                "activationSimilarity", 0.1), ...
+                testCase.hamstringsCost("emgScale", 0.1));
+            % Only EMG scale factors can move: bflh_r's (truth 0.35) must
+            % rise and bfsh_r's (truth 0.6) fall. Correct run: 0.373 and
+            % 0.405.
+            parameters = testCase.parameters("activationSimilarity");
+            truth = testCase.expected.synthetic.emgScale.emgScaleFactors;
+            [bflh, bfsh] = hamstrings(testCase.expected.muscleNames);
+            testCase.verifyGreaterThan(parameters(4, bflh), truth(bflh));
+            testCase.verifyLessThan(parameters(4, bfsh), truth(bfsh));
+            start = startingParameters(testCase.expected);
+            testCase.verifyEqual(parameters([1 : 3, 5, 6], :), ...
+                start([1 : 3, 5, 6], :), "AbsTol", 1e-9, ...
+                "MTP changed a parameter it was not asked to optimize.");
+            % Pulling the activations together costs some moment fit
+            % (emgScale fits to 0.001 Nm); a correct run stays within
+            % 0.74 Nm RMS per coordinate. 1.5 Nm is still a good fit
+            % beside the 2.5 Nm moment allowable error.
+            testCase.verifyLessThan(testCase.momentRms( ...
+                "activationSimilarity", "modelJointMoments"), 1.5);
+        end
+
+        function tighterActivationSimilarityPullsCloser(testCase)
+            % The allowable error weights the term: at 0.01 instead of
+            % 0.1 a correct run leaves a gap of 0.0045 instead of 0.027,
+            % and 0.036 of the truth's. Half the 0.1 run's gap and a tenth
+            % of the truth's leave room for small changes in the
+            % optimizer's path.
+            tightGap = testCase.hamstringsGap("activationSimilarityTight");
+            testCase.verifyLessThan(tightGap, 0.5 * ...
+                testCase.hamstringsGap("activationSimilarity"));
+            testCase.verifyLessThan(tightGap, 0.1 * ...
+                testCase.hamstringsGap("emgScale"));
+        end
+
         function matchesNominalResult(testCase, run)
             name = runName(testCase, run);
             actual = testCase.parameters(name);
@@ -265,6 +333,35 @@ classdef (TestTags = {'Regression'}) MuscleTendonPersonalizationRegressionTest .
             value = rms(error, "all");
         end
 
+        function activations = hamstringsActivations(testCase, name)
+            % (frame x 2) bflh_r and bfsh_r activations from the run's
+            % muscleActivations file (one trial in these cases)
+            [data, names] = readStoFile(testCase.analysisFiles(name, ...
+                "muscleActivations"));
+            [~, columns] = ismember(["bflh_r", "bfsh_r"], names);
+            activations = data(:, columns);
+        end
+
+        function gap = hamstringsGap(testCase, name)
+            % Difference between the two muscles' mean activations
+            gap = abs(diff(mean(testCase.hamstringsActivations(name), 1)));
+        end
+
+        function cost = hamstringsCost(testCase, name, maxAllowableError)
+            % grouped_activation_similarity on the hamstrings group, from
+            % its definition: each muscle's mean activation minus the
+            % group's (magnitude), plus each frame of the activation about
+            % its own mean minus the group's (shape), each squared over
+            % the allowable error and averaged.
+            activations = testCase.hamstringsActivations(name);
+            means = mean(activations, 1);
+            magnitude = means - mean(means);
+            shapes = activations - means;
+            shape = shapes - mean(shapes, 2);
+            cost = mean((magnitude / maxAllowableError) .^ 2) + ...
+                mean((shape / maxAllowableError) .^ 2, "all");
+        end
+
         function names = trialNames(testCase, name)
             files = testCase.analysisFiles(name, "inverseDynamicsJointMoments");
             [~, names] = fileparts(files);
@@ -309,6 +406,12 @@ function name = runName(testCase, run)
 % The run's field name in the TestParameter struct (e.g. "tutorial")
 names = string(fieldnames(testCase.run))';
 name = names(arrayfun(@(n) isequal(testCase.run.(n), run), names));
+end
+
+function [bflh, bfsh] = hamstrings(muscleNames)
+% Logical masks of the hamstrings activation group's two muscles
+bflh = muscleNames == "bflh_r";
+bfsh = muscleNames == "bfsh_r";
 end
 
 function parameters = startingParameters(expected)

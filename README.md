@@ -52,7 +52,7 @@ The tests are written for nmsm-core `candidate-1.5.4` (pipeline version 1.5.4).
 
 A unit run takes about 80 s, a parsing run about 90 s, and a regression run about 17 minutes (1 minute of it
 starting the parallel pool, 6 of it GCP and 6 Treatment Optimization). Treatment Optimization's regression tests
-need a licensed GPOPS-II and are reported as not run without one. Thirty-five tests are expected to fail until
+need a licensed GPOPS-II and are reported as not run without one. Thirty-seven tests are expected to fail until
 known bugs are fixed; see
 [tests/README.md](tests/README.md#tests-that-are-expected-to-fail).
 

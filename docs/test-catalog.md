@@ -286,6 +286,10 @@ values, with candidate-1.5.4's names.
 | `groupedEmgScaleFactorUsesActivationGroups` | Grouped EMG scale factor term groups by activation groups. |
 | `groupedElectromechanicalDelayDefaults` | Grouped delay term with its defaults. |
 | `groupedFiberLengthComparesChangesWithinGroup` | Grouped fiber length term compares changes within a group. |
+| `groupedActivationComparesMeanActivations` | Grouped activation similarity term compares mean activations within a group. |
+| `groupedActivationComparesShapes` | Grouped activation similarity term compares activation shapes within a group. |
+| `groupedActivationUsesOnlyTheGroupsMuscles` | Grouped activation similarity term uses only the group's muscles (positions in `muscleNames`). |
+| ⚠ `groupedActivationAllowsOneMuscleGroupFirst` | Grouped activation similarity term works when the first group has one muscle. |
 | `momentTrackingDefaultAllowableError` | Moment tracking with its default allowable error (2.5 Nm). |
 | `synergyMomentTrackingDefaultAllowableError` | Synergy moment tracking with its default (2 Nm). |
 | `passiveForceDefaults` | Passive force term with its default allowable error. |
@@ -307,6 +311,7 @@ terms.
 | `noEnabledTermsCostsZero` | No enabled terms cost 0. |
 | `synergyOnlyTermsAddNothingWithoutSynergies` | Synergy-only terms add nothing without synergy extrapolation. |
 | `synergyRunUsesSynergyModeledFiberLengths` | With synergies, the passive term uses the synergy model's lengths. |
+| `activationSimilarityUsesTheRunsActivations` | The activation similarity term uses the modeled activations, or the synergy model's with synergies. |
 | `unknownTermIsReported` | An unknown term type is reported. |
 | `infiniteCostIsCapped` | An infinite cost is replaced by a large finite one. |
 
@@ -318,7 +323,7 @@ stand-ins that record their arguments (`stubOptimizer`).
 
 | Test | Description |
 |---|---|
-| `termGivesOneFiniteCost` (every MTP cost type, 18 on candidate) | The term runs and the cost is one finite number. |
+| `termGivesOneFiniteCost` (every MTP cost type, 19 on candidate; ⚠ for grouped_activation_similarity) | The term runs and the cost is one finite number. |
 
 ### `DesignVariablesTest` — Unit
 `tests/unit/MuscleTendonPersonalization/DesignVariablesTest.m`. How MTP packs its seven parameter sets into
@@ -384,6 +389,8 @@ MTP's optimizer must meet.
 | `synergyChannelsAreMusclePositionsInSettingsOrder` | Synergy channels become muscle positions. |
 | `tutorialSynergyWeightCount` | The tutorial's synergy weight count matches the hand count. |
 | `synergyExtrapolationCanBeEnabled` | Synergy extrapolation can be turned on. |
+| `activationSimilarityTermIsRead` | A `grouped_activation_similarity` term is read with its values. |
+| `activationSimilarityTermUsesActivationGroups` | The activation similarity regression file parses to the hamstrings group and its two terms. |
 | `sharedDelaySettingIsRead` | The shared-delay setting is read (but not used on candidate). |
 | `allTasksDisabledIsReported` | Disabling every task gives a clear message. |
 | `wrongMajorVersionIsRejected` | A different major version is rejected. |
@@ -396,8 +403,8 @@ MTP's optimizer must meet.
 | `emgChannelMissingFromDataIsReported` | An EMG channel not in the data is named in the error. |
 
 ### `MuscleTendonPersonalizationRegressionTest` — Regression
-`tests/regression/MuscleTendonPersonalizationRegressionTest.m`. Full MTP runs: four synthetic known-truth cases
-and the tutorial.
+`tests/regression/MuscleTendonPersonalizationRegressionTest.m`. Full MTP runs: four synthetic known-truth cases,
+the tutorial, and two runs of the `emg_scale` problem with the activation similarity term.
 
 | Test | Description |
 |---|---|
@@ -406,8 +413,10 @@ and the tutorial.
 | `twoTrialsIdentifiesParameters` | With two trials, the parameters are found within tolerance. |
 | `passiveRecoversTrueLengths` | MTLI finds the true lengths from passive data. |
 | `tutorialFitsAsWellAsPublishedRun` | The tutorial fits within 10% of its published moment errors. |
-| `matchesNominalResult` (5 cases) | Results match the stored nominal results. |
-| `writesExpectedResultFiles` (5 cases) | The osimx, parameters, moments and settings copy are written. |
+| `activationSimilarityPullsGroupTogether` | The activation similarity term pulls the hamstrings' mean activations together, lowers its own cost, and keeps the moment fit. |
+| `tighterActivationSimilarityPullsCloser` | A smaller allowable error pulls the hamstrings' activations closer still. |
+| `matchesNominalResult` (7 cases) | Results match the stored nominal results. |
+| `writesExpectedResultFiles` (7 cases) | The osimx, parameters, moments and settings copy are written. |
 
 ---
 
@@ -782,6 +791,10 @@ match `toFixtureValues`.
 | `surrogateDataHasEverySample` | The surrogate data has every sample and only the files used. |
 | `fittedSurrogateIsPresent` | The tutorial's fitted surrogate model is present. |
 | `publishedResultsSolveTheStatesCoordinates` (4 published results) | Each published result has the expected states, controls and data. |
+| `walkingDataCoverOneGaitCycle` | The walking IK, ID and GRF data cover 210 frames from 0 to 1.045 s. |
+| `walkingModelHasItsCoordinatesAndMuscles` | The walking model has its 86 muscles and the 12 torque-controlled coordinates. |
+| `walkingOsimxHasAContactSurfacePerFoot` | The walking osimx has a contact surface on each foot, with the hindfoot bodies and force columns the terms look up. |
+| `walkingPublishedResultsSolveTheGaitCycle` | The published walking Tracking results have 101 points, the 31 states coordinates, the torque controls and their data. |
 
 ### `ToScalingAndDynamicsTest` — Unit
 `tests/unit/TreatmentOptimization/ToScalingAndDynamicsTest.m`. Scaling between GPOPS-II's variables and real
@@ -1031,17 +1044,18 @@ designSynergy.
 
 ### `TreatmentOptimizationTermSmokeTest` — Regression
 `tests/regression/TreatmentOptimizationTermSmokeTest.m`. Every cost and constraint term the registries
-(`generateCostTermStruct`, `generateConstraintTermStruct`) allow, for five cases: Tracking, Verification and
-Design with the torque controller (Step 6 kick) and Tracking and Design with the synergy controller (Step 8
-kick, synergy vectors optimized). Each case is prepared once from its tutorial settings with one disabled term
+(`generateCostTermStruct`, `generateConstraintTermStruct`) allow, for eight cases: Tracking, Verification and
+Design with the torque controller (Step 6 kick), Tracking and Design with the synergy controller (Step 8
+kick, synergy vectors optimized), and Tracking, Verification and Design of torque-driven walking with GCP
+contact surfaces (`tests/data/to/walking`). Each case is prepared once from its settings with one disabled term
 of every allowed type added, and each term is enabled on its own and evaluated at the initial guess. Muscle
 terms run in the synergy cases only. Contact-surface terms (external forces and moments, center of pressure,
-braking and propulsive impulse) are reported as not run: the kick fixtures have no contact surfaces. Needs
+braking and propulsive impulse) run in the walking cases only, and the walking cases run only those. Needs
 GPOPS-II.
 
 | Test | Description |
 |---|---|
-| `termRunsAndHasTheRightSize` (one per case, kind and type: 416 on candidate; the B20 and B21 terms failed before those fixes) | The term runs and gives finite values: one per collocation point for continuous and path terms, one for discrete and terminal terms. |
+| `termRunsAndHasTheRightSize` (one per case, kind and type: 376 on candidate, 54 of them walking; the B20 and B21 terms failed before those fixes) | The term runs and gives finite values: one per collocation point for continuous and path terms, one for discrete and terminal terms. |
 
 ### `TrackingOptimizationRegressionTest` — Regression
 `tests/regression/TrackingOptimizationRegressionTest.m`. Full Tracking runs (torque, synergy).

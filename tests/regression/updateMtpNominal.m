@@ -11,11 +11,16 @@
 %
 % Usage, with the nmsm-core project open (e.g. after runTests):
 %   addpath("tests/regression")   % from the nmsm-test folder
-%   updateMtpNominal()
+%   updateMtpNominal()                          % every case
+%   updateMtpNominal("activationSimilarity")    % only the cases named;
+%                                                % the others are kept
 %
-% () -> (None)
+% (string array) -> (None)
 
-function updateMtpNominal()
+function updateMtpNominal(caseNames)
+arguments
+    caseNames (1, :) string = strings(1, 0)
+end
 verifyProjectOpened()
 originalPath = path;
 restorePath = onCleanup(@() path(originalPath));
@@ -24,12 +29,22 @@ runs = ["emgScale", "settings_synthetic_emg_scale.xml", "MTPResults"; ...
     "all", "settings_synthetic_all.xml", "MTPResults"; ...
     "twoTrials", "settings_synthetic_two_trials.xml", "MTPResults"; ...
     "passive", "settings_synthetic_passive.xml", "MTPResults"; ...
-    "tutorial", "settings_tutorial.xml", "MTPResultsV1"];
-nominalFolder = testDataPath("mtp", "nominal");
-if isfolder(nominalFolder)
-    rmdir(nominalFolder, "s");
+    "tutorial", "settings_tutorial.xml", "MTPResultsV1"; ...
+    "activationSimilarity", ...
+    "settings_synthetic_activation_similarity.xml", "MTPResults"; ...
+    "activationSimilarityTight", ...
+    "settings_synthetic_activation_similarity_tight.xml", "MTPResults"];
+if isempty(caseNames)
+    nominalFolder = testDataPath("mtp", "nominal");
+    if isfolder(nominalFolder)
+        rmdir(nominalFolder, "s");
+    end
+    mkdir(nominalFolder);
+else
+    assert(all(ismember(caseNames, runs(:, 1))), "Unknown case name.");
+    runs = runs(ismember(runs(:, 1), caseNames), :);
 end
-mkdir(nominalFolder);
+nominalFolder = testDataPath("mtp", "nominal");
 startQuietParallelPool();
 originalFolder = pwd;
 restoreFolder = onCleanup(@() cd(originalFolder));

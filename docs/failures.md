@@ -14,7 +14,7 @@ Both runs were on 2026-10-22/26 with MATLAB R2025a, OpenSim 4.5 and a licensed G
 **Fixed since these runs (2026-10-27 to 11-02):** B1, B2, B6, B7, B8, B9, B11, B13, B15, B16, B23 and B24 on
 `candidate-1.5.4`; B14, B17, B18 and B27 (found later) on `gcp-bug-fixes`; B19, B20, B21, B22, B25, B26 and B28 (found later) on
 `treatment-optimization-bug-fixes`; B4 and B5 on `mtp-bug-fixes`. B29 and B30 were found later: B30 is not fixed, and B29
-is left as is (see its entry).
+is left as is (see its entry). B31 was found on 2026-11-19 and is not fixed.
 Their tests pass there now; each fixed bug below says so, and the quick reference marks them "fixed". The
 counts above are from before these fixes.
 
@@ -356,6 +356,24 @@ still in `matlab-gui-dev`'s code.
   goals stay consistent. The braking and propulsive impulse goals read their integrals the same way and probably
   need the same correction (not checked).
 
+**B31. Grouped activation similarity crashes when the first group has one muscle** — `MtpCostTermsTest/groupedActivationAllowsOneMuscleGroupFirst`, `MtpTermSmokeTest/termGivesOneFiniteCost(type=grouped_activation_similarity)`
+- Found on 2026-11-19, testing the `grouped_activation_similarity` term ported from `dev` to `candidate-1.5.4`. Not
+  fixed yet.
+- *What happens:* with `<activation_muscle_groups>` whose first group has one muscle and a later group more than
+  one (the tutorial's and `settings_full.xml`'s lists start with `HipFlexorsActivationGroupR`, iliacus_r alone), the
+  term stops MTP with "Unable to perform assignment because the size of the left side is 101-by-2 and the size of
+  the right side is 1-by-2-by-101."
+- *Why:* `calcActivationSimilarityCost` never preallocates `activationShapeDeviation`. The first group's
+  assignment `activationShapeDeviation(:, 1 : 1, :) = <1 x 1 x frames>` creates a frames-by-1 array (MATLAB fits
+  the colons of a new variable to the right side's non-singleton dimensions), which the next group's 1-by-n-by-frames
+  block no longer fits. If every group has one muscle, or the first has more than one, it works.
+- *Intended:* no. *On dev:* the same code (dev also subtracts `lowestIndex`, which does not change this).
+- *Fix:* preallocate both arrays before the loop, e.g. `count = numel(cell2mat(inputs.activationGroups));`,
+  `activationMagnitudeDeviation = zeros(1, count);` and `activationShapeDeviation =
+  zeros(size(modeledValues.muscleActivations, 1), count, size(modeledValues.muscleActivations, 3));`.
+  `calcNormalizedFiberLengthGroupedSimilarityCost` builds its arrays the same way; the fixtures' fiber length
+  groups all have one muscle, so no test reaches it, but it would fail the same way.
+
 ---
 
 ## Part 2: Failures on `matlab-gui-dev`
@@ -495,8 +513,10 @@ column points to the explanation above.
 | `MtliCostTermsTest/passiveMomentTermNeedsPassiveData` | | ✗ | D1 |
 | `MtliCostTermsTest/unknownTermIsReported` | fixed | | B11 |
 | `MtpCostComputationsTest/groupsWithoutFirstMuscleCompareTheRightMuscles` | fixed | ✗ | B4 |
+| `MtpCostTermsTest/groupedActivationAllowsOneMuscleGroupFirst` | ✗ | ✗ | B31 |
 | `MtpCostTermsTest/maximumFiberLengthPenaltyStartsAtTheLimit` | fixed | ✗ | B5 |
 | `MtpCostTermsTest/minimumFiberLengthPenaltyStartsAtTheLimit` | fixed | ✗ | B5 |
+| `MtpTermSmokeTest/termGivesOneFiniteCost(type=grouped_activation_similarity)` | ✗ | not run | B31 |
 | `MtpCostTermsTest/activationNonlinearityDefaults`, `activationTimeConstantDefaults`, `activationTimeConstantWithParsedZeroCenter`, `emgScaleFactorDefaults`, `excitationPenaltySkipsPaddingAndMissingMuscles`, `groupedElectromechanicalDelayDefaults`, `groupedEmgScaleFactorUsesActivationGroups` | | ✗ | D1 |
 | `MtpCostTest/infiniteCostIsCapped`, `sumsOnlyEnabledTerms`, `synergyOnlyTermsAddNothingWithoutSynergies`, `synergyRunUsesSynergyModeledFiberLengths` | | ✗ | D1 |
 | `MuscleModelTest/commonDelayShiftsEmgLater` | ✗ | | B3 |

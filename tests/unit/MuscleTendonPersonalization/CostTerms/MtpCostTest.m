@@ -78,6 +78,28 @@ classdef (TestTags = {'Unit'}) MtpCostTest < matlab.unittest.TestCase
                 (200 / 50) ^ 2, "AbsTol", 1e-12);
         end
 
+        function activationSimilarityUsesTheRunsActivations(testCase)
+            % Without synergy extrapolation the term uses the modeled
+            % activations (0.4 and 0.2, each 0.1 from the mean: cost 1);
+            % with it, the synergy model's (0.5 and 0.1, each 0.2 from
+            % the mean: (2^2 + 2^2) / 2 = 4).
+            testCase.inputs.activationGroups = {[1, 2]};
+            testCase.modeled.muscleActivations = cat(2, ...
+                0.4 * ones(1, 1, 4), 0.2 * ones(1, 1, 4));
+            synx = testCase.modeled;
+            synx.muscleActivations = cat(2, 0.5 * ones(1, 1, 4), ...
+                0.1 * ones(1, 1, 4));
+            testCase.params.costTerms = { ...
+                term("grouped_activation_similarity", true, 0.1)};
+            testCase.verifyEqual(calcMtpCost(testCase.values, synx, ...
+                testCase.modeled, testCase.inputs, testCase.params), ...
+                1, "AbsTol", 1e-12);
+            testCase.inputs.synergyExtrapolation = struct();
+            testCase.verifyEqual(calcMtpCost(testCase.values, synx, ...
+                testCase.modeled, testCase.inputs, testCase.params), ...
+                4, "AbsTol", 1e-12);
+        end
+
         function unknownTermIsReported(testCase)
             testCase.params.costTerms = {term("not_a_term", true, 1)};
             verifyErrorMessage(testCase, @() calcMtpCost(testCase.values, ...

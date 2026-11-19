@@ -186,6 +186,74 @@ classdef (TestTags = {'Unit'}) TreatmentOptimizationFixtureTest < ...
                     trial + ".sto")), data);
             end
         end
+
+        % ---- walking problem --------------------------------------------
+
+        function walkingDataCoverOneGaitCycle(testCase)
+            walking = testCase.expected.walking;
+            sizes = struct("IKData", walking.numIkCoordinates, ...
+                "IDData", walking.numIdLoads, "GRFData", ...
+                9 * length(walking.hindfootBodies));
+            for data = string(fieldnames(sizes))'
+                values = readStoFile(testDataPath("to", "walking", ...
+                    "inputData", data, walking.trialName + ".sto"));
+                testCase.verifySize(values, [walking.numFrames, ...
+                    sizes.(data) + 1], data);
+                testCase.verifyEqual(values([1 end], 1)', ...
+                    walking.timeRange, "AbsTol", 1e-9, data);
+            end
+        end
+
+        function walkingModelHasItsCoordinatesAndMuscles(testCase)
+            walking = testCase.expected.walking;
+            model = Model(testDataPath("to", "walking", ...
+                walking.modelFileName));
+            testCase.verifyEqual(model.getMuscles().getSize(), ...
+                walking.numModelMuscles);
+            for name = walking.torqueCoordinates
+                testCase.verifyTrue(model.getCoordinateSet().contains( ...
+                    char(name)), name);
+            end
+        end
+
+        function walkingOsimxHasAContactSurfacePerFoot(testCase)
+            % The terms that need contact surfaces find them by hindfoot
+            % body and by ground reaction column name.
+            walking = testCase.expected.walking;
+            text = fileread(testDataPath("to", "walking", ...
+                walking.osimxFileName));
+            testCase.verifyEqual(count(text, "<RCNLContactSurface>"), ...
+                length(walking.hindfootBodies));
+            hindfoot = extractBetween(text, "<hindfoot_body>", ...
+                "</hindfoot_body>");
+            testCase.verifyEqual(string(hindfoot)', walking.hindfootBodies);
+            forces = extractBetween(text, "<force_columns>", ...
+                "</force_columns>");
+            testCase.verifyEqual(string(forces)', "ground_force_" + ...
+                walking.groundReactionNumbers + "_vx ground_force_" + ...
+                walking.groundReactionNumbers + "_vy ground_force_" + ...
+                walking.groundReactionNumbers + "_vz");
+        end
+
+        function walkingPublishedResultsSolveTheGaitCycle(testCase)
+            walking = testCase.expected.walking;
+            folder = testDataPath("to", "walking", "published", ...
+                "WalkingTOResults");
+            trial = walking.trialName;
+            states = readStoFile(fullfile(folder, trial + "_states.sto"));
+            testCase.verifySize(states, [walking.publishedFrames, ...
+                2 * walking.numStatesCoordinates + 1]);
+            testCase.verifyEqual(states([1 end], 1)', walking.timeRange, ...
+                "AbsTol", 1e-9);
+            [controls, names] = readStoFile(fullfile(folder, trial + ...
+                "_torqueControls.sto"));
+            testCase.verifyEqual(names, ["time", walking.torqueCoordinates]);
+            testCase.verifyEqual(size(controls, 1), walking.publishedFrames);
+            for data = ["IKData", "IDData", "GRFData"]
+                testCase.verifyTrue(isfile(fullfile(folder, data, ...
+                    trial + ".sto")), data);
+            end
+        end
     end
 
     methods

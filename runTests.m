@@ -204,18 +204,20 @@ end
 
 % (matlab.unittest.Test, string array, string) -> (matlab.unittest.Test)
 % Keeps the tests of the given tools: those in tests/unit/<tool name> (and
-% its subfolders) and the parsing and regression test classes whose names
-% start with the tool name.
+% its subfolders) and the classes in tests/parsing and tests/regression
+% whose names start with the tool name (e.g. GroundContactPersonalization-
+% RegressionTest, TreatmentOptimizationTermSmokeTest).
 function suite = selectTools(suite, tools, testsDirectory)
 baseFolders = string({suite.BaseFolder});
 classNames = string({suite.TestParentName});
+inParsingOrRegression = ismember(baseFolders, ...
+    fullfile(testsDirectory, ["parsing", "regression"]));
 keep = false(size(suite));
 for tool = toolFolderNames(tools)
     unitFolder = fullfile(testsDirectory, "unit", tool);
     inUnitFolder = baseFolders == unitFolder | ...
         startsWith(baseFolders, unitFolder + filesep);
-    namedForTool = startsWith(classNames, tool) & ...
-        endsWith(classNames, ["ParsingTest", "RegressionTest"]);
+    namedForTool = inParsingOrRegression & startsWith(classNames, tool);
     keep = keep | inUnitFolder | namedForTool;
 end
 suite = suite(keep);

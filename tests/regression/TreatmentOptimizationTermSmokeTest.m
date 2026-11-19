@@ -21,12 +21,16 @@
 % - trackingSynergy, designSynergy (the Step 8 kick, with
 %   optimize_synergy_vectors true so the synergy vector terms have
 %   weights to act on)
+% - trackingWalking, verificationWalking, designWalking (torque-driven
+%   walking with two GCP contact surfaces, from nmsm-advanced-tutorials
+%   Tutorial 1)
 %
 % Terms that need muscles (muscle, synergy, fiber length and metabolic
 % terms) are tested in the synergy cases only. Terms that need contact
 % surfaces (external forces and moments, center of pressure, braking and
-% propulsive impulse) are reported as not run: the kick fixtures have no
-% GCP contact surfaces or ground reaction data. user_defined terms call
+% propulsive impulse) are tested in the walking cases only, and the walking
+% cases test only those: the kick fixtures have no contact surfaces, and
+% the kick cases already cover every other term. user_defined terms call
 % small functions written by this test, so they check the plumbing only.
 %
 % Needs GPOPS-II (preparing a problem finds the collocation times); without
@@ -68,8 +72,6 @@ classdef (TestTags = {'Regression'}) TreatmentOptimizationTermSmokeTest ...
     methods (Test)
         function termRunsAndHasTheRightSize(testCase, term)
             [caseName, kind, type] = splitTerm(term);
-            testCase.assumeFalse(needsContactSurfaces(type), type + ...
-                " needs contact surfaces; the kick fixtures have none.");
             testCase.assertEqual(testCase.errors.(caseName), "", ...
                 "Preparing " + caseName + " failed: " + ...
                 testCase.errors.(caseName));
@@ -104,12 +106,20 @@ cases.designTorque = struct("tool", "DesignOptimization", ...
 cases.designSynergy = struct("tool", "DesignOptimization", ...
     "controller", "synergy", "problem", "synergy", ...
     "settings", "settings_design_synergy_tutorial.xml");
+cases.trackingWalking = struct("tool", "TrackingOptimization", ...
+    "controller", "torque", "problem", "walking", ...
+    "settings", "settings_tracking_walking.xml");
+cases.verificationWalking = struct("tool", "VerificationOptimization", ...
+    "controller", "torque", "problem", "walking", ...
+    "settings", "settings_verification_walking.xml");
+cases.designWalking = struct("tool", "DesignOptimization", ...
+    "controller", "torque", "problem", "walking", ...
+    "settings", "settings_design_walking.xml");
 end
 
 function terms = smokeTerms()
 % Every (case, kind, type) the registries allow, minus muscle terms in
-% torque cases. Contact terms stay in the list and are reported as not
-% run, so the gap stays visible.
+% torque cases, with contact terms in the walking cases only.
 terms = {};
 cases = smokeCases();
 for name = string(fieldnames(cases))'
@@ -134,6 +144,7 @@ types = reshape(unique(string(types), "stable"), 1, []);
 if smokeCase.controller == "torque"
     types = types(~needsMuscles(types));
 end
+types = types(needsContactSurfaces(types) == (smokeCase.problem == "walking"));
 end
 
 function tf = needsMuscles(types)
@@ -175,19 +186,15 @@ text = fileread(smokeCase.settings);
 costTerms = "";
 for kind = ["continuous", "discrete"]
     for type = caseTypes(smokeCase, kind)
-        if ~needsContactSurfaces(type)
-            costTerms = costTerms + termXml("RCNLCostTerm", type, ...
-                kind, smokeCase.controller);
-        end
+        costTerms = costTerms + termXml("RCNLCostTerm", type, kind, ...
+            smokeCase.controller);
     end
 end
 constraintTerms = "";
 for kind = ["path", "terminal"]
     for type = caseTypes(smokeCase, kind)
-        if ~needsContactSurfaces(type)
-            constraintTerms = constraintTerms + termXml( ...
-                "RCNLConstraintTerm", type, kind, smokeCase.controller);
-        end
+        constraintTerms = constraintTerms + termXml( ...
+            "RCNLConstraintTerm", type, kind, smokeCase.controller);
     end
 end
 text = appendToElement(text, "RCNLCostTermSet", costTerms);
@@ -220,20 +227,20 @@ end
 function xml = termXml(element, type, kind, controller)
 % One enabled term with every target element a term might read. Each
 % term reads only its own, so the others are ignored.
-targets = struct( ...
-    "coordinate", "hip_flexion_r", ...
-    "load", "hip_flexion_r_moment", ...
-    "marker", "R_Toe", ...
-    "body", "calcn_r", ...
-    "axes", "x", ...
-    "muscle", "soleus_r", ...
-    "synergy_group", "RightLeg", ...
-    "synergy", "RightLeg_1", ...
-    "synergies", "RightLeg_1 RightLeg_2");
-if controller == "synergy"
-    targets.controller = "RightLeg_1";
+if needsContactSurfaces(type)
+    % The walking model's right foot contact surface. Center of pressure
+    % terms require time ranges, and impulse goals an error center.
+    targets = struct( ...
+        "force", "ground_force_2_vx", ...
+        "moment", "ground_moment_2_mz", ...
+        "hindfoot_body", "calcn_r", ...
+        "axes", "x", ...
+        "time_ranges", "0 1");
+    if element == "RCNLCostTerm"
+        targets.error_center = "0";
+    end
 else
-    targets.controller = "hip_flexion_r";
+    targets = kickTargets(controller);
 end
 xml = "<" + element + "><is_enabled>false</is_enabled><type>" + type + ...
     "</type>";
@@ -257,6 +264,24 @@ if type == "user_defined"
         "</function_name>";
 end
 xml = xml + "</" + element + ">";
+end
+
+function targets = kickTargets(controller)
+targets = struct( ...
+    "coordinate", "hip_flexion_r", ...
+    "load", "hip_flexion_r_moment", ...
+    "marker", "R_Toe", ...
+    "body", "calcn_r", ...
+    "axes", "x", ...
+    "muscle", "soleus_r", ...
+    "synergy_group", "RightLeg", ...
+    "synergy", "RightLeg_1", ...
+    "synergies", "RightLeg_1 RightLeg_2");
+if controller == "synergy"
+    targets.controller = "RightLeg_1";
+else
+    targets.controller = "hip_flexion_r";
+end
 end
 
 function name = userFunctionName(kind)
@@ -287,6 +312,10 @@ auxdata = setup.auxdata;
 % metabolic cost)
 auxdata.calculateAngularMomentum = true;
 auxdata.calculateMetabolicCost = auxdata.controllerType == "synergy";
+% and for the impulse goals, which need contact surfaces
+hasContact = ~isempty(valueOrAlternate(auxdata, "contactSurfaces", []));
+auxdata.calculateBrakingImpulse = hasContact;
+auxdata.calculatePropulsiveImpulse = hasContact;
 guess = setup.guess.phase;
 phase = guess;
 if isfield(setup.guess, "parameter")
@@ -316,6 +345,15 @@ if auxdata.calculateMetabolicCost
         problem.continuousValues.time, ...
         problem.continuousModeled.metabolicCost);
     auxdata.initialMetabolicCost = problem.endpointModeled.metabolicCost;
+end
+% The same for the braking and propulsive impulses (one per contact
+% surface), which the endpoint function also reads from the integral.
+if hasContact
+    for field = ["brakingImpulse", "propulsiveImpulse"]
+        problem.endpointModeled.(field) = trapz( ...
+            problem.continuousValues.time, ...
+            problem.continuousModeled.(field));
+    end
 end
 problem.auxdata = auxdata;
 end

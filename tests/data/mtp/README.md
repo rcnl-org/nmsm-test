@@ -26,6 +26,7 @@ MTP settings files for the parsing and regression tests (`Version="1.5.4"`, writ
 | `settings_full.xml` | Every option, mostly with non-default values: trial prefixes, optimizer settings, MTLI with every cost term, synergy extrapolation, and three tasks listed out of index order with one disabled. |
 | `settings_tutorial.xml` | The tutorial's `MTPSettingsV1.xml` with only the version changed. Used by the regression tests. |
 | `settings_synthetic_emg_scale.xml`, `settings_synthetic_all.xml`, `settings_synthetic_two_trials.xml` | The synthetic known-truth MTP cases (below): synthetic model and data, moment tracking only, no synergy extrapolation or MTLI. `emg_scale` optimizes only EMG scale factors; `all` and `two_trials` all six parameter types, on one and two trials. Used by the regression tests. |
+| `settings_synthetic_activation_similarity.xml`, `settings_synthetic_activation_similarity_tight.xml` | `settings_synthetic_emg_scale.xml` with the hamstrings activation group (`bflh_r`, `bfsh_r`) and the `grouped_activation_similarity` term added. The term's allowable error is 0.1 and 0.01. Compared with the `emg_scale` run by the regression tests. |
 | `settings_synthetic_passive.xml` | The synthetic known-truth MTLI case (below): passive moment tracking only, maximum isometric force and muscle stress fixed. MTP then runs for one iteration without optimizing lengths, so the lengths it reports are MTLI's. Used by the regression tests. |
 | `bad_*.xml`, `edge_*.xml` | `settings_minimal.xml` with one change, described in the comment at the top of each file. (`edge_synergy_extrapolation_enabled` and `edge_mtli_enabled` add the elements that enabling the section requires; `edge_mtli_without_passive_data` is `edge_mtli_enabled` with an empty passive data folder.) |
 
@@ -80,7 +81,8 @@ whose moments are replaced anyway. `MtpSyntheticDataTest` checks the two trials'
 
 ## `nominal/`
 
-Results of the five regression runs (`emgScale`, `all`, `twoTrials`, `passive`, `tutorial`):
+Results of the seven regression runs (`emgScale`, `all`, `twoTrials`, `passive`, `tutorial`,
+`activationSimilarity`, `activationSimilarityTight`):
 `<case>_muscleModelParameters.sto` and, per trial, `<case>_<trial>_modelJointMoments.sto`, copied from MTP's
 `Analysis` folder. The regression tests compare new runs
 against them; two runs on the same machine agree exactly. Regenerate them only with
@@ -96,6 +98,7 @@ What the runs give (nmsm-core `main` at v1.5.4, same MTP as `candidate-1.5.4`):
 | `twoTrials` | Moment RMS about 0.09 Nm on both trials. Largest misses from the truth, against `all`'s: activation time constant 0.0006 s (0.0036), nonlinearity 0.006 (0.077), delay 0.0009 s (0.0125), EMG scale 0.016 (0.10), optimal fiber length scale 0.039 (0.15), tendon slack length scale 0.059 (0.13). |
 | `passive` | All 18 length scale factors within 2.3e-4 of the truth; passive moment RMS 3e-5 Nm. |
 | `tutorial` | The tutorial's published parameters exactly; moment RMS 5.78, 6.52, 7.45 Nm with the synergy model (18.8, 11.7, 9.3 Nm without). Several parameters end on a bound (activation time constant 0.0075 s, nonlinearity 0, delay 0). |
+| `activationSimilarity`, `activationSimilarityTight` | The hamstrings' mean activations differ by 0.027 and 0.0045, against 0.1255 at the truth (`emgScale`). EMG scale factors bflh_r 0.373 and 0.354, bfsh_r 0.405 and 0.340 (truth 0.35 and 0.6). Moment RMS up to 0.74 and 1.55 Nm. |
 
 The recorded values (muscle names and properties, groups, frame counts, time ranges) live in
 `tests/helpers/mtpFixtureValues.m`, and `tests/unit/MuscleTendonPersonalization/MtpFixtureTest.m` checks that
